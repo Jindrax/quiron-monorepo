@@ -1,0 +1,24 @@
+{
+  "name": "@quiron/classes",
+  "version": "0.0.1",
+  "description": "Modulo para las clases que se comparten entre backend y frontend del sistema Quiron de la empresa FirstMedical de colombia.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/Jindrax/quiron_classes.git",
+  "author": "Jairo Vanegas <jhvangar@gmail.com>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "^16.7.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "class-transformer": "^0.3.1",
+    "reflect-metadata": "^0.1.13",
+    "typedjson": "^1.6.0-rc2",
+    "uuidv4": "^6.2.7"
+  },
+  "scripts": {
+    "run": "ts-node index.ts",
+    "build": "tsc"
+  }
+}

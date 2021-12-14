@@ -1,0 +1,1 @@
+docker run --name quiron-postgres-localhost -e POSTGRES_PASSWORD=illidan1992 -p 5432:5432 -d postgres:13.5

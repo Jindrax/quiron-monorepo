@@ -1,0 +1,1 @@
+{"version":3,"file":"CampoInformacion.d.ts","sourceRoot":"","sources":["../../../../../components/campos/edicion/elementos/CampoInformacion.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,KAAK,EAAC,MAAM,UAAU,CAAC;AAC/B,OAAO,EAAC,WAAW,EAAC,MAAM,gBAAgB,CAAC;AAG3C,qBAAa,gBAAiB,SAAQ,KAAK;IAChC,WAAW,EAAE,MAAM,CAAM;gBAEpB,QAAQ,CAAC,EAAE,MAAM,EAAE,WAAW,CAAC,EAAE,WAAW;CAG3D"}

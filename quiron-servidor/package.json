@@ -1,0 +1,54 @@
+{
+  "name": "@quiron/servidor",
+  "description": "Servidor del sistema quiron sobre la infraestructura de SocketCluster",
+  "version": "1.0.1",
+  "author": {
+    "email": "jhvangar@gmail.com",
+    "name": "Jairo Vanegas",
+    "url": "https://github.com/Jindrax"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.9",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.0",
+    "class-transformer": "^0.3.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.11.7",
+    "morgan": "^1.10.0",
+    "nodemon": "^1.18.9",
+    "pg": "^8.6.0",
+    "quiron_classes": "https://github.com/FirstMedical/quiron-classes",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.34",
+    "uuid": "^3.3.2"
+  },
+  "keywords": [
+    "FirstMedical"
+  ],
+  "scripts": {
+    "start": "node server.js",
+    "start:dev": "ts-node server.ts",
+    "start:watch": "./node_modules/nodemon/bin/nodemon.js server.js",
+    "dev": "cross-env NODE_ENV=dev ts-node server.ts",
+    "updateClasses": "yarn upgrade quiron_classes"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/es6-promise": "^3.3.0",
+    "@types/express": "^4.17.9",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/lodash": "^4.14.172",
+    "@types/mongoose": "^5.10.2",
+    "@types/morgan": "^1.9.2",
+    "@types/node": "^14.11.5",
+    "@types/uuid": "^8.3.0",
+    "cross-env": "^7.0.3",
+    "typescript": "^4.0.3"
+  }
+}

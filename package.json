@@ -1,0 +1,10 @@
+{
+  "name": "@quiron/monorepo",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/FirstMedical/quiron-monorepo.git",
+  "author": "Jairo Vanegas <jhvangar@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "workspaces": ["quiron-auth", "quiron-classes", "quiron-cliente", "quiron-servidor"]
+}

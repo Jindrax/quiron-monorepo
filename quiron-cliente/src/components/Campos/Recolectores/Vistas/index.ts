@@ -1,0 +1,12 @@
+export {default as Chequeo} from './Chequeo.vue';
+export {default as EntradaNumerica} from './EntradaNumerica.vue';
+export {default as EntradaTexto} from './EntradaTexto.vue';
+export {default as Fecha} from './Fecha.vue';
+export {default as Firma} from './Firma.vue';
+export {default as Imagen} from './Imagen.vue';
+export {default as Seccion} from './Seccion.vue';
+export {default as Seleccion} from './Seleccion.vue';
+export {default as Tabla} from './Tabla.vue';
+export {default as TablaCompuesta} from './TablaCompuesta.vue';
+export {default as Mediciones} from './Mediciones.vue';
+export {default as Informacion} from './Informacion.vue';

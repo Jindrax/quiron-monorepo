@@ -1,0 +1,28 @@
+{
+  "extends": "@quasar/app/tsconfig-preset",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "strict": false,
+    "paths": {
+      "pages/*": [
+        "src/pages/*"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "api/*": [
+        "src/api/*"
+      ],
+      "clases/*": [
+        "src/api/clases/*"
+      ],
+      "enumeradores/*": [
+        "src/api/enumeradores/*"
+      ],
+      "interfaces/*": [
+        "src/api/interfaces/*"
+      ]
+    }
+  }
+}
