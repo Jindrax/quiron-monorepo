@@ -1,5 +1,5 @@
-import Cacheable from "quiron_classes/dist/entities/auxiliar/Cacheable";
-import {Plantilla} from "quiron_classes/dist/entities";
+import Cacheable from "@quiron/classes/dist/entities/auxiliar/Cacheable";
+import {Plantilla} from "@quiron/classes/dist/entities";
 import {CacheModel} from "../db/models/CacheModel";
 import {getRepository} from "typeorm";
 import {ValidToken as Token} from "../../middleware/LoadToken";

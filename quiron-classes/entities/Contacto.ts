@@ -1,5 +1,3 @@
-import Institucion from "./Institucion";
-
 export interface ContactoConstructor {
     id?: string;
     identificacion?: string;
@@ -7,7 +5,6 @@ export interface ContactoConstructor {
     apellidos?: string;
     telefonos?: string[];
     emails?: string[];
-    instituciones?: Institucion[];
 }
 
 export default class Contacto {
@@ -17,17 +14,13 @@ export default class Contacto {
     apellidos: string;
     telefonos: string[];
     emails: string[];
-    instituciones: Institucion[];
 
-    constructor({id, identificacion, nombres, apellidos, telefonos, emails, instituciones}: ContactoConstructor) {
+    constructor({id, identificacion, nombres, apellidos, telefonos, emails}: ContactoConstructor) {
         this.id = id ? id : "";
         this.identificacion = identificacion ? identificacion : "";
         this.nombres = nombres ? nombres : "";
         this.apellidos = apellidos ? apellidos : "";
         this.telefonos = telefonos ? telefonos : [];
         this.emails = emails ? emails : [];
-        this.instituciones = instituciones ? instituciones.map((element: any) => {
-            return new Institucion(element);
-        }) : [];
     }
 }

@@ -39,7 +39,7 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import MostrarCampo from 'components/Campos/MostrarCampo.vue';
-import {Contacto, Institucion} from "quiron_classes/dist/entities";
+import {Contacto, Institucion} from "@quiron/classes/dist/entities";
 import Controller from "api/Controller";
 import {OpcionesDialogo} from "components/Utils/Interfaces";
 import BuscadorGenerico from "components/Utils/BuscadorGenerico.vue";

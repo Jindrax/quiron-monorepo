@@ -53,8 +53,8 @@ import Component from 'vue-class-component';
 import {Prop, PropSync, Vue} from 'vue-property-decorator';
 import {getModule} from 'vuex-module-decorators';
 import ModuloEditorPlantilla from '../../../store/modules/ModuloEditorPlantilla';
-import {Campo, Referencia as ReferenciaClass} from 'quiron_classes/dist/components/campos/edicion';
-import {CAMPOS_REFERENCIABLES, DiccionarioTiposElementos} from "quiron_classes/dist/components/campos";
+import {Campo, Referencia as ReferenciaClass} from '@quiron/classes/dist/components/campos/edicion';
+import {CAMPOS_REFERENCIABLES, DiccionarioTiposElementos} from "@quiron/classes/dist/components/campos";
 import {Dialog} from "quasar";
 
 @Component({

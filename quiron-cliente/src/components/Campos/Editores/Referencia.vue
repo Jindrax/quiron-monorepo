@@ -40,7 +40,7 @@
 import {Component, PropSync, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../MostrarCampo.vue';
 import SelectorPorCapas from "components/Utils/SelectorPorCapas.vue";
-import {Referencia as ReferenciaClass, TipoReferencia} from "quiron_classes/dist/components/campos/edicion";
+import {Referencia as ReferenciaClass, TipoReferencia} from "@quiron/classes/dist/components/campos/edicion";
 import {getModule} from 'vuex-module-decorators';
 import ModuloEditorPlantilla from '../../../store/modules/ModuloEditorPlantilla';
 

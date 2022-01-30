@@ -143,21 +143,19 @@
 import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 import MostrarCampo from 'components/Campos/MostrarCampo.vue';
 import Previsualizador from '../../components/Campos/Previsualizador.vue';
-import Disposicion from '../../components/Campos/Disposicion.vue';
 import {OpcionesDialogo} from 'components/Utils/Interfaces';
 import BuscadorGenerico from '../../components/Utils/BuscadorGenerico.vue';
-import Plantilla from 'quiron_classes/dist/entities/Plantilla';
+import Plantilla from '@quiron/classes/dist/entities/Plantilla';
 import ControladorCache from "clases/Plantillas/Campos/Editores/ControladorCache";
 import {getModule} from 'vuex-module-decorators';
 import ModuloEditorPlantilla from '../../store/modules/ModuloEditorPlantilla';
 import {Seccion} from "components/Campos/Editores/Vistas";
-import {CampoSeccion} from "quiron_classes/dist/components/campos/edicion";
-import {TiposElementos} from "quiron_classes/dist/components/campos";
+import {CampoSeccion} from "@quiron/classes/dist/components/campos/edicion";
+import {TiposElementos} from "@quiron/classes/dist/components/campos";
 
 @Component({
   components: {
     Previsualizador,
-    Disposicion,
     MostrarCampo,
     Seccion
   }

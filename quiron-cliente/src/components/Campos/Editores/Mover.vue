@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import MostrarCampo from '../MostrarCampo.vue';
 import { getModule } from 'vuex-module-decorators';
 import ModuloEditorPlantilla from '../../../store/modules/ModuloEditorPlantilla';
-import { Campo } from 'quiron_classes/dist/components/campos/edicion/Campo';
+import { Campo } from '@quiron/classes/dist/components/campos/edicion/Campo';
 
 interface SelectObject {
   label: string;

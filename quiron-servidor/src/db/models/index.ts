@@ -10,7 +10,7 @@ import {OTModel} from "./OTModel";
 import {ServicioModel} from "./ServicioModel/ServicioModel";
 import {FormularioTraceModel} from "./Traces/FormularioTraceModel";
 import {OTTraceModel, PlantillaTraceModel} from "./Traces";
-import {InstitucionModel} from "./InstitucionModel";
+import {InstitucionModel, InstitucionClienteContactoModel} from "./InstitucionModel";
 import {EquipoAtributoModel} from "./EquipoModel/EquipoAtributoModel";
 
 const entities = [
@@ -28,6 +28,7 @@ const entities = [
     ServicioModel,
     FormularioTraceModel,
     OTTraceModel,
-    EquipoAtributoModel
+    EquipoAtributoModel,
+    InstitucionClienteContactoModel
 ];
 export default entities;

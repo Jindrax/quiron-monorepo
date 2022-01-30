@@ -1,4 +1,4 @@
-import {EquipoAtributo} from "quiron_classes/dist/entities";
+import {EquipoAtributo} from "@quiron/classes/dist/entities";
 import {CRUDEntity} from "../db/models/CRUDEntity";
 import {EquipoAtributoModel} from "../db/models/EquipoModel/EquipoAtributoModel";
 

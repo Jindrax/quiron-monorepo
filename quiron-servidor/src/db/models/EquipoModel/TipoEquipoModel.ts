@@ -1,6 +1,6 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 import {CommonEntityInterface} from "../CommonEntityInterface";
-import {TipoEquipo} from "quiron_classes/dist/entities/tipos/TipoEquipo";
+import {TipoEquipo} from "@quiron/classes/dist/entities/tipos/TipoEquipo";
 import SearchValue from "../../decorators/SearchValue";
 
 @Entity()

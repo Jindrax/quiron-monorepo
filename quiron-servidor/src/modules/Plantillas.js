@@ -13,14 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const PlantillaModel_1 = require("../db/models/PlantillaModel");
-const CacheCreationResponse_1 = __importDefault(require("quiron_classes/dist/entities/auxiliar/CacheCreationResponse"));
+const CacheCreationResponse_1 = __importDefault(require("@quiron/classes/dist/entities/auxiliar/CacheCreationResponse"));
 const Cache_1 = __importDefault(require("./Cache"));
 const typeorm_1 = require("typeorm");
 const uuid_1 = require("uuid");
 const UsuarioModel_1 = require("../db/models/UsuarioModel");
 const Traces_1 = require("../db/models/Traces");
 const lodash_1 = require("lodash");
-const campos_1 = require("quiron_classes/dist/components/campos");
+const campos_1 = require("@quiron/classes/dist/components/campos");
 class Plantillas {
     static compareCampo(campoA, campoB) {
         let diff = {

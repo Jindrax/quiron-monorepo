@@ -1,4 +1,4 @@
-import Plantilla from 'quiron_classes/entities/Plantilla';
+import Plantilla from '@quiron/classes/dist/entities/Plantilla';
 import Controller from 'api/Controller';
 
 export default class ControladorCache<T extends Plantilla> {

@@ -22,7 +22,7 @@
 <script lang="ts">
 import { Component, PropSync, Vue } from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import { CampoFecha, DateType, DiccionarioDateType } from 'quiron_classes/dist/components/campos/edicion';
+import { CampoFecha, DateType, DiccionarioDateType } from '@quiron/classes/dist/components/campos/edicion';
 
 @Component({
   name: 'fecha',

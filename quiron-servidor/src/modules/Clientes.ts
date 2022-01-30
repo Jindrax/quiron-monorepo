@@ -1,4 +1,4 @@
-import {Cliente} from "quiron_classes/dist/entities";
+import {Cliente} from "@quiron/classes/dist/entities";
 import {getRepository, SelectQueryBuilder} from "typeorm";
 import {ClienteModel} from "../db/models/ClienteModel";
 
@@ -14,8 +14,12 @@ export default class Clientes {
         }
     }
 
-    static async buscar({filtro}: { filtro: any }) {
+    static async buscar({filtro, opciones}: { filtro: any, opciones: string[] }) {
         try {
+            if(!opciones){
+                opciones = [];
+            }
+            console.log(opciones);
             filtro = JSON.parse(filtro);
             const repo = getRepository<ClienteModel>(ClienteModel);
             if (Object.keys(filtro).length > 0) {
@@ -33,13 +37,14 @@ export default class Clientes {
                             {identificacion: `%${filtro[key]}%`});
                         break;
                 }
-                return await query.leftJoinAndSelect("clientes.sucursales", "sucursales")
-                    .leftJoinAndSelect("clientes.sucursalPrincipal", "sucursalPrincipal")
-                    .leftJoinAndSelect("clientes.contactos", "contactos")
-                    .leftJoinAndSelect("clientes.equipos", "equipos")
-                    .getMany();
+                opciones.forEach(relation => {
+                    query = query.leftJoinAndSelect(`clientes.${relation}`, relation);
+                });
+                return await query.getMany();
             } else {
-                return await repo.find();
+                return await repo.find({
+                    relations: opciones
+                });
             }
         } catch (e) {
             throw e;

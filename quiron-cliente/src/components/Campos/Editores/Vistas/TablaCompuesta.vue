@@ -73,8 +73,8 @@ import ModuloEditorPlantilla from '../../../../store/modules/ModuloEditorPlantil
 import { Component, PropSync, Vue, Watch } from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
 import CampoEditarTablaCompuestaParametro from './TablaCompuestaParametro.vue';
-import { CampoTablaCompuesta } from 'quiron_classes/dist/components/campos/edicion/elementos/CampoTablaCompuesta';
-import { DiccionarioTiposElementos, TiposElementos } from 'quiron_classes/dist/components/campos';
+import { CampoTablaCompuesta } from '@quiron/classes/dist/components/campos/edicion/elementos/CampoTablaCompuesta';
+import { DiccionarioTiposElementos, TiposElementos } from '@quiron/classes/dist/components/campos';
 
 @Component({
   name: 'tabla-compuesta',

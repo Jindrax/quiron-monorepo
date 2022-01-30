@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import {Component, Prop, PropSync, Vue} from 'vue-property-decorator';
-import {CampoMediciones} from "quiron_classes/dist/components/campos/edicion/elementos/CampoMediciones";
+import {CampoMediciones} from "@quiron/classes/dist/components/campos/edicion/elementos/CampoMediciones";
 import * as ChartJs from "chart.js";
 //@ts-ignore
 ChartJs.Chart.register.apply(null, Object.values(ChartJs).filter((chartClass) => (chartClass.id)));

@@ -62,7 +62,7 @@
 <script lang="ts">
 import {Component, Prop, PropSync, Vue, Watch} from 'vue-property-decorator';
 import Campo from '../Campo.vue';
-import {CampoTablaCompuesta} from 'quiron_classes/dist/components/campos/edicion';
+import {CampoTablaCompuesta} from '@quiron/classes/dist/components/campos/edicion';
 
 @Component({
   components: {

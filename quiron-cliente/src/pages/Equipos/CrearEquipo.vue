@@ -29,7 +29,7 @@
 import {Component, Vue} from 'vue-property-decorator';
 import BuscadorConTabla from "components/Utils/BuscadorConTabla.vue";
 import BuscadorUnitario from "components/Utils/BuscadorUnitario.vue";
-import {Equipo} from "quiron_classes/dist/entities";
+import {Equipo} from "@quiron/classes/dist/entities";
 import {BuscadorCliente, BuscadorInstitucion} from "api/entidades/Buscador";
 import RecolectorAtributos from "components/Utils/RecolectorAtributos.vue";
 import Controller from "api/Controller";

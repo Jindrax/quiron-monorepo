@@ -1,5 +1,5 @@
 import Verificador from './Verificador';
-import { CondicionDependiente } from 'quiron_classes/dist/components/campos/edicion';
+import { CondicionDependiente } from '@quiron/classes/dist/components/campos/edicion';
 import VerificadorLogicoEnum from 'enumeradores/Plantillas/Recolectores/Condicionales/VerificadorLogicoEnum';
 import FabricaVerificadores from 'clases/Plantillas/Campos/Recolectores/Condicionales/FabricaVerificadores';
 

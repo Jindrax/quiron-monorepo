@@ -64,14 +64,14 @@
 <script lang="ts">
 import {Component, Prop, PropSync, Vue, Watch} from 'vue-property-decorator';
 import MostrarCampo from '../MostrarCampo.vue';
-import {CondicionDependiente, Dependiente} from 'quiron_classes/dist/components/campos/edicion/Dependiente';
+import {CondicionDependiente, Dependiente} from '@quiron/classes/dist/components/campos/edicion/Dependiente';
 import {getModule} from 'vuex-module-decorators';
 import ModuloEditorPlantilla from '../../../store/modules/ModuloEditorPlantilla';
 import SelectorPorCapas from "components/Utils/SelectorPorCapas.vue";
 import Comparadores from "clases/Plantillas/Campos/Recolectores/Condicionales/Comparadores";
 import VerificadorLogicoEnum from "enumeradores/Plantillas/Recolectores/Condicionales/VerificadorLogicoEnum";
-import {Campo, CampoSeleccion} from "quiron_classes/dist/components/campos/edicion";
-import {TiposElementos} from "quiron_classes/dist/components/campos";
+import {Campo, CampoSeleccion} from "@quiron/classes/dist/components/campos/edicion";
+import {TiposElementos} from "@quiron/classes/dist/components/campos";
 
 @Component({
   components: {

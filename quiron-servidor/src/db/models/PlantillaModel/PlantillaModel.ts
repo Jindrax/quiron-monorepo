@@ -1,6 +1,6 @@
 import {BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryColumn} from "typeorm";
-import {CampoSeccion} from "quiron_classes/dist/components/campos/edicion";
-import {Plantilla} from "quiron_classes/dist/entities";
+import {CampoSeccion} from "@quiron/classes/dist/components/campos/edicion";
+import {Plantilla} from "@quiron/classes/dist/entities";
 import {CommonEntityInterface} from "../CommonEntityInterface";
 
 @Entity()

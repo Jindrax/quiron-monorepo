@@ -29,6 +29,7 @@ const entities = [
     ServicioModel_1.ServicioModel,
     FormularioTraceModel_1.FormularioTraceModel,
     Traces_1.OTTraceModel,
-    EquipoAtributoModel_1.EquipoAtributoModel
+    EquipoAtributoModel_1.EquipoAtributoModel,
+    InstitucionModel_1.InstitucionClienteContactoModel
 ];
 exports.default = entities;

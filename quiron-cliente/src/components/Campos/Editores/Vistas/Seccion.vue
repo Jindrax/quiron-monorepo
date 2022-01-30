@@ -36,7 +36,7 @@
 import Component from 'vue-class-component';
 import {Prop, Vue} from 'vue-property-decorator';
 import Selector from '../Selector.vue';
-import {Campo, CampoSeccion} from 'quiron_classes/dist/components/campos/edicion';
+import {Campo, CampoSeccion} from '@quiron/classes/dist/components/campos/edicion';
 import {getModule} from 'vuex-module-decorators';
 import ModuloEditorPlantilla from '../../../../store/modules/ModuloEditorPlantilla';
 

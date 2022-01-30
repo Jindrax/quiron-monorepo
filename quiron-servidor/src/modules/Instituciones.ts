@@ -1,4 +1,4 @@
-import {Institucion} from "quiron_classes/dist/entities";
+import {Institucion} from "@quiron/classes/dist/entities";
 import {getRepository, SelectQueryBuilder} from "typeorm";
 import {InstitucionModel} from "../db/models/InstitucionModel";
 

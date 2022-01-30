@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InstitucionModel = void 0;
 const typeorm_1 = require("typeorm");
-const ContactoModel_1 = require("../ContactoModel");
+const InstitucionClienteContactoModel_1 = require("./InstitucionClienteContactoModel");
 let InstitucionModel = class InstitucionModel extends typeorm_1.BaseEntity {
     fromCommonEntity(entity) {
         if (entity.id) {
@@ -58,8 +58,7 @@ __decorate([
     __metadata("design:type", String)
 ], InstitucionModel.prototype, "departamento", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(type => ContactoModel_1.ContactoModel, contacto => contacto.instituciones),
-    (0, typeorm_1.JoinTable)(),
+    (0, typeorm_1.OneToMany)(type => InstitucionClienteContactoModel_1.InstitucionClienteContactoModel, conexion => conexion.institucion),
     __metadata("design:type", Array)
 ], InstitucionModel.prototype, "contactos", void 0);
 InstitucionModel = __decorate([

@@ -75,11 +75,11 @@
 import {Component, Vue} from 'vue-property-decorator';
 import {MostrarCampo} from 'components/Campos';
 import Controller from 'api/Controller';
-import {Permission} from "quiron_classes/dist/auth";
+import {Permission} from "@quiron/classes/dist/auth";
 import {OpcionesDialogo} from "components/Utils/Interfaces";
 import BuscadorGenerico from "components/Utils/BuscadorGenerico.vue";
-import Plantilla from "quiron_classes/dist/entities/Plantilla";
-import {Rol} from "quiron_classes/dist/entities";
+import Plantilla from "@quiron/classes/dist/entities/Plantilla";
+import {Rol} from "@quiron/classes/dist/entities";
 
 @Component({
   components: {

@@ -1,4 +1,4 @@
-import {Permission} from "quiron_classes/dist/auth";
+import {Permission} from "@quiron/classes/dist/auth";
 
 export class AuthDirectory {
     static directory: Record<string, Permission> = {};

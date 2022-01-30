@@ -6,7 +6,7 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import MostrarCampo from 'components/Campos/MostrarCampo.vue';
-import {Institucion} from "quiron_classes/dist/entities";
+import {Institucion} from "@quiron/classes/dist/entities";
 import CrearInstitucion from "components/Clientes/CrearInstitucion.vue";
 import CrearContacto from "components/Clientes/CrearContacto.vue";
 import PresentadorPorTabla from "components/Utils/PresentadorPorTabla.vue";

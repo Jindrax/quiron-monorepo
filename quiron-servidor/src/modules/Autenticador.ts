@@ -1,11 +1,11 @@
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
-import {errors} from "quiron_classes";
+import {errors} from "@quiron/classes";
 import {ValidToken as Token} from "../../middleware/LoadToken";
 import {getRepository} from "typeorm";
 import {UsuarioModel} from "../db/models/UsuarioModel";
 import {AuthDirectory} from "../auth/AuthDirectory";
-import {Permission} from "quiron_classes/dist/auth";
+import {Permission} from "@quiron/classes/dist/auth";
 
 export function crearToken(payload: Token): string {
     return jwt.sign(payload, String(process.env.JWT_SECRET));

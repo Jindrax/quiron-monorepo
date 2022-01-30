@@ -1,5 +1,5 @@
 import VerificadorLogicoEnum from 'enumeradores/Plantillas/Recolectores/Condicionales/VerificadorLogicoEnum';
-import { TiposElementos } from 'quiron_classes/dist/components/campos';
+import { TiposElementos } from '@quiron/classes/dist/components/campos';
 
 export default abstract class Verificador {
   public valorEsperado: any;

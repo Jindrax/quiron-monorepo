@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component, PropSync, Vue } from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import { CampoFirma, DiccionarioSignerType, SignerType } from 'quiron_classes/dist/components/campos/edicion';
+import { CampoFirma, DiccionarioSignerType, SignerType } from '@quiron/classes/dist/components/campos/edicion';
 
 @Component({
   name: 'firma',

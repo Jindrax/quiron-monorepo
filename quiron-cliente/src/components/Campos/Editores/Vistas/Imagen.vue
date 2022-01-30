@@ -36,7 +36,7 @@
 <script lang="ts">
 import { Component, PropSync, Vue } from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import { CampoImagen, DiccionarioImagenType, ImagenType } from 'quiron_classes/dist/components/campos/edicion';
+import { CampoImagen, DiccionarioImagenType, ImagenType } from '@quiron/classes/dist/components/campos/edicion';
 
 @Component({
   name: 'imagen',

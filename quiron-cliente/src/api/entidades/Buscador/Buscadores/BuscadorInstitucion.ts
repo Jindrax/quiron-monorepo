@@ -1,5 +1,5 @@
 import {Buscador} from "api/entidades/Buscador";
-import {Institucion} from "quiron_classes/dist/entities";
+import {Institucion} from "@quiron/classes/dist/entities";
 
 export class BuscadorInstitucion extends Buscador<Institucion> {
 

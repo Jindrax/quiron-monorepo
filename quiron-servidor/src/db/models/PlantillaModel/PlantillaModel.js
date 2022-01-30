@@ -12,7 +12,7 @@ var PlantillaModel_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlantillaModel = void 0;
 const typeorm_1 = require("typeorm");
-const edicion_1 = require("quiron_classes/dist/components/campos/edicion");
+const edicion_1 = require("@quiron/classes/dist/components/campos/edicion");
 let PlantillaModel = PlantillaModel_1 = class PlantillaModel extends typeorm_1.BaseEntity {
     fromCommonEntity(entity) {
         this.serial = entity.serial;

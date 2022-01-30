@@ -16,7 +16,7 @@
 <script lang="ts">
 import {Component, Vue, Prop} from 'vue-property-decorator';
 import MostrarCampo from 'components/Campos/MostrarCampo.vue';
-import {Contacto} from 'quiron_classes/dist/entities';
+import {Contacto} from '@quiron/classes/dist/entities';
 import Acumulador from "components/Utils/Acumulador.vue";
 
 @Component({

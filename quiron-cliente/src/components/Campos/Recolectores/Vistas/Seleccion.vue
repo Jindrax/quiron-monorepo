@@ -25,7 +25,7 @@
 <script lang="ts">
 import {Component, Prop, PropSync, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import {CampoSeleccion} from 'quiron_classes/dist/components/campos/edicion';
+import {CampoSeleccion} from '@quiron/classes/dist/components/campos/edicion';
 
 @Component({
   name: 'seleccion',

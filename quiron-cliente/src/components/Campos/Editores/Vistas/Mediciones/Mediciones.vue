@@ -35,9 +35,9 @@
 <script lang="ts">
 import {Component, PropSync, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../../../MostrarCampo.vue';
-import {CampoMediciones} from "quiron_classes/dist/components/campos/edicion/elementos/CampoMediciones";
+import {CampoMediciones} from "@quiron/classes/dist/components/campos/edicion/elementos/CampoMediciones";
 import Medida from "components/Campos/Editores/Vistas/Mediciones/Medida.vue";
-import {Medida as MedidaClass} from "quiron_classes/dist/components/campos/edicion";
+import {Medida as MedidaClass} from "@quiron/classes/dist/components/campos/edicion";
 
 @Component({
   name: 'mediciones',

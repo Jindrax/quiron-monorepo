@@ -1,6 +1,6 @@
 import {CRUDEntity} from "../db/models/CRUDEntity";
 import {TipoEquipoModel} from "../db/models/EquipoModel/TipoEquipoModel";
-import {TipoEquipo} from "quiron_classes/dist/entities/tipos/TipoEquipo";
+import {TipoEquipo} from "@quiron/classes/dist/entities/tipos/TipoEquipo";
 
 export default class TipoEquipos {
     static repo: CRUDEntity<TipoEquipos, TipoEquipoModel> = new CRUDEntity<TipoEquipos, TipoEquipoModel>(TipoEquipoModel);

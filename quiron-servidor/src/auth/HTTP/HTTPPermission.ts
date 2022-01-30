@@ -1,4 +1,4 @@
-import {Permission} from "quiron_classes/dist/auth";
+import {Permission} from "@quiron/classes/dist/auth";
 import {RequestKind} from "../../binders/Binder";
 
 export class HTTPPermission {

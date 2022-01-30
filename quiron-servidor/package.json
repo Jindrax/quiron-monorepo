@@ -22,7 +22,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^1.18.9",
     "pg": "^8.6.0",
-    "quiron_classes": "https://github.com/FirstMedical/quiron-classes",
+    "@quiron/classes": "0.0.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.34",
     "uuid": "^3.3.2"
@@ -32,10 +32,9 @@
   ],
   "scripts": {
     "start": "node server.js",
-    "start:dev": "ts-node server.ts",
+    "start:dev": "node server.js",
     "start:watch": "./node_modules/nodemon/bin/nodemon.js server.js",
-    "dev": "cross-env NODE_ENV=dev ts-node server.ts",
-    "updateClasses": "yarn upgrade quiron_classes"
+    "dev": "cross-env NODE_ENV=dev node server.js"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",

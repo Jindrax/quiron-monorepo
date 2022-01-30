@@ -10,7 +10,7 @@
 <script lang="ts">
 import {Component, PropSync, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import {CampoInformacion} from "quiron_classes/dist/components/campos/edicion/elementos/CampoInformacion";
+import {CampoInformacion} from "@quiron/classes/dist/components/campos/edicion/elementos/CampoInformacion";
 
 @Component({
   name: 'informacion',

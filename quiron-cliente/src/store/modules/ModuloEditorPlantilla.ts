@@ -1,9 +1,9 @@
 import {Module, Mutation, VuexModule} from 'vuex-module-decorators';
-import {Campo, CampoSeccion} from 'quiron_classes/dist/components/campos/edicion'
-import {TiposElementos} from 'quiron_classes/dist/components/campos';
+import {Campo, CampoSeccion} from '@quiron/classes/dist/components/campos/edicion'
+import {TiposElementos} from '@quiron/classes/dist/components/campos';
 import Vue from 'vue';
 import store from '../index';
-import {Plantilla} from "quiron_classes/dist/entities";
+import {Plantilla} from "@quiron/classes/dist/entities";
 
 interface MutacionElemento {
   path: string,

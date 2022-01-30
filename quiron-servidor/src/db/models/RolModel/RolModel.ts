@@ -1,6 +1,6 @@
 import {BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryColumn} from "typeorm";
 import {UsuarioModel} from "../UsuarioModel";
-import {Permission} from "quiron_classes/dist/auth";
+import {Permission} from "@quiron/classes/dist/auth";
 
 @Entity()
 export class RolModel extends BaseEntity {

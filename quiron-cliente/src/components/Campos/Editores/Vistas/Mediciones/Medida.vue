@@ -19,7 +19,7 @@
 <script lang="ts">
 import {Component, Prop, PropSync, Vue} from 'vue-property-decorator';
 import MostrarCampo from "../../../MostrarCampo.vue";
-import {Medida as MedidaClass} from "quiron_classes/dist/components/campos/edicion";
+import {Medida as MedidaClass} from "@quiron/classes/dist/components/campos/edicion";
 
 @Component({
   name: 'medida',

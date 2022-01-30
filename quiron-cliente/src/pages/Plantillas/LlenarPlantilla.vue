@@ -72,7 +72,7 @@ import {Component, Vue} from 'vue-property-decorator';
 import MostrarCampo from 'components/Campos/MostrarCampo.vue';
 import {OpcionesDialogo} from 'components/Utils/Interfaces';
 import BuscadorGenerico from '../../components/Utils/BuscadorGenerico.vue';
-import Plantilla from 'quiron_classes/dist/entities/Plantilla';
+import Plantilla from '@quiron/classes/dist/entities/Plantilla';
 import {getModule} from "vuex-module-decorators";
 import ModuloLlenadoPlantilla from "../../store/modules/ModuloLlenadoPlantilla";
 import Campo from "components/Campos/Recolectores/Campo.vue";

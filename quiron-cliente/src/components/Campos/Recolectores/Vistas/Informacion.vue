@@ -9,8 +9,8 @@
 <script lang="ts">
 import {Component, Prop, PropSync, Vue, Watch} from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import {Campo} from 'quiron_classes/dist/components/campos/edicion';
-import {CampoInformacion} from "quiron_classes/dist/components/campos/edicion/elementos/CampoInformacion";
+import {Campo} from '@quiron/classes/dist/components/campos/edicion';
+import {CampoInformacion} from "@quiron/classes/dist/components/campos/edicion/elementos/CampoInformacion";
 
 @Component({
   name: 'informacion',

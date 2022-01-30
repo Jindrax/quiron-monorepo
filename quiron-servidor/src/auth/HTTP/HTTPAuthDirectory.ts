@@ -1,4 +1,4 @@
-import {Permission} from "quiron_classes/dist/auth";
+import {Permission} from "@quiron/classes/dist/auth";
 import {HTTPPermission} from "./HTTPPermission";
 import {AuthDirectory} from "../AuthDirectory";
 import {AuthDict} from "../index";

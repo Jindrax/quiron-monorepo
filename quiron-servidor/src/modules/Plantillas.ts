@@ -1,15 +1,15 @@
-import {Plantilla} from "quiron_classes/entities";
+import {Plantilla} from "@quiron/classes/entities";
 import {PlantillaModel} from "../db/models/PlantillaModel";
-import CacheCreationResponse from "quiron_classes/dist/entities/auxiliar/CacheCreationResponse";
+import CacheCreationResponse from "@quiron/classes/dist/entities/auxiliar/CacheCreationResponse";
 import {ValidToken as Token} from "../../middleware/LoadToken";
 import Cache from "./Cache";
 import {getRepository} from "typeorm";
 import {v4} from "uuid";
-import {Campo, CampoSeccion} from "quiron_classes/dist/components/campos/edicion";
+import {Campo, CampoSeccion} from "@quiron/classes/dist/components/campos/edicion";
 import {UsuarioModel} from "../db/models/UsuarioModel";
 import {PlantillaTraceModel} from "../db/models/Traces";
 import {isEqual} from "lodash";
-import {TiposElementos} from "quiron_classes/dist/components/campos";
+import {TiposElementos} from "@quiron/classes/dist/components/campos";
 
 interface DiffAtributo {
     att: string;

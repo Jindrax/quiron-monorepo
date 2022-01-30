@@ -1,5 +1,5 @@
 import {Buscador} from "api/entidades/Buscador";
-import {Contacto} from "quiron_classes/dist/entities";
+import {Contacto} from "@quiron/classes/dist/entities";
 
 export class BuscadorContacto extends Buscador<Contacto> {
 

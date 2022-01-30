@@ -1,27 +1,34 @@
-import {BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
-import {ContactoModel} from "../ContactoModel";
+import {BaseEntity, Column, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {CommonEntityInterface} from "../CommonEntityInterface";
-import {Institucion} from "quiron_classes/dist/entities";
+import {Institucion} from "@quiron/classes/dist/entities";
+import {InstitucionClienteContactoModel} from "./InstitucionClienteContactoModel";
 
 @Entity()
 export class InstitucionModel extends BaseEntity implements CommonEntityInterface<Institucion> {
+
     @PrimaryGeneratedColumn("uuid")
     id: string;
+
     @Column()
     identificacion: string;
+
     @Column({type: "float"})
     latitud: number;
+
     @Column({type: "float"})
     longitud: number;
+
     @Column()
     direccion: string;
+
     @Column()
     ciudad: string;
+
     @Column()
     departamento: string;
-    @ManyToMany(type => ContactoModel, contacto => contacto.instituciones)
-    @JoinTable()
-    contactos: ContactoModel[];
+
+    @OneToMany(type => InstitucionClienteContactoModel, conexion => conexion.institucion)
+    contactos: InstitucionClienteContactoModel[];
 
     fromCommonEntity(entity: Institucion): void {
         if (entity.id) {

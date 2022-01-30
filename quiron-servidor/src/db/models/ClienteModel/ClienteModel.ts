@@ -4,17 +4,17 @@ import {
     Entity,
     JoinColumn,
     JoinTable,
-    ManyToMany,
+    ManyToMany, ManyToOne,
     OneToMany,
     OneToOne,
     PrimaryGeneratedColumn
 } from "typeorm";
-import {InstitucionModel} from "../InstitucionModel";
 import {ContactoModel} from "../ContactoModel";
 import {EquipoModel} from "../EquipoModel/EquipoModel";
 import {CommonEntityInterface} from "../CommonEntityInterface";
-import {Cliente} from "quiron_classes/dist/entities";
+import {Cliente} from "@quiron/classes/dist/entities";
 import SearchValue from "../../decorators/SearchValue";
+import {InstitucionClienteContactoModel} from "../InstitucionModel/InstitucionClienteContactoModel";
 
 @Entity()
 export class ClienteModel extends BaseEntity implements CommonEntityInterface<Cliente> {
@@ -23,20 +23,25 @@ export class ClienteModel extends BaseEntity implements CommonEntityInterface<Cl
     @SearchValue()
     @Column()
     nombre: string;
-    @Column()
     @SearchValue()
+    @Column()
     identificacion: string;
-    @ManyToMany(type => InstitucionModel)
-    @JoinTable()
-    instituciones: InstitucionModel[];
-    @OneToOne(type => InstitucionModel)
+    @Column()
+    direccion: string;
+    @Column()
+    telefono: string;
+    @Column()
+    contrato: string;
+    @ManyToOne(type => ContactoModel)
     @JoinColumn()
-    institucionPrincipal: InstitucionModel;
-    @ManyToMany(type => ContactoModel)
+    contacto: ContactoModel;
+    @ManyToMany(type => ContactoModel, contacto => contacto.clientes)
     @JoinTable()
     contactos: ContactoModel[];
     @OneToMany(type => EquipoModel, equipo => equipo.responsable)
     equipos: EquipoModel[];
+    @OneToMany(type => InstitucionClienteContactoModel, conexion => conexion.cliente)
+    instituciones: InstitucionClienteContactoModel[];
 
     fromCommonEntity(entity: Cliente): void {
         if (entity.id) {
@@ -44,13 +49,12 @@ export class ClienteModel extends BaseEntity implements CommonEntityInterface<Cl
         }
         this.identificacion = entity.identificacion;
         this.nombre = entity.nombre;
-        if (entity.instituciones) {
+        this.direccion = entity.direccion;
+        this.telefono = entity.telefono;
+        this.contrato = entity.contrato;
+        if (entity.contacto) {
             // @ts-ignore
-            this.instituciones = entity.instituciones;
-        }
-        if (entity.institucionPrincipal) {
-            // @ts-ignore
-            this.institucionPrincipal = entity.institucionPrincipal;
+            this.contacto = entity.contacto;
         }
         if (entity.contactos) {
             // @ts-ignore

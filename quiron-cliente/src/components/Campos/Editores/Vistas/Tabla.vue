@@ -73,9 +73,9 @@ import {EntradaNumerica, EntradaTexto, Seleccion} from './';
 import MostrarCampo from '../../MostrarCampo.vue';
 import {getModule} from 'vuex-module-decorators';
 import ModuloEditorPlantilla from '../../../../store/modules/ModuloEditorPlantilla';
-import {DiccionarioTiposElementos, TiposElementos} from 'quiron_classes/dist/components/campos';
-import {Campo, CampoChequeo, CampoSeleccion} from 'quiron_classes/dist/components/campos/edicion'
-import {CampoTabla} from 'quiron_classes/dist/components/campos/edicion/elementos/CampoTabla'
+import {DiccionarioTiposElementos, TiposElementos} from '@quiron/classes/dist/components/campos';
+import {Campo, CampoChequeo, CampoSeleccion} from '@quiron/classes/dist/components/campos/edicion'
+import {CampoTabla} from '@quiron/classes/dist/components/campos/edicion/elementos/CampoTabla'
 
 @Component({
   name: 'tabla',

@@ -45,7 +45,7 @@ import {Component, Vue} from 'vue-property-decorator';
 import MostrarCampo from 'components/Campos/MostrarCampo.vue';
 import SelectorFecha from 'components/Utils/SelectorFecha.vue';
 import Controller from "api/Controller";
-import {Rol, Usuario} from "quiron_classes/dist/entities";
+import {Rol, Usuario} from "@quiron/classes/dist/entities";
 
 @Component({
   components: {

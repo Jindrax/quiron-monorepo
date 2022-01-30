@@ -54,7 +54,7 @@
 <script lang="ts">
 import {Component, Prop, PropSync, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import {CampoFecha, DateType} from 'quiron_classes/dist/components/campos/edicion';
+import {CampoFecha, DateType} from '@quiron/classes/dist/components/campos/edicion';
 import moment from 'moment';
 
 @Component({

@@ -1,4 +1,3 @@
-import Institucion from "./Institucion";
 export interface ContactoConstructor {
     id?: string;
     identificacion?: string;
@@ -6,7 +5,6 @@ export interface ContactoConstructor {
     apellidos?: string;
     telefonos?: string[];
     emails?: string[];
-    instituciones?: Institucion[];
 }
 export default class Contacto {
     id?: string;
@@ -15,7 +13,6 @@ export default class Contacto {
     apellidos: string;
     telefonos: string[];
     emails: string[];
-    instituciones: Institucion[];
-    constructor({ id, identificacion, nombres, apellidos, telefonos, emails, instituciones }: ContactoConstructor);
+    constructor({ id, identificacion, nombres, apellidos, telefonos, emails }: ContactoConstructor);
 }
 //# sourceMappingURL=Contacto.d.ts.map

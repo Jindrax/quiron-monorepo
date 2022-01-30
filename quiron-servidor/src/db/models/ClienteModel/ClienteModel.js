@@ -14,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClienteModel = void 0;
 const typeorm_1 = require("typeorm");
-const InstitucionModel_1 = require("../InstitucionModel");
 const ContactoModel_1 = require("../ContactoModel");
 const EquipoModel_1 = require("../EquipoModel/EquipoModel");
 const SearchValue_1 = __importDefault(require("../../decorators/SearchValue"));
+const InstitucionClienteContactoModel_1 = require("../InstitucionModel/InstitucionClienteContactoModel");
 let ClienteModel = class ClienteModel extends typeorm_1.BaseEntity {
     fromCommonEntity(entity) {
         if (entity.id) {
@@ -25,13 +25,12 @@ let ClienteModel = class ClienteModel extends typeorm_1.BaseEntity {
         }
         this.identificacion = entity.identificacion;
         this.nombre = entity.nombre;
-        if (entity.instituciones) {
+        this.direccion = entity.direccion;
+        this.telefono = entity.telefono;
+        this.contrato = entity.contrato;
+        if (entity.contacto) {
             // @ts-ignore
-            this.instituciones = entity.instituciones;
-        }
-        if (entity.institucionPrincipal) {
-            // @ts-ignore
-            this.institucionPrincipal = entity.institucionPrincipal;
+            this.contacto = entity.contacto;
         }
         if (entity.contactos) {
             // @ts-ignore
@@ -53,22 +52,29 @@ __decorate([
     __metadata("design:type", String)
 ], ClienteModel.prototype, "nombre", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
     (0, SearchValue_1.default)(),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], ClienteModel.prototype, "identificacion", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(type => InstitucionModel_1.InstitucionModel),
-    (0, typeorm_1.JoinTable)(),
-    __metadata("design:type", Array)
-], ClienteModel.prototype, "instituciones", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], ClienteModel.prototype, "direccion", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(type => InstitucionModel_1.InstitucionModel),
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], ClienteModel.prototype, "telefono", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], ClienteModel.prototype, "contrato", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(type => ContactoModel_1.ContactoModel),
     (0, typeorm_1.JoinColumn)(),
-    __metadata("design:type", InstitucionModel_1.InstitucionModel)
-], ClienteModel.prototype, "institucionPrincipal", void 0);
+    __metadata("design:type", ContactoModel_1.ContactoModel)
+], ClienteModel.prototype, "contacto", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(type => ContactoModel_1.ContactoModel),
+    (0, typeorm_1.ManyToMany)(type => ContactoModel_1.ContactoModel, contacto => contacto.clientes),
     (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
 ], ClienteModel.prototype, "contactos", void 0);
@@ -76,6 +82,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(type => EquipoModel_1.EquipoModel, equipo => equipo.responsable),
     __metadata("design:type", Array)
 ], ClienteModel.prototype, "equipos", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(type => InstitucionClienteContactoModel_1.InstitucionClienteContactoModel, conexion => conexion.cliente),
+    __metadata("design:type", Array)
+], ClienteModel.prototype, "instituciones", void 0);
 ClienteModel = __decorate([
     (0, typeorm_1.Entity)()
 ], ClienteModel);

@@ -25,9 +25,13 @@ class Clientes {
             }
         });
     }
-    static buscar({ filtro }) {
+    static buscar({ filtro, opciones }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                if (!opciones) {
+                    opciones = [];
+                }
+                console.log(opciones);
                 filtro = JSON.parse(filtro);
                 const repo = (0, typeorm_1.getRepository)(ClienteModel_1.ClienteModel);
                 if (Object.keys(filtro).length > 0) {
@@ -41,14 +45,15 @@ class Clientes {
                             query = query.where("clientes.identificacion ILIKE :identificacion", { identificacion: `%${filtro[key]}%` });
                             break;
                     }
-                    return yield query.leftJoinAndSelect("clientes.sucursales", "sucursales")
-                        .leftJoinAndSelect("clientes.sucursalPrincipal", "sucursalPrincipal")
-                        .leftJoinAndSelect("clientes.contactos", "contactos")
-                        .leftJoinAndSelect("clientes.equipos", "equipos")
-                        .getMany();
+                    opciones.forEach(relation => {
+                        query = query.leftJoinAndSelect(`clientes.${relation}`, relation);
+                    });
+                    return yield query.getMany();
                 }
                 else {
-                    return yield repo.find();
+                    return yield repo.find({
+                        relations: opciones
+                    });
                 }
             }
             catch (e) {

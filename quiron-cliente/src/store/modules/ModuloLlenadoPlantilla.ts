@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import {Module, Mutation, VuexModule} from 'vuex-module-decorators';
-import {TiposElementos} from 'quiron_classes/dist/components/campos';
+import {TiposElementos} from '@quiron/classes/dist/components/campos';
 import store from '../index';
 
 @Module({

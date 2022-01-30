@@ -27,7 +27,7 @@
 <script lang="ts">
 import { Component, PropSync, Vue } from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import { CampoChequeo } from 'quiron_classes/dist/components/campos/edicion';
+import { CampoChequeo } from '@quiron/classes/dist/components/campos/edicion';
 
 @Component({
   name: 'chequeo',

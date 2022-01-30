@@ -17,9 +17,9 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator';
-import {Campo, CampoSeccion} from "quiron_classes/dist/components/campos/edicion";
-import {TiposElementos} from "quiron_classes/dist/components/campos";
-import {Plantilla} from "quiron_classes/dist/entities";
+import {Campo, CampoSeccion} from "@quiron/classes/dist/components/campos/edicion";
+import {TiposElementos} from "@quiron/classes/dist/components/campos";
+import {Plantilla} from "@quiron/classes/dist/entities";
 
 @Component({
   name: 'SelectorPorCapas'

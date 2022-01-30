@@ -12,7 +12,7 @@
 import {Component, Prop, PropSync, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
 import PanelFirma from '../../../Utils/PanelFirma.vue';
-import {CampoFirma, SignerType} from 'quiron_classes/dist/components/campos/edicion';
+import {CampoFirma, SignerType} from '@quiron/classes/dist/components/campos/edicion';
 import {LocalStorage} from "quasar";
 
 @Component({

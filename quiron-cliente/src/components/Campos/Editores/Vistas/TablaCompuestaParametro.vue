@@ -19,8 +19,8 @@
 <script lang="ts">
 import { Component, Prop, PropSync, Vue, Watch } from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import { TablaCompuestaParametro as Parametro } from 'quiron_classes/dist/components/campos/edicion/elementos/CampoTablaCompuesta';
-import { TiposElementos } from 'quiron_classes/dist/components/campos';
+import { TablaCompuestaParametro as Parametro } from '@quiron/classes/dist/components/campos/edicion/elementos/CampoTablaCompuesta';
+import { TiposElementos } from '@quiron/classes/dist/components/campos';
 
 @Component({
   name: 'tabla-compuesta-parametro',

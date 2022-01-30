@@ -7,6 +7,38 @@
       <mostrar-campo etiqueta="Identificacion">
         <q-input v-model="nuevoCliente.identificacion"/>
       </mostrar-campo>
+      <mostrar-campo etiqueta="Direccion">
+        <q-input v-model="nuevoCliente.direccion"/>
+      </mostrar-campo>
+      <mostrar-campo etiqueta="Telefono">
+        <q-input v-model="nuevoCliente.telefono"/>
+      </mostrar-campo>
+      <mostrar-campo etiqueta="Contrato">
+        <q-input v-model="nuevoCliente.contrato"/>
+      </mostrar-campo>
+      <mostrar-campo etiqueta="Contacto">
+        <div>
+          <q-item v-if="nuevoCliente.contacto.id">
+            <q-item-section avatar>
+              <q-avatar>
+                <img alt="avatar_img" src="https://cdn.quasar.dev/img/boy-avatar.png">
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              {{ `${nuevoCliente.contacto.nombres} ${nuevoCliente.contacto.apellidos}` }}
+            </q-item-section>
+            <q-item-section side>
+              <q-btn color="red" icon="cancel" @click="eliminarContactoPrincipal"/>
+            </q-item-section>
+          </q-item>
+          <q-btn
+            v-else
+            :label="'Buscar contacto'"
+            class="full-width"
+            @click="buscarContactoPrincipal"
+          />
+        </div>
+      </mostrar-campo>
       <q-separator/>
       <q-card>
         <q-card-section>Contactos</q-card-section>
@@ -15,40 +47,24 @@
                                  @selected="eliminarContacto"/>
         </q-card-section>
         <q-card-actions>
-          <q-btn label="Añadir Contacto" @click="buscarContacto" class="full-width"/>
+          <q-btn class="full-width" label="Añadir Contacto" @click="buscarContactos"/>
         </q-card-actions>
       </q-card>
-      <q-separator/>
-      <q-card class="q-card--bordered">
-        <q-card-section>Instituciones</q-card-section>
-        <q-card-section>
-          <presentador-por-tabla :datos="nuevoCliente.instituciones"
-                                 :esquema="['identificacion', 'direccion', 'ciudad']"
-                                 @selected="eliminarInstitucion"/>
-        </q-card-section>
-        <q-card-actions>
-          <q-btn label="Añadir Institucion" @click="buscarInstitucion" class="full-width"/>
-        </q-card-actions>
-      </q-card>
-      <mostrar-campo etiqueta="Institucion Principal" v-if="nuevoCliente.instituciones.length > 0">
-        <q-select :options="nuevoCliente.instituciones" v-model="nuevoCliente.institucionPrincipal" emit-value
-                  map-options option-label="identificacion"/>
-      </mostrar-campo>
-      <q-btn label="Crear Cliente" @click="crearCliente" class="full-width"/>
+      <q-btn class="full-width" label="Crear Cliente" @click="crearCliente"/>
     </div>
+    <q-btn class="full-width" label="Test" @click="test"/>
   </q-page>
 </template>
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import MostrarCampo from 'components/Campos/MostrarCampo.vue';
-import {Cliente, Contacto, Institucion} from "quiron_classes/dist/entities";
+import {Cliente, Contacto} from "@quiron/classes/dist/entities";
 import CrearInstitucion from "components/Clientes/CrearInstitucion.vue";
 import CrearContacto from "components/Clientes/CrearContacto.vue";
 import PresentadorPorTabla from "components/Utils/PresentadorPorTabla.vue";
 import Controller from "api/Controller";
-import BuscadorGenerico from "components/Utils/BuscadorGenerico.vue";
 import {contactoOpcionesBuscador} from "api/entidades/BuscadorEntidad";
-import {BuscadorInstitucion} from "api/entidades/Buscador";
+import {BuscadorClienteContactoHandler, BuscadorGenericoHandler} from "components/Utils/BuscadorGenericoHandler";
 
 @Component({
   name: 'crear-cliente-pagina',
@@ -62,44 +78,58 @@ import {BuscadorInstitucion} from "api/entidades/Buscador";
 export default class CrearCliente extends Vue {
   nuevoCliente: Cliente = new Cliente({});
 
-  buscarContacto() {
-    this.$q
-      .dialog({
-        component: BuscadorGenerico,
-        parent: this,
-        endpoint: 'clientes/contactos',
-        clase: Contacto,
-        opciones: contactoOpcionesBuscador.opciones,
-        persistent: true
-      })
-      .onOk((resultado: Contacto) => {
-        this.$set(this.nuevoCliente.contactos, this.nuevoCliente.contactos.length, resultado);
-      })
-      .onCancel(cancel => {
+  buscarContactoPrincipal() {
+    BuscadorGenericoHandler<Contacto>(
+      this,
+      Contacto,
+      contactoOpcionesBuscador,
+      this.$q,
+      (resultado) => {
+        this.$set(this.nuevoCliente, "contacto", resultado);
+      },
+      cancel => {
         console.log(cancel);
-      });
+      })
   }
 
-  async buscarInstitucion() {
-    const buscador = new BuscadorInstitucion([]);
-    try {
-      const resultado = await buscador.buscar();
-      this.$set(this.nuevoCliente.instituciones, this.nuevoCliente.instituciones.length, resultado);
-    } catch (e) {
-      console.log(e);
-    }
+  eliminarContactoPrincipal() {
+    this.$set(this.nuevoCliente, "contacto", new Contacto({}));
+  }
+
+  buscarContactos() {
+    BuscadorGenericoHandler(
+      this,
+      Contacto,
+      contactoOpcionesBuscador,
+      this.$q,
+      (resultado: Contacto) => {
+        this.$set(this.nuevoCliente.contactos, this.nuevoCliente.contactos.length, resultado);
+      },
+      cancel => {
+        console.log(cancel);
+      }
+    );
   }
 
   public eliminarContacto(contacto: Contacto, index: number) {
     this.$delete(this.nuevoCliente.contactos, index);
   }
 
-  public eliminarInstitucion(institucion: Institucion, index: number) {
-    this.$delete(this.nuevoCliente.instituciones, index);
-  }
-
   public async crearCliente() {
     await Controller.post("clientes", {cliente: this.nuevoCliente});
+  }
+
+  test() {
+    BuscadorClienteContactoHandler(
+      this,
+      this.$q,
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 }
 </script>

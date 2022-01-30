@@ -1,4 +1,4 @@
-import {Rol} from "quiron_classes/entities";
+import {Rol} from "@quiron/classes/entities";
 import {AuthDirectory} from "../auth/AuthDirectory";
 import {RolModel} from "../db/models/RolModel";
 import {getRepository, ILike} from "typeorm";

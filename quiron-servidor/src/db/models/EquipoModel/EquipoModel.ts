@@ -3,7 +3,7 @@ import {ClienteModel} from "../ClienteModel";
 import {OTModel} from "../OTModel";
 import {InstitucionModel} from "../InstitucionModel";
 import {CommonEntityInterface} from "../CommonEntityInterface";
-import {Equipo} from "quiron_classes/dist/entities";
+import {Equipo} from "@quiron/classes/dist/entities";
 import SearchValue from "../../decorators/SearchValue";
 
 @Entity()

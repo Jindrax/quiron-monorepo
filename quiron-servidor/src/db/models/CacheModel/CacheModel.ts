@@ -1,6 +1,6 @@
 import {BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {UsuarioModel} from "../UsuarioModel";
-import {Plantilla} from "quiron_classes/dist/entities";
+import {Plantilla} from "@quiron/classes/dist/entities";
 
 @Entity()
 export class CacheModel extends BaseEntity {

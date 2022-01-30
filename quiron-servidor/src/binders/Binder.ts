@@ -1,5 +1,5 @@
 import {Express, Request, RequestHandler, Response} from 'express';
-import {Permission} from "quiron_classes/dist/auth";
+import {Permission} from "@quiron/classes/dist/auth";
 import {HTTPPermission} from "../auth/HTTP/HTTPPermission";
 import {HTTPAuthDirectory} from "../auth/HTTP/HTTPAuthDirectory";
 

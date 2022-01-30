@@ -35,7 +35,7 @@
 <script lang="ts">
 import {Component, PropSync, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import {CampoEntradaNumerica} from 'quiron_classes/dist/components/campos/edicion';
+import {CampoEntradaNumerica} from '@quiron/classes/dist/components/campos/edicion';
 
 @Component({
   name: 'entrada-numerica',

@@ -41,8 +41,8 @@ import {Component, Ref, Vue} from 'vue-property-decorator';
 import MostrarCampo from "components/MostrarCampo.vue";
 import PanelFirma from 'components/PanelFirma.vue';
 import Controlador from "src/api/Controlador";
-import {Usuario} from "quiron_classes/entities";
-import {ErrorEnum} from 'quiron_classes/errors';
+import {Usuario} from "@quiron/classes/dist/entities";
+import {ErrorEnum} from '@quiron/classes/dist/errors';
 import {LocalStorage} from "quasar";
 
 @Component({

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.crearToken = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const quiron_classes_1 = require("quiron_classes");
+const classes_1 = require("@quiron/classes");
 const typeorm_1 = require("typeorm");
 const UsuarioModel_1 = require("../db/models/UsuarioModel");
 const AuthDirectory_1 = require("../auth/AuthDirectory");
@@ -32,7 +32,7 @@ function verificarPassword(texto_plano, hash) {
         return true;
     }
     else {
-        throw new quiron_classes_1.errors.ErrorCredencialesIncorrectas();
+        throw new classes_1.errors.ErrorCredencialesIncorrectas();
     }
 }
 /**
@@ -59,11 +59,11 @@ class Autenticador {
                 relations: ["roles"]
             });
             if (usuario == undefined)
-                throw new quiron_classes_1.errors.ErrorUsuarioNoEncontrado();
+                throw new classes_1.errors.ErrorUsuarioNoEncontrado();
             else if (usuario.no_informacion)
-                throw new quiron_classes_1.errors.ErrorFaltaInformacion();
+                throw new classes_1.errors.ErrorFaltaInformacion();
             else if (usuario.cambiar_password)
-                throw new quiron_classes_1.errors.ErrorCambiarPass();
+                throw new classes_1.errors.ErrorCambiarPass();
             try {
                 verificarPassword(password, usuario.password);
                 let permisos = {};
@@ -115,9 +115,9 @@ class Autenticador {
                     }
                 });
                 if (usuario == null)
-                    throw new quiron_classes_1.errors.ErrorUsuarioNoEncontrado();
+                    throw new classes_1.errors.ErrorUsuarioNoEncontrado();
                 if (!usuario.cambiar_password)
-                    throw new quiron_classes_1.errors.ErrorSinAutorizacion();
+                    throw new classes_1.errors.ErrorSinAutorizacion();
                 usuario.password = generarHash(password);
                 usuario.cambiar_password = false;
                 yield usuario.save();
@@ -144,9 +144,9 @@ class Autenticador {
                     }
                 });
                 if (usuario == null)
-                    throw new quiron_classes_1.errors.ErrorUsuarioNoEncontrado();
+                    throw new classes_1.errors.ErrorUsuarioNoEncontrado();
                 if (!usuario.no_informacion)
-                    throw new quiron_classes_1.errors.ErrorFaltaInformacion();
+                    throw new classes_1.errors.ErrorFaltaInformacion();
                 let hash = generarHash(password);
                 usuario.cambiar_password = false;
                 usuario.no_informacion = false;

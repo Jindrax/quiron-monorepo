@@ -19,11 +19,11 @@ import {
   Tabla,
   TablaCompuesta
 } from './Vistas';
-import {Campo as CampoGenerico, Referencia} from 'quiron_classes/dist/components/campos/edicion';
+import {Campo as CampoGenerico, Referencia} from '@quiron/classes/dist/components/campos/edicion';
 import Validador from '../../../api/clases/Plantillas/Campos/Recolectores/Condicionales/Validador';
 import Verificador from '../../../api/clases/Plantillas/Campos/Recolectores/Condicionales/Verificador';
 import {getModule} from "vuex-module-decorators";
-import {TiposElementos} from "quiron_classes/dist/components/campos";
+import {TiposElementos} from "@quiron/classes/dist/components/campos";
 import ModuloLlenadoPlantilla from "../../../store/modules/ModuloLlenadoPlantilla";
 
 @Component({

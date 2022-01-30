@@ -1,6 +1,6 @@
 import jwt, {JwtPayload} from "jsonwebtoken";
 import {RequestHandler, Response} from "express";
-import {Permission} from "quiron_classes/dist/auth";
+import {Permission} from "@quiron/classes/dist/auth";
 
 export interface ValidToken extends JwtPayload {
     identificacion: string,

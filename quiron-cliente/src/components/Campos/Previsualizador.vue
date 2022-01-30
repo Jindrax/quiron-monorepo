@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Campo from './Recolectores/Campo.vue';
-import Plantilla from 'quiron_classes/dist/entities/Plantilla';
+import Plantilla from '@quiron/classes/dist/entities/Plantilla';
 import {getModule} from "vuex-module-decorators";
 import ModuloEditorPlantilla from "../../store/modules/ModuloEditorPlantilla";
 

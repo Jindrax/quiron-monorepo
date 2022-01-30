@@ -1,4 +1,4 @@
-import {Usuario} from "quiron_classes/entities";
+import {Usuario} from "@quiron/classes/entities";
 import {UsuarioModel} from "../db/models/UsuarioModel";
 import {getRepository, SelectQueryBuilder} from "typeorm";
 

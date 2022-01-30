@@ -5,14 +5,9 @@ export const contactoOpcionesBuscador: OpcionesBuscador = {
   opciones: {
     campos_busqueda: [
       {etiqueta: 'Nombres', valor: 'nombres'},
-      {etiqueta: 'Apellidos', valor: 'apellidos'},
-      {etiqueta: 'Identificacion', valor: 'identificacion'}
+      {etiqueta: 'Apellidos', valor: 'apellidos'}
     ],
-    campos_presentacion: [
-      {etiqueta: 'Nombres', valor: 'nombres'},
-      {etiqueta: 'Apellidos', valor: 'apellidos'},
-      {etiqueta: 'Identificacion', valor: 'identificacion'}
-    ],
+    campos_presentacion: [],
     opciones_busqueda: {}
   }
 }

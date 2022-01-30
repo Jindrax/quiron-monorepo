@@ -1,6 +1,6 @@
 import ControladorCache from 'clases/Plantillas/Campos/Editores/ControladorCache';
 import Controller from 'api/Controller';
-import Plantilla from 'quiron_classes/entities/Plantilla';
+import Plantilla from '@quiron/classes/dist/entities/Plantilla';
 
 export default class ControladorPlantilla {
   public plantillaCreada: string;

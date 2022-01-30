@@ -28,9 +28,9 @@
 import Component from 'vue-class-component';
 import {Prop, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../MostrarCampo.vue';
-import {Campo} from "quiron_classes/dist/components/campos/edicion"
-import {DiccionarioTiposElementos, TiposElementos} from 'quiron_classes/dist/components/campos';
-import {FabricaCampos} from "quiron_classes/dist/components/campos/edicion"
+import {Campo} from "@quiron/classes/dist/components/campos/edicion"
+import {DiccionarioTiposElementos, TiposElementos} from '@quiron/classes/dist/components/campos';
+import {FabricaCampos} from "@quiron/classes/dist/components/campos/edicion"
 
 @Component({
   name: 'selector',
