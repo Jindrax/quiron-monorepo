@@ -29,7 +29,6 @@ export default class ModuloLlenadoPlantilla extends VuexModule {
           Vue.set(this.compendio, path, '');
           break;
         case TiposElementos.chequeo:
-          console.log("Intentando crear un arreglo vacio");
           Vue.set(this.compendio, path, []);
           break;
         default:

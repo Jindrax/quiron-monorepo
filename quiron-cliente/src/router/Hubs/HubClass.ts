@@ -59,7 +59,7 @@ export class HubClass {
   public addAction(route: string, label: string, pageComponent: any, permission?: string) {
     if (permission) {
       const usuario: any = LocalStorage.getItem("usuario");
-      if (usuario.permisos[permission]) {
+      if (usuario && usuario.permisos[permission]) {
         this.actions.push(new HubActionClass(`/${this.root}`, route, label, pageComponent));
       }
     } else {

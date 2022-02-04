@@ -4,14 +4,14 @@
     :printable="printable"
   >
     <q-option-group
+      v-model="dataSync[path]"
       :options="opciones"
       inline
       type="checkbox"
-      v-model="dataSync[path]"
     />
-    <q-input label="Añadir opcion" v-model="nuevaOpcion" @keypress.enter="addNuevaOpcion">
+    <q-input v-model="nuevaOpcion" label="Añadir opcion" @keypress.enter="addNuevaOpcion">
       <template v-slot:append>
-        <q-btn icon="add" @click="addNuevaOpcion" />
+        <q-btn icon="add" @click="addNuevaOpcion"/>
       </template>
     </q-input>
   </mostrar-campo>
@@ -35,15 +35,15 @@ export default class Chequeo extends Vue {
   public apertura: boolean = false;
   public nuevaOpcion: any = '';
 
-  addNuevaOpcion() {
-    this.elemento.opciones.push(this.nuevaOpcion);
-    this.nuevaOpcion = '';
-  }
-
   get opciones() {
     return this.elemento.opciones.map(opcion => {
       return {label: opcion, value: opcion};
     });
+  }
+
+  addNuevaOpcion() {
+    this.elemento.opciones.push(this.nuevaOpcion);
+    this.nuevaOpcion = '';
   }
 }
 </script>

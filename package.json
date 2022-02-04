@@ -6,5 +6,9 @@
   "author": "Jairo Vanegas <jhvangar@gmail.com>",
   "license": "UNLICENSED",
   "private": true,
-  "workspaces": ["quiron-auth", "quiron-classes", "quiron-cliente", "quiron-servidor"]
+  "workspaces": ["quiron-auth", "quiron-classes", "quiron-cliente", "quiron-servidor"],
+  "scripts": {
+    "server:dev": "npm run dev --workspace quiron-servidor",
+    "client:dev": "cd ./quiron-cliente && quasar dev"
+  }
 }

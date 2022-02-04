@@ -2,22 +2,22 @@
   <q-card v-if="plantilla.modelo !== {}">
     <q-card-section class="q-px-none">
       <campo
+        v-for="(elemento, indice) in plantilla.modelo.elementos"
+        :key="'pc-' + elemento.etiqueta"
         :data="compendio"
         :elemento="elemento"
-        :key="'pc-' + elemento.etiqueta"
         :path="plantilla.identificador"
         :printable="false"
-        v-for="(elemento, indice) in plantilla.modelo.elementos"
       />
     </q-card-section>
   </q-card>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import {Component, Prop, Vue} from 'vue-property-decorator';
 import Campo from './Recolectores/Campo.vue';
 import Plantilla from '@quiron/classes/dist/entities/Plantilla';
 import {getModule} from "vuex-module-decorators";
-import ModuloEditorPlantilla from "../../store/modules/ModuloEditorPlantilla";
+import ModuloLlenadoPlantilla from "../../store/modules/ModuloLlenadoPlantilla";
 
 @Component({
   name: 'previsualizador',
@@ -28,10 +28,10 @@ import ModuloEditorPlantilla from "../../store/modules/ModuloEditorPlantilla";
 export default class Previsualizador extends Vue {
   @Prop() plantilla: Plantilla;
   public data = {};
-  private editorStore = getModule(ModuloEditorPlantilla);
+  private plantillaStore = getModule(ModuloLlenadoPlantilla);
 
-  public get compendio(){
-    return this.editorStore.compendio;
+  public get compendio() {
+    return this.plantillaStore.compendio;
   }
 }
 </script>
