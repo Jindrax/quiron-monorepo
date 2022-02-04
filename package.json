@@ -8,6 +8,7 @@
   "private": true,
   "workspaces": ["quiron-auth", "quiron-classes", "quiron-cliente", "quiron-servidor"],
   "scripts": {
+    "start": "npm run start --workspace quiron-servidor",
     "server:dev": "npm run dev --workspace quiron-servidor",
     "client:dev": "cd ./quiron-cliente && quasar dev"
   }

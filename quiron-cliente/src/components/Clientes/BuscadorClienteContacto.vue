@@ -165,6 +165,7 @@ export default class BuscadorClienteContacto extends Vue implements DialogPlugin
   public valoresBusquedaContacto: string[] = [];
   public resultadosContacto: Contacto[] = [];
   public contactoSeleccionado: any = "";
+  dialogWidth: number;
 
   public get cardClasses() {
     if (this.step == 1) {
