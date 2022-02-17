@@ -3,7 +3,7 @@
     <q-card-section class="q-px-none">
       <campo
         v-for="(elemento, indice) in plantilla.modelo.elementos"
-        :key="'pc-' + elemento.etiqueta"
+        :key="'pc-prev-' + elemento.etiqueta"
         :data="compendio"
         :elemento="elemento"
         :path="plantilla.identificador"

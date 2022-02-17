@@ -93,6 +93,7 @@ export default class Campo extends Vue {
 
   public setConditions() {
     this.elemento.dependiente.conditions.forEach((condition) => {
+      console.log("Instalando condicion", condition)
       let verificador: Verificador = this.validador.instalarVerificador(condition, '');
       this.$watch(() => {
         return this.dataSync[condition.parent];
