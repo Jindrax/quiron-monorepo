@@ -35,6 +35,7 @@ var TiposElementos;
     TiposElementos["imagen"] = "imagen";
     TiposElementos["mediciones"] = "mediciones";
     TiposElementos["informacion"] = "informacion";
+    TiposElementos["checkList"] = "checkList";
 })(TiposElementos = exports.TiposElementos || (exports.TiposElementos = {}));
 var DiccionarioTiposElementos;
 (function (DiccionarioTiposElementos) {
@@ -51,6 +52,7 @@ var DiccionarioTiposElementos;
     DiccionarioTiposElementos["imagen"] = "Imagen";
     DiccionarioTiposElementos["mediciones"] = "Mediciones";
     DiccionarioTiposElementos["informacion"] = "Informacion";
+    DiccionarioTiposElementos["checkList"] = "Checklist";
 })(DiccionarioTiposElementos = exports.DiccionarioTiposElementos || (exports.DiccionarioTiposElementos = {}));
 exports.edicion = __importStar(require("./edicion"));
 exports.CAMPOS_REFERENCIABLES = [

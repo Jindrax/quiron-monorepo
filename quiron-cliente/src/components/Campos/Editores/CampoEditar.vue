@@ -73,7 +73,8 @@ import {Dialog} from "quasar";
     'tabla': () => import("./Vistas/Tabla.vue"),
     'tabla-compuesta': () => import("./Vistas/TablaCompuesta.vue"),
     'dependiente': () => import("./Dependiente.vue"),
-    'mediciones': () => import("./Vistas/Mediciones/Mediciones.vue")
+    'mediciones': () => import("./Vistas/Mediciones/Mediciones.vue"),
+    'checkList': () => import("./Vistas/CheckList/CheckList.vue")
   }
 })
 export default class CampoEditar extends Vue {

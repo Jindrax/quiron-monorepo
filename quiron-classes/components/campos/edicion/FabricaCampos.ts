@@ -10,7 +10,8 @@ import {
     CampoSeccion,
     CampoSeleccion,
     CampoTabla,
-    CampoTablaCompuesta
+    CampoTablaCompuesta,
+    CampoCheckList
 } from "./elementos";
 import {TiposElementos} from "../index";
 import {Campo} from "./Campo";
@@ -30,7 +31,8 @@ export class FabricaCampos {
         firma: CampoFirma,
         imagen: CampoImagen,
         mediciones: CampoMediciones,
-        informacion: CampoInformacion
+        informacion: CampoInformacion,
+        checkList: CampoCheckList
     };
 
     public static fabricarCampoGenerico(elemento: TiposElementos): Campo {

@@ -36,7 +36,7 @@ var CampoSeccion = /** @class */ (function (_super) {
         return _this;
     }
     __decorate([
-        (0, class_transformer_1.Type)(function () { return Campo_1.Campo; }),
+        class_transformer_1.Type(function () { return Campo_1.Campo; }),
         __metadata("design:type", Array)
     ], CampoSeccion.prototype, "elementos", void 0);
     return CampoSeccion;

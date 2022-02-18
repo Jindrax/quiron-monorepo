@@ -31,7 +31,8 @@ var FabricaCampos = /** @class */ (function () {
         firma: elementos_1.CampoFirma,
         imagen: elementos_1.CampoImagen,
         mediciones: elementos_1.CampoMediciones,
-        informacion: CampoInformacion_1.CampoInformacion
+        informacion: CampoInformacion_1.CampoInformacion,
+        checkList: elementos_1.CampoCheckList
     };
     return FabricaCampos;
 }());

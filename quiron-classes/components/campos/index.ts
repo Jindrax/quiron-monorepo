@@ -11,7 +11,8 @@ export enum TiposElementos {
     firma = 'firma',
     imagen = 'imagen',
     mediciones = 'mediciones',
-    informacion = 'informacion'
+    informacion = 'informacion',
+    checkList = 'checkList'
 }
 
 export enum DiccionarioTiposElementos {
@@ -27,7 +28,8 @@ export enum DiccionarioTiposElementos {
     firma = 'Firma',
     imagen = 'Imagen',
     mediciones = 'Mediciones',
-    informacion = 'Informacion'
+    informacion = 'Informacion',
+    checkList = 'Checklist'
 }
 
 export * as edicion from "./edicion";

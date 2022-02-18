@@ -38,14 +38,14 @@ var Plantilla = /** @class */ (function (_super) {
         _this.serial = serial ? serial : "";
         _this.version = version ? version : 1;
         _this.identificador = identificador ? identificador : "";
-        _this.modelo = modelo ? (0, class_transformer_1.plainToClass)(edicion_1.CampoSeccion, modelo) : new edicion_1.CampoSeccion("raiz");
+        _this.modelo = modelo ? class_transformer_1.plainToClass(edicion_1.CampoSeccion, modelo) : new edicion_1.CampoSeccion("raiz");
         _this.relacionadas = relacionadas ? relacionadas.map(function (element) {
             return new Plantilla(element);
         }) : [];
         return _this;
     }
     __decorate([
-        (0, class_transformer_1.Type)(function () { return edicion_1.CampoSeccion; }),
+        class_transformer_1.Type(function () { return edicion_1.CampoSeccion; }),
         __metadata("design:type", edicion_1.CampoSeccion)
     ], Plantilla.prototype, "modelo", void 0);
     return Plantilla;

@@ -11,7 +11,8 @@ export declare enum TiposElementos {
     firma = "firma",
     imagen = "imagen",
     mediciones = "mediciones",
-    informacion = "informacion"
+    informacion = "informacion",
+    checkList = "checkList"
 }
 export declare enum DiccionarioTiposElementos {
     'entrada-texto' = "Entrada de texto",
@@ -26,7 +27,8 @@ export declare enum DiccionarioTiposElementos {
     firma = "Firma",
     imagen = "Imagen",
     mediciones = "Mediciones",
-    informacion = "Informacion"
+    informacion = "Informacion",
+    checkList = "Checklist"
 }
 export * as edicion from "./edicion";
 export declare const CAMPOS_REFERENCIABLES: TiposElementos[];

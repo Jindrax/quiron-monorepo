@@ -11,3 +11,4 @@ export * from "./CampoTabla";
 export * from "./CampoTablaCompuesta";
 export * from "./CampoMediciones";
 export * from "./CampoInformacion";
+export * from "./CampoCheckList";

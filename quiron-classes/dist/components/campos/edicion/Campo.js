@@ -24,7 +24,7 @@ var Campo = /** @class */ (function () {
         this.value = value ? value : "";
     }
     __decorate([
-        (0, class_transformer_1.Type)(function () { return Dependiente_1.Dependiente; }),
+        class_transformer_1.Type(function () { return Dependiente_1.Dependiente; }),
         __metadata("design:type", Dependiente_1.Dependiente)
     ], Campo.prototype, "dependiente", void 0);
     return Campo;
