@@ -1,10 +1,11 @@
 import {Buscador} from "api/entidades/Buscador";
 import {Cliente} from "@quiron/classes/dist/entities";
+import {OpcionesBuscador} from "components/Utils/Interfaces";
 
 export class BuscadorCliente extends Buscador<Cliente> {
 
-  constructor(esquema: string[]) {
-    super(esquema, {
+  constructor(esquema: string[], relations?) {
+    const opciones: OpcionesBuscador = {
       endpoint: "clientes",
       opciones: {
         campos_busqueda: [
@@ -15,8 +16,9 @@ export class BuscadorCliente extends Buscador<Cliente> {
           {etiqueta: 'Nombre', valor: 'nombre'},
           {etiqueta: 'Identificacion', valor: 'identificacion'}
         ],
-        opciones_busqueda: {}
+        opciones_busqueda: relations? relations : {}
       }
-    }, Cliente);
-  }
+    }
+    super(esquema, opciones, Cliente);
+  };
 }

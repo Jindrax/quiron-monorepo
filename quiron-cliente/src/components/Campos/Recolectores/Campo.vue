@@ -17,7 +17,8 @@ import {
   Seccion,
   Seleccion,
   Tabla,
-  TablaCompuesta
+  TablaCompuesta,
+  CheckList
 } from './Vistas';
 import {Campo as CampoGenerico, Referencia} from '@quiron/classes/dist/components/campos/edicion';
 import Validador from '../../../api/clases/Plantillas/Campos/Recolectores/Condicionales/Validador';
@@ -41,7 +42,8 @@ import ModuloLlenadoPlantilla from "../../../store/modules/ModuloLlenadoPlantill
     Firma,
     Imagen,
     Mediciones,
-    Informacion
+    Informacion,
+    CheckList
   }
 })
 export default class Campo extends Vue {

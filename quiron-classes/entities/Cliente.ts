@@ -1,5 +1,7 @@
 import Equipo from "./Equipo";
 import Contacto from "./Contacto";
+import Institucion from "./Institucion";
+import {OrdenTrabajo} from "./index";
 
 export interface ClienteConstructor {
     id?: string;
@@ -11,6 +13,8 @@ export interface ClienteConstructor {
     contacto?: Contacto;
     contactos?: Contacto[];
     equipos?: Equipo[];
+    instituciones?: Institucion[];
+    ots?: OrdenTrabajo[];
 }
 
 export default class Cliente {
@@ -23,6 +27,8 @@ export default class Cliente {
     contacto: Contacto;
     contactos: Contacto[];
     equipos: Equipo[];
+    instituciones: Institucion[];
+    ots: OrdenTrabajo[];
 
     constructor({
                     id,
@@ -33,7 +39,9 @@ export default class Cliente {
                     contrato,
                     contacto,
                     contactos,
-                    equipos
+                    equipos,
+                    instituciones,
+                    ots
                 }: ClienteConstructor) {
         this.id = id ? id : "";
         this.nombre = nombre ? nombre : "";
@@ -47,6 +55,12 @@ export default class Cliente {
         }) : [];
         this.equipos = equipos ? equipos.map((element: any) => {
             return new Equipo(element);
+        }) : [];
+        this.instituciones = instituciones ? instituciones.map((element: any) => {
+            return new Institucion(element);
+        }) : [];
+        this.ots = ots ? ots.map((element: any) => {
+            return new OrdenTrabajo(element);
         }) : [];
     }
 }

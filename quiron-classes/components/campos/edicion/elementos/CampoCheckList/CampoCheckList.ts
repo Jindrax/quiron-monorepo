@@ -2,17 +2,21 @@ import {Campo} from "../../Campo";
 import {Dependiente} from "../../Dependiente";
 import {TiposElementos} from "../../../index";
 
-type CampoValidador = {
-    [key: string]: Campo
+export interface CondicionalValidador{
+    validador: Campo
+    valor: string
+    campoValidado: Campo
 }
 
 export class CampoCheckList extends Campo{
     items: string[];
-    validadores: CampoValidador;
+    validadores: Campo[];
+    condicionales: CondicionalValidador[];
 
-    constructor(etiqueta?: string, dependiente?: Dependiente, items?: string[], validadores?: CampoValidador) {
+    constructor(etiqueta?: string, dependiente?: Dependiente, items?: string[], validadores?: Campo[], condicionales?: CondicionalValidador[]) {
         super(TiposElementos.checkList, etiqueta, dependiente);
         this.items = items? items : [];
-        this.validadores = validadores? validadores : {};
+        this.validadores = validadores? validadores : [];
+        this.condicionales = condicionales? condicionales : [];
     }
 }

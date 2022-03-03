@@ -1,9 +1,11 @@
 import {Institucion} from "@quiron/classes/dist/entities";
-import {getRepository, SelectQueryBuilder} from "typeorm";
+import {getRepository, SelectQueryBuilder, getConnection} from "typeorm";
 import {InstitucionModel} from "../db/models/InstitucionModel";
+import {ClienteModel} from "../db/models/ClienteModel";
 
 export default class Instituciones {
     static async crear({institucion}: { institucion: Institucion }) {
+        delete institucion.id;
         const contactoDB: InstitucionModel = new InstitucionModel();
         contactoDB.fromCommonEntity(institucion);
         await contactoDB.save();
@@ -32,4 +34,17 @@ export default class Instituciones {
             throw e;
         }
     }
+
+    static async asociarACliente({cliente, institucion}: {cliente: string, institucion: string}){
+        try{
+            await getConnection()
+                .createQueryBuilder()
+                .relation(ClienteModel, "instituciones")
+                .of(cliente)
+                .add(institucion);
+        }catch (e) {
+            throw e;
+        }
+    }
+
 }

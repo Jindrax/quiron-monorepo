@@ -22,9 +22,10 @@
         <div :class="{'bg-grey-2': active && elementoSync.elemento !== 'seccion',
         'bg-green-2': active && elementoSync.elemento === 'seccion'}">
           <referencia :elreferencia="elementoSync.referencia"
-                      v-if="isReferenciable"/>
+                      v-if="isReferenciable && !patron"/>
           <q-separator/>
           <dependiente
+            v-if="!patron"
             :dep="elementoSync.dependiente"
           />
           <q-separator/>
@@ -82,6 +83,7 @@ export default class CampoEditar extends Vue {
   @Prop() indice: number;
   @Prop() path: string;
   @Prop() maxindice: number;
+  @Prop({default: false}) patron: boolean;
   diccionario = DiccionarioTiposElementos;
   public active: boolean = false;
   private editorStore = getModule(ModuloEditorPlantilla);

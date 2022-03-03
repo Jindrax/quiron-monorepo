@@ -11,9 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const InstitucionModel_1 = require("../db/models/InstitucionModel");
+const ClienteModel_1 = require("../db/models/ClienteModel");
 class Instituciones {
     static crear({ institucion }) {
         return __awaiter(this, void 0, void 0, function* () {
+            delete institucion.id;
             const contactoDB = new InstitucionModel_1.InstitucionModel();
             contactoDB.fromCommonEntity(institucion);
             yield contactoDB.save();
@@ -38,6 +40,20 @@ class Instituciones {
                 else {
                     return yield repo.find();
                 }
+            }
+            catch (e) {
+                throw e;
+            }
+        });
+    }
+    static asociarACliente({ cliente, institucion }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield (0, typeorm_1.getConnection)()
+                    .createQueryBuilder()
+                    .relation(ClienteModel_1.ClienteModel, "instituciones")
+                    .of(cliente)
+                    .add(institucion);
             }
             catch (e) {
                 throw e;

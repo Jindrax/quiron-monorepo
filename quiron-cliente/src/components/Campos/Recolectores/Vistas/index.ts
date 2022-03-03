@@ -10,3 +10,4 @@ export {default as Tabla} from './Tabla.vue';
 export {default as TablaCompuesta} from './TablaCompuesta.vue';
 export {default as Mediciones} from './Mediciones.vue';
 export {default as Informacion} from './Informacion.vue';
+export {default as CheckList} from "./CheckList.vue";

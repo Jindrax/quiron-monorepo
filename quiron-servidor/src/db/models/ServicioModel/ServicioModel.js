@@ -12,20 +12,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ServicioModel = void 0;
 const typeorm_1 = require("typeorm");
 const PlantillaModel_1 = require("../PlantillaModel");
-let ServicioModel = class ServicioModel extends typeorm_1.BaseEntity {
+const CommonEntity_1 = require("../CommonEntity");
+const OTModel_1 = require("../OTModel");
+let ServicioModel = class ServicioModel extends CommonEntity_1.CommonEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", String)
 ], ServicioModel.prototype, "id", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], ServicioModel.prototype, "identificador", void 0);
+__decorate([
     (0, typeorm_1.ManyToMany)(type => PlantillaModel_1.PlantillaModel),
+    (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
 ], ServicioModel.prototype, "plantillas", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "jsonb" }),
-    __metadata("design:type", Object)
-], ServicioModel.prototype, "atributos", void 0);
+    (0, typeorm_1.OneToMany)(() => OTModel_1.OTModel, ot => ot.servicio),
+    __metadata("design:type", Array)
+], ServicioModel.prototype, "ots", void 0);
 ServicioModel = __decorate([
     (0, typeorm_1.Entity)()
 ], ServicioModel);

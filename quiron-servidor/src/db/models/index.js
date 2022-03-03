@@ -14,6 +14,7 @@ const FormularioTraceModel_1 = require("./Traces/FormularioTraceModel");
 const Traces_1 = require("./Traces");
 const InstitucionModel_1 = require("./InstitucionModel");
 const EquipoAtributoModel_1 = require("./EquipoModel/EquipoAtributoModel");
+const PatronModel_1 = require("./PatronModel");
 const entities = [
     UsuarioModel_1.UsuarioModel,
     RolModel_1.RolModel,
@@ -30,6 +31,7 @@ const entities = [
     FormularioTraceModel_1.FormularioTraceModel,
     Traces_1.OTTraceModel,
     EquipoAtributoModel_1.EquipoAtributoModel,
-    InstitucionModel_1.InstitucionClienteContactoModel
+    InstitucionModel_1.InstitucionClienteContactoModel,
+    PatronModel_1.PatronModel
 ];
 exports.default = entities;

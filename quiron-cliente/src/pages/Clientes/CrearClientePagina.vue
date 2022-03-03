@@ -40,19 +40,8 @@
         </div>
       </mostrar-campo>
       <q-separator/>
-      <q-card>
-        <q-card-section>Contactos</q-card-section>
-        <q-card-section>
-          <presentador-por-tabla :datos="nuevoCliente.contactos" :esquema="['nombres', 'apellidos']"
-                                 @selected="eliminarContacto"/>
-        </q-card-section>
-        <q-card-actions>
-          <q-btn class="full-width" label="Añadir Contacto" @click="buscarContactos"/>
-        </q-card-actions>
-      </q-card>
       <q-btn class="full-width" label="Crear Cliente" @click="crearCliente"/>
     </div>
-    <q-btn class="full-width" label="Test" @click="test"/>
   </q-page>
 </template>
 <script lang="ts">

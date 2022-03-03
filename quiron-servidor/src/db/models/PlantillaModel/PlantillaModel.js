@@ -13,15 +13,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlantillaModel = void 0;
 const typeorm_1 = require("typeorm");
 const edicion_1 = require("@quiron/classes/dist/components/campos/edicion");
-let PlantillaModel = PlantillaModel_1 = class PlantillaModel extends typeorm_1.BaseEntity {
-    fromCommonEntity(entity) {
-        this.serial = entity.serial;
-        this.identificador = entity.identificador;
-        this.version = entity.version;
-        this.modelo = entity.modelo;
-        // @ts-ignore
-        this.relacionadas = entity.relacionadas;
-    }
+const CommonEntity_1 = require("../CommonEntity");
+let PlantillaModel = PlantillaModel_1 = class PlantillaModel extends CommonEntity_1.CommonEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryColumn)({ type: "uuid" }),

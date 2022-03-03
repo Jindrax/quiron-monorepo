@@ -1,5 +1,7 @@
 import Contacto from "./Contacto";
-export interface SucursalConstructor {
+import Cliente from "./Cliente";
+import { Equipo, OrdenTrabajo } from "./index";
+export interface InstitucionConstructor {
     id?: string;
     identificacion?: string;
     latitud?: number;
@@ -8,6 +10,9 @@ export interface SucursalConstructor {
     ciudad?: string;
     departamento?: string;
     contactos?: Contacto[];
+    clientes?: Cliente[];
+    equipos?: Equipo[];
+    ots?: OrdenTrabajo[];
 }
 export default class Institucion {
     id?: string;
@@ -18,6 +23,9 @@ export default class Institucion {
     ciudad: string;
     departamento: string;
     contactos: Contacto[];
-    constructor({ id, identificacion, latitud, longitud, direccion, ciudad, departamento, contactos }: SucursalConstructor);
+    clientes: Cliente[];
+    equipos: Equipo[];
+    ots: OrdenTrabajo[];
+    constructor({ id, identificacion, latitud, longitud, direccion, ciudad, departamento, contactos, clientes, equipos, ots }: InstitucionConstructor);
 }
 //# sourceMappingURL=Institucion.d.ts.map

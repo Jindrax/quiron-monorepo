@@ -1,21 +1,27 @@
 import Plantilla from "./Plantilla";
+import {OrdenTrabajo} from "./index";
 
 export interface ServicioConstructor {
     id?: string;
+    identificador?: string;
     plantillas?: Plantilla[];
-    atributos?: Record<string, any>;
+    ots?: OrdenTrabajo[];
 }
 
 export default class Servicio {
     id?: string;
+    identificador: string;
     plantillas: Plantilla[];
-    atributos: Record<string, any>;
+    ots: OrdenTrabajo[];
 
-    constructor({id, plantillas, atributos}: ServicioConstructor) {
+    constructor({id, identificador, plantillas, ots}: ServicioConstructor) {
         this.id = id ? id : "";
+        this.identificador = identificador ? identificador : "";
         this.plantillas = plantillas ? plantillas.map((element: any) => {
             return new Plantilla(element);
         }) : [];
-        this.atributos = atributos ? atributos : {};
+        this.ots = ots ? ots.map((element: any) => {
+            return new OrdenTrabajo(element);
+        }) : [];
     }
 }

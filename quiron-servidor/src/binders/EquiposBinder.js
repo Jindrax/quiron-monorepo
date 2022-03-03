@@ -41,6 +41,27 @@ class EquiposBinder extends Binder_1.default {
             action: "Crear",
             description: "Crear Equipo"
         });
+        this.registerEndPoint(Binder_1.RequestKind.GET, "/equipo/:equipoID/responsable", {
+            processor: Equipos_1.default.responsable
+        }, {
+            resource: "Equipo",
+            action: "Consultar",
+            description: "Consultar el responsable de un equipo"
+        });
+        this.registerEndPoint(Binder_1.RequestKind.GET, "/equipo/:equipoID/institucion", {
+            processor: Equipos_1.default.institucion
+        }, {
+            resource: "Equipo",
+            action: "Consultar",
+            description: "Consultar la institucion del equipo"
+        });
+        this.registerEndPoint(Binder_1.RequestKind.GET, "/equipo/:equipoID/infoOT", {
+            processor: Equipos_1.default.infoOT
+        }, {
+            resource: "Equipo",
+            action: "Consultar",
+            description: "Consultar la informacion del equipo para creacion de OT"
+        });
     }
 }
 exports.default = EquiposBinder;

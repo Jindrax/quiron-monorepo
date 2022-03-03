@@ -1,26 +1,50 @@
 <template>
-  <mostrar-campo
-    :etiqueta="elemento.presentacion"
-    :printable="printable"
-  >
-    <div v-if="elemento.radio">
-      <q-radio v-model="dataSync[path]" v-for="opcion in elemento.opciones" :val="opcion" :label="opcion" :key="opcion"
-               v-if="!apertura"/>
-      <q-input v-model="dataSync[path]" v-if="apertura"/>
-      <q-toggle v-model="apertura" label="Otro"/>
-    </div>
-    <div v-else>
-      <q-select
-        :options="obtenerOpciones(elemento)"
-        :placeholder="elemento.presentacion"
-        emit-value
-        v-model="dataSync[path]"
-        v-if="!apertura"
-      />
-      <q-input v-model="dataSync[path]" v-if="apertura"/>
-      <q-toggle v-model="apertura" label="Otro"/>
-    </div>
-  </mostrar-campo>
+  <div>
+    <mostrar-campo
+      v-if="!checkList"
+      :etiqueta="elemento.presentacion"
+      :printable="printable"
+    >
+      <div v-if="elemento.radio">
+        <q-radio v-for="opcion in elemento.opciones" v-if="!apertura" :key="opcion" v-model="dataSync[path]"
+                 :label="opcion"
+                 :val="opcion"/>
+        <q-input v-if="apertura" v-model="dataSync[path]"/>
+        <q-toggle v-model="apertura" label="Otro"/>
+      </div>
+      <div v-else>
+        <q-select
+          v-if="!apertura"
+          v-model="dataSync[path]"
+          :options="obtenerOpciones(elemento)"
+          :placeholder="elemento.presentacion"
+          emit-value
+        />
+        <q-input v-if="apertura" v-model="dataSync[path]"/>
+        <q-toggle v-model="apertura" label="Otro"/>
+      </div>
+    </mostrar-campo>
+    <template v-else>
+      <div v-if="elemento.radio">
+        <q-radio v-for="opcion in elemento.opciones" v-if="!apertura" :key="opcion" v-model="dataSync[path]"
+                 :label="opcion"
+                 :val="opcion"/>
+        <q-input v-if="apertura" v-model="dataSync[path]"/>
+        <q-toggle v-model="apertura" label="Otro"/>
+      </div>
+      <div v-else>
+        <q-select
+          v-if="!apertura"
+          v-model="dataSync[path]"
+          :options="obtenerOpciones(elemento)"
+          :placeholder="elemento.presentacion"
+          emit-value
+        />
+        <q-input v-if="apertura" v-model="dataSync[path]"/>
+        <q-toggle v-model="apertura" label="Otro"/>
+      </div>
+    </template>
+  </div>
 </template>
 <script lang="ts">
 import {Component, Prop, PropSync, Vue} from 'vue-property-decorator';
@@ -37,6 +61,7 @@ export default class Seleccion extends Vue {
   @Prop() elemento: CampoSeleccion;
   @Prop() path: string;
   @Prop({default: false}) readonly printable;
+  @Prop({default: false}) readonly checkList;
   @PropSync('data') dataSync;
   public apertura = false;
 

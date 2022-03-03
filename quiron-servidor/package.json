@@ -34,7 +34,8 @@
     "start": "node server.js",
     "start:dev": "node server.js",
     "start:watch": "./node_modules/nodemon/bin/nodemon.js server.js",
-    "dev": "cross-env NODE_ENV=dev node server.js"
+    "dev": "tsc && cross-env NODE_ENV=dev node server.js",
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",

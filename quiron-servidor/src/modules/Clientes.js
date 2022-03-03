@@ -15,7 +15,7 @@ class Clientes {
     static crear({ cliente }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log(cliente);
+                delete cliente.id;
                 const clienteDB = new ClienteModel_1.ClienteModel();
                 clienteDB.fromCommonEntity(cliente);
                 yield clienteDB.save();
@@ -31,8 +31,8 @@ class Clientes {
                 if (!opciones) {
                     opciones = [];
                 }
-                console.log(opciones);
                 filtro = JSON.parse(filtro);
+                console.log(opciones, opciones);
                 const repo = (0, typeorm_1.getRepository)(ClienteModel_1.ClienteModel);
                 if (Object.keys(filtro).length > 0) {
                     const key = Object.keys(filtro)[0];
@@ -45,20 +45,27 @@ class Clientes {
                             query = query.where("clientes.identificacion ILIKE :identificacion", { identificacion: `%${filtro[key]}%` });
                             break;
                     }
-                    opciones.forEach(relation => {
-                        query = query.leftJoinAndSelect(`clientes.${relation}`, relation);
-                    });
+                    // opciones.forEach(relation => {
+                    //     query = query.leftJoinAndSelect(`clientes.${relation}`, relation);
+                    // });
                     return yield query.getMany();
                 }
                 else {
-                    return yield repo.find({
-                        relations: opciones
-                    });
+                    return yield repo.find();
                 }
             }
             catch (e) {
                 throw e;
             }
+        });
+    }
+    static instituciones({ cliente }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield (0, typeorm_1.getConnection)()
+                .createQueryBuilder()
+                .relation(ClienteModel_1.ClienteModel, "instituciones")
+                .of(cliente)
+                .loadMany();
         });
     }
 }

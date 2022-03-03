@@ -40,27 +40,37 @@ import {FabricaCampos} from "@quiron/classes/dist/components/campos/edicion"
 })
 export default class Selector extends Vue {
   @Prop() elemento: TiposElementos;
+  @Prop({default: ()=>[]}) reducido: TiposElementos[];
   etiqueta: string = '';
   seleccion: TiposElementos = TiposElementos['entrada-texto'];
 
   get opcionesSelector() {
-    switch (this.elemento) {
-      case TiposElementos['tabla-compuesta']:
-        return [
-          {
-            label: DiccionarioTiposElementos['tabla-compuesta'],
-            value: TiposElementos.parametro
-          }
-        ];
-      default:
-        return Object.keys(TiposElementos).filter((tipo => {
-          return tipo != 'parametro';
-        })).map((tipo) => {
-          return {
-            label: DiccionarioTiposElementos[tipo],
-            value: tipo
-          };
-        });
+    if(this.reducido.length > 0){
+      return this.reducido.map(tipo => {
+        return {
+          label: DiccionarioTiposElementos[tipo],
+          value: tipo
+        };
+      })
+    }else{
+      switch (this.elemento) {
+        case TiposElementos['tabla-compuesta']:
+          return [
+            {
+              label: DiccionarioTiposElementos['tabla-compuesta'],
+              value: TiposElementos.parametro
+            }
+          ];
+        default:
+          return Object.keys(TiposElementos).filter((tipo => {
+            return tipo != 'parametro';
+          })).map((tipo) => {
+            return {
+              label: DiccionarioTiposElementos[tipo],
+              value: tipo
+            };
+          });
+      }
     }
   }
 

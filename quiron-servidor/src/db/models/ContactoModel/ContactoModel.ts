@@ -1,12 +1,13 @@
-import {BaseEntity, Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {CommonEntityInterface} from "../CommonEntityInterface";
 import {Contacto} from "@quiron/classes/dist/entities";
 import SearchValue from "../../decorators/SearchValue";
-import {InstitucionClienteContactoModel} from "../InstitucionModel/InstitucionClienteContactoModel";
+import {InstitucionClienteContactoModel} from "../InstitucionModel";
 import {ClienteModel} from "../ClienteModel";
+import {CommonEntity} from "../CommonEntity";
 
 @Entity()
-export class ContactoModel extends BaseEntity implements CommonEntityInterface<Contacto> {
+export class ContactoModel extends CommonEntity<Contacto> implements CommonEntityInterface<Contacto> {
     @PrimaryGeneratedColumn("uuid")
     id: string;
     @Column()
@@ -23,17 +24,4 @@ export class ContactoModel extends BaseEntity implements CommonEntityInterface<C
     instituciones: InstitucionClienteContactoModel[];
     @ManyToMany(type => ClienteModel, cliente => cliente.contactos)
     clientes: ClienteModel[];
-
-    fromCommonEntity(entity: Contacto): void {
-        if (entity.id) {
-            this.id = entity.id;
-        }
-        this.nombres = entity.nombres;
-        this.apellidos = entity.apellidos;
-        this.telefonos = entity.telefonos;
-        this.emails = entity.emails;
-        // @ts-ignore
-        this.instituciones = entity.instituciones;
-    }
-
 }

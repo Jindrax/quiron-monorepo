@@ -24,7 +24,7 @@ if (process.env.SERVER == undefined) {
 }
 const app = (0, express_1.default)();
 const cors_options = {
-    origin: ["http://localhost", "http://localhost:8080"],
+    origin: ["http://localhost", "http://localhost:8080", "http://localhost:8090"],
     credentials: true
 };
 app.use((0, cors_1.default)(cors_options));

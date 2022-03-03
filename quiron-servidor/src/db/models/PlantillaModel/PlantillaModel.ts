@@ -1,10 +1,11 @@
-import {BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryColumn} from "typeorm";
+import {Column, Entity, JoinTable, ManyToMany, PrimaryColumn} from "typeorm";
 import {CampoSeccion} from "@quiron/classes/dist/components/campos/edicion";
 import {Plantilla} from "@quiron/classes/dist/entities";
 import {CommonEntityInterface} from "../CommonEntityInterface";
+import {CommonEntity} from "../CommonEntity";
 
 @Entity()
-export class PlantillaModel extends BaseEntity implements CommonEntityInterface<Plantilla> {
+export class PlantillaModel extends CommonEntity<Plantilla> implements CommonEntityInterface<Plantilla> {
     @PrimaryColumn({type: "uuid"})
     serial: string;
     @PrimaryColumn()
@@ -16,13 +17,4 @@ export class PlantillaModel extends BaseEntity implements CommonEntityInterface<
     @ManyToMany(type => PlantillaModel)
     @JoinTable()
     relacionadas: PlantillaModel[];
-
-    fromCommonEntity(entity: Plantilla): void {
-        this.serial = entity.serial;
-        this.identificador = entity.identificador;
-        this.version = entity.version;
-        this.modelo = entity.modelo;
-        // @ts-ignore
-        this.relacionadas = entity.relacionadas;
-    }
 }

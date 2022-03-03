@@ -1,13 +1,14 @@
-import {BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {ClienteModel} from "../ClienteModel";
 import {OTModel} from "../OTModel";
 import {InstitucionModel} from "../InstitucionModel";
-import {CommonEntityInterface} from "../CommonEntityInterface";
 import {Equipo} from "@quiron/classes/dist/entities";
 import SearchValue from "../../decorators/SearchValue";
+import {PatronModel} from "../PatronModel";
+import {CommonEntity} from "../CommonEntity";
 
 @Entity()
-export class EquipoModel extends BaseEntity implements CommonEntityInterface<Equipo> {
+export class EquipoModel extends CommonEntity<Equipo> {
     @PrimaryGeneratedColumn("uuid")
     id: string;
     @SearchValue()
@@ -24,35 +25,16 @@ export class EquipoModel extends BaseEntity implements CommonEntityInterface<Equ
     @SearchValue()
     @Column()
     codigo: string;
-    @Column({type: "bytea", nullable: false})
-    garantia: Buffer;
+    // @Column({type: "bytea", nullable: false})
+    // garantia: Buffer;
     @ManyToOne(type => ClienteModel, cliente => cliente.equipos)
     responsable: ClienteModel;
-    @OneToOne(type => InstitucionModel)
-    @JoinColumn()
+    @ManyToOne(type => InstitucionModel, institucion => institucion.equipos)
     institucion: InstitucionModel;
     @OneToMany(type => OTModel, ot => ot.equipo)
     ots: OTModel[];
     @Column({type: "jsonb"})
     atributos: Record<string, any>;
-
-    fromCommonEntity(entity: Equipo): void {
-        if (entity.id) {
-            this.id = entity.id;
-        }
-        this.serial = entity.serial;
-        this.marca = entity.marca;
-        this.modelo = entity.modelo;
-        this.serie = entity.serie;
-        this.codigo = entity.codigo;
-        this.garantia = entity.garantia;
-        // @ts-ignore
-        this.responsable = entity.propietario;
-        // @ts-ignore
-        this.institucion = entity.institucion;
-        // @ts-ignore
-        this.ots = entity.ots;
-        this.atributos = entity.atributos;
-    }
-
+    @ManyToOne(() => PatronModel, patron => patron.equipos)
+    patron: PatronModel;
 }

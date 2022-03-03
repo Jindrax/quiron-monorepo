@@ -15,5 +15,10 @@ export default class ClientesBinder extends Binder {
             action: "Consultar",
             description: "Consultar los clientes"
         });
+        this.registerEndPoint(RequestKind.GET, "/cliente/:cliente/instituciones", {processor: Clientes.instituciones}, {
+            resource: "Instituciones",
+            action: "Consultar",
+            description: "Consultar las instituciones de un cliente"
+        });
     }
 }

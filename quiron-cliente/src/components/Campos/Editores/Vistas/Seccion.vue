@@ -1,6 +1,6 @@
 <template>
   <div>
-    <selector :elemento="elemento.elemento" @nuevo="nuevoElementoSeleccionado"/>
+    <selector :elemento="elemento.elemento" :reducido="reducido" @nuevo="nuevoElementoSeleccionado"/>
     <br>
     <div
       @dragenter.prevent
@@ -16,6 +16,7 @@
         :indice="indice"
         :maxindice="elemento.elementos.length"
         :path="path"
+        :patron="patron"
         :key="elementoHijo.elemento + elementoHijo.etiqueta"
         @dragend.native.stop="stopDragging($event)"
         @dragenter.prevent
@@ -39,6 +40,7 @@ import Selector from '../Selector.vue';
 import {Campo, CampoSeccion} from '@quiron/classes/dist/components/campos/edicion';
 import {getModule} from 'vuex-module-decorators';
 import ModuloEditorPlantilla from '../../../../store/modules/ModuloEditorPlantilla';
+import {TiposElementos} from "@quiron/classes/dist/components/campos";
 
 let stop = true;
 
@@ -61,6 +63,8 @@ function scrollDrag(step: number) {
 export default class Seccion extends Vue {
   @Prop() elemento: CampoSeccion;
   @Prop() path: string;
+  @Prop({default: ()=>[]}) reducido: TiposElementos[];
+  @Prop({default: false}) patron: boolean;
   private editorStore = getModule(ModuloEditorPlantilla);
 
   nuevoElementoSeleccionado(elementoNuevo: Campo) {

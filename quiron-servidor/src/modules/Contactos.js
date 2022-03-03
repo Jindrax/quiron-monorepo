@@ -15,6 +15,7 @@ const typeorm_1 = require("typeorm");
 class Contactos {
     static crear({ contacto }) {
         return __awaiter(this, void 0, void 0, function* () {
+            delete contacto.id;
             yield Contactos.repo.createEntity(contacto);
         });
     }

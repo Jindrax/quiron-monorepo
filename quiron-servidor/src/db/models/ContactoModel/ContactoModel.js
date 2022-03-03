@@ -15,20 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContactoModel = void 0;
 const typeorm_1 = require("typeorm");
 const SearchValue_1 = __importDefault(require("../../decorators/SearchValue"));
-const InstitucionClienteContactoModel_1 = require("../InstitucionModel/InstitucionClienteContactoModel");
+const InstitucionModel_1 = require("../InstitucionModel");
 const ClienteModel_1 = require("../ClienteModel");
-let ContactoModel = class ContactoModel extends typeorm_1.BaseEntity {
-    fromCommonEntity(entity) {
-        if (entity.id) {
-            this.id = entity.id;
-        }
-        this.nombres = entity.nombres;
-        this.apellidos = entity.apellidos;
-        this.telefonos = entity.telefonos;
-        this.emails = entity.emails;
-        // @ts-ignore
-        this.instituciones = entity.instituciones;
-    }
+const CommonEntity_1 = require("../CommonEntity");
+let ContactoModel = class ContactoModel extends CommonEntity_1.CommonEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
@@ -53,7 +43,7 @@ __decorate([
     __metadata("design:type", Array)
 ], ContactoModel.prototype, "emails", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => InstitucionClienteContactoModel_1.InstitucionClienteContactoModel, institucion => institucion.contacto),
+    (0, typeorm_1.OneToMany)(type => InstitucionModel_1.InstitucionClienteContactoModel, institucion => institucion.contacto),
     __metadata("design:type", Array)
 ], ContactoModel.prototype, "instituciones", void 0);
 __decorate([

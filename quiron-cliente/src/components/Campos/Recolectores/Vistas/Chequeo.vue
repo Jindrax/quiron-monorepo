@@ -35,6 +35,12 @@ export default class Chequeo extends Vue {
   public apertura: boolean = false;
   public nuevaOpcion: any = '';
 
+  created() {
+    if(!Array.isArray(this.dataSync[this.path])){
+      this.dataSync[this.path] = [];
+    }
+  }
+
   get opciones() {
     return this.elemento.opciones.map(opcion => {
       return {label: opcion, value: opcion};

@@ -10,7 +10,11 @@
   "scripts": {
     "start": "npm run start --workspace quiron-servidor",
     "server:dev": "npm run dev --workspace quiron-servidor",
+    "server:build": "npm run build --workspace quiron-servidor",
     "client:dev": "cd ./quiron-cliente && quasar dev",
+    "client:build": "cd ./quiron-cliente && quasar build",
+    "auth:dev": "cd ./quiron-auth && quasar dev",
+    "auth:build": "cd ./quiron-auth && quasar build",
     "classes:build": "cd ./quiron-classes && tsc"
   }
 }

@@ -37,6 +37,11 @@ class InstitucionesBinder extends Binder_1.default {
             action: "Consultar",
             description: "Consultar las institucion"
         });
+        this.registerEndPoint(Binder_1.RequestKind.POST, "/clientes/instituciones/link", { processor: Instituciones_1.default.asociarACliente }, {
+            resource: "Institucion",
+            action: "Asociar",
+            description: "Consultar las institucion"
+        });
     }
 }
 exports.default = InstitucionesBinder;

@@ -19,19 +19,6 @@
     <mostrar-campo etiqueta="Ciudad">
       <q-select v-model="nuevaInstitucion.ciudad" :options="listaMunicipios"/>
     </mostrar-campo>
-    <q-card>
-      <q-card-section>
-        Contactos
-      </q-card-section>
-      <q-card-section>
-        <q-btn
-          :label="'Buscar contacto'"
-          @click="buscarContacto"
-          class="full-width"
-        />
-        <presentador-por-tabla :esquema="['nombres', 'apellidos']" :datos="nuevaInstitucion.contactos" @selected="remove"/>
-      </q-card-section>
-    </q-card>
     <br>
     <q-btn label="Crear Institucion" class="full-width" @click="crear"/>
   </div>

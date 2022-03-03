@@ -25,6 +25,7 @@ export default class CrearInstitucionPagina extends Vue {
 
   public async nuevaInstitucion(institucion: Institucion) {
     await Controller.post("clientes/instituciones", {institucion: institucion});
+    this.$q.notify("Institucion creada correctamente");
   }
 
 }

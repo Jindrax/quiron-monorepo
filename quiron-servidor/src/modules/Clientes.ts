@@ -1,11 +1,11 @@
 import {Cliente} from "@quiron/classes/dist/entities";
-import {getRepository, SelectQueryBuilder} from "typeorm";
+import {getConnection, getRepository, SelectQueryBuilder} from "typeorm";
 import {ClienteModel} from "../db/models/ClienteModel";
 
 export default class Clientes {
     static async crear({cliente}: { cliente: Cliente }) {
         try {
-            console.log(cliente);
+            delete cliente.id;
             const clienteDB: ClienteModel = new ClienteModel();
             clienteDB.fromCommonEntity(cliente);
             await clienteDB.save();
@@ -16,11 +16,11 @@ export default class Clientes {
 
     static async buscar({filtro, opciones}: { filtro: any, opciones: string[] }) {
         try {
-            if(!opciones){
+            if (!opciones) {
                 opciones = [];
             }
-            console.log(opciones);
             filtro = JSON.parse(filtro);
+            console.log(opciones, opciones);
             const repo = getRepository<ClienteModel>(ClienteModel);
             if (Object.keys(filtro).length > 0) {
                 const key = Object.keys(filtro)[0];
@@ -37,17 +37,23 @@ export default class Clientes {
                             {identificacion: `%${filtro[key]}%`});
                         break;
                 }
-                opciones.forEach(relation => {
-                    query = query.leftJoinAndSelect(`clientes.${relation}`, relation);
-                });
+                // opciones.forEach(relation => {
+                //     query = query.leftJoinAndSelect(`clientes.${relation}`, relation);
+                // });
                 return await query.getMany();
             } else {
-                return await repo.find({
-                    relations: opciones
-                });
+                return await repo.find();
             }
         } catch (e) {
             throw e;
         }
+    }
+
+    static async instituciones({cliente}: { cliente: string }) {
+        return await getConnection()
+            .createQueryBuilder()
+            .relation(ClienteModel, "instituciones")
+            .of(cliente)
+            .loadMany();
     }
 }

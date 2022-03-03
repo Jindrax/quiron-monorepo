@@ -23,6 +23,8 @@ const TypedORM_1 = require("./db/TypedORM");
 const ContactosBinder_1 = __importDefault(require("./binders/ContactosBinder"));
 const InstitucionesBinder_1 = __importDefault(require("./binders/InstitucionesBinder"));
 const EquiposBinder_1 = __importDefault(require("./binders/EquiposBinder"));
+const PatronesBinder_1 = __importDefault(require("./binders/PatronesBinder"));
+const ServiciosBinder_1 = __importDefault(require("./binders/ServiciosBinder"));
 class App {
     static start(express) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -37,6 +39,8 @@ class App {
             this.modules.push(new ContactosBinder_1.default(express));
             this.modules.push(new InstitucionesBinder_1.default(express));
             this.modules.push(new EquiposBinder_1.default(express));
+            this.modules.push(new PatronesBinder_1.default(express));
+            this.modules.push(new ServiciosBinder_1.default(express));
         });
     }
 }

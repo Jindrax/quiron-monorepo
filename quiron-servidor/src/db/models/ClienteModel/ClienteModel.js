@@ -17,30 +17,10 @@ const typeorm_1 = require("typeorm");
 const ContactoModel_1 = require("../ContactoModel");
 const EquipoModel_1 = require("../EquipoModel/EquipoModel");
 const SearchValue_1 = __importDefault(require("../../decorators/SearchValue"));
-const InstitucionClienteContactoModel_1 = require("../InstitucionModel/InstitucionClienteContactoModel");
-let ClienteModel = class ClienteModel extends typeorm_1.BaseEntity {
-    fromCommonEntity(entity) {
-        if (entity.id) {
-            this.id = entity.id;
-        }
-        this.identificacion = entity.identificacion;
-        this.nombre = entity.nombre;
-        this.direccion = entity.direccion;
-        this.telefono = entity.telefono;
-        this.contrato = entity.contrato;
-        if (entity.contacto) {
-            // @ts-ignore
-            this.contacto = entity.contacto;
-        }
-        if (entity.contactos) {
-            // @ts-ignore
-            this.contactos = entity.contactos;
-        }
-        if (entity.equipos) {
-            // @ts-ignore
-            this.equipos = entity.equipos;
-        }
-    }
+const InstitucionModel_1 = require("../InstitucionModel");
+const CommonEntity_1 = require("../CommonEntity");
+const OTModel_1 = require("../OTModel");
+let ClienteModel = class ClienteModel extends CommonEntity_1.CommonEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
@@ -83,9 +63,14 @@ __decorate([
     __metadata("design:type", Array)
 ], ClienteModel.prototype, "equipos", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(type => InstitucionClienteContactoModel_1.InstitucionClienteContactoModel, conexion => conexion.cliente),
+    (0, typeorm_1.ManyToMany)(() => InstitucionModel_1.InstitucionModel, (institucion) => institucion.clientes),
+    (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
 ], ClienteModel.prototype, "instituciones", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => OTModel_1.OTModel, ot => ot.cliente),
+    __metadata("design:type", Array)
+], ClienteModel.prototype, "ots", void 0);
 ClienteModel = __decorate([
     (0, typeorm_1.Entity)()
 ], ClienteModel);

@@ -18,25 +18,9 @@ const ClienteModel_1 = require("../ClienteModel");
 const OTModel_1 = require("../OTModel");
 const InstitucionModel_1 = require("../InstitucionModel");
 const SearchValue_1 = __importDefault(require("../../decorators/SearchValue"));
-let EquipoModel = class EquipoModel extends typeorm_1.BaseEntity {
-    fromCommonEntity(entity) {
-        if (entity.id) {
-            this.id = entity.id;
-        }
-        this.serial = entity.serial;
-        this.marca = entity.marca;
-        this.modelo = entity.modelo;
-        this.serie = entity.serie;
-        this.codigo = entity.codigo;
-        this.garantia = entity.garantia;
-        // @ts-ignore
-        this.responsable = entity.propietario;
-        // @ts-ignore
-        this.institucion = entity.institucion;
-        // @ts-ignore
-        this.ots = entity.ots;
-        this.atributos = entity.atributos;
-    }
+const PatronModel_1 = require("../PatronModel");
+const CommonEntity_1 = require("../CommonEntity");
+let EquipoModel = class EquipoModel extends CommonEntity_1.CommonEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
@@ -67,16 +51,11 @@ __decorate([
     __metadata("design:type", String)
 ], EquipoModel.prototype, "codigo", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "bytea", nullable: false }),
-    __metadata("design:type", Buffer)
-], EquipoModel.prototype, "garantia", void 0);
-__decorate([
     (0, typeorm_1.ManyToOne)(type => ClienteModel_1.ClienteModel, cliente => cliente.equipos),
     __metadata("design:type", ClienteModel_1.ClienteModel)
 ], EquipoModel.prototype, "responsable", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(type => InstitucionModel_1.InstitucionModel),
-    (0, typeorm_1.JoinColumn)(),
+    (0, typeorm_1.ManyToOne)(type => InstitucionModel_1.InstitucionModel, institucion => institucion.equipos),
     __metadata("design:type", InstitucionModel_1.InstitucionModel)
 ], EquipoModel.prototype, "institucion", void 0);
 __decorate([
@@ -87,6 +66,10 @@ __decorate([
     (0, typeorm_1.Column)({ type: "jsonb" }),
     __metadata("design:type", Object)
 ], EquipoModel.prototype, "atributos", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => PatronModel_1.PatronModel, patron => patron.equipos),
+    __metadata("design:type", PatronModel_1.PatronModel)
+], EquipoModel.prototype, "patron", void 0);
 EquipoModel = __decorate([
     (0, typeorm_1.Entity)()
 ], EquipoModel);

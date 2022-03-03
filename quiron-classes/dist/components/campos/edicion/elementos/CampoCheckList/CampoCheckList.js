@@ -20,10 +20,11 @@ var Campo_1 = require("../../Campo");
 var index_1 = require("../../../index");
 var CampoCheckList = /** @class */ (function (_super) {
     __extends(CampoCheckList, _super);
-    function CampoCheckList(etiqueta, dependiente, items, validadores) {
+    function CampoCheckList(etiqueta, dependiente, items, validadores, condicionales) {
         var _this = _super.call(this, index_1.TiposElementos.checkList, etiqueta, dependiente) || this;
         _this.items = items ? items : [];
-        _this.validadores = validadores ? validadores : {};
+        _this.validadores = validadores ? validadores : [];
+        _this.condicionales = condicionales ? condicionales : [];
         return _this;
     }
     return CampoCheckList;

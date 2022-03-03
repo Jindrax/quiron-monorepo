@@ -22,10 +22,11 @@ var OrdenTrabajo_1 = __importDefault(require("./OrdenTrabajo"));
 var Cliente_1 = __importDefault(require("./Cliente"));
 var Institucion_1 = __importDefault(require("./Institucion"));
 var IndexableEntity_1 = __importDefault(require("./auxiliar/IndexableEntity"));
+var index_1 = require("./index");
 var Equipo = /** @class */ (function (_super) {
     __extends(Equipo, _super);
     function Equipo(_a) {
-        var id = _a.id, serial = _a.serial, marca = _a.marca, modelo = _a.modelo, serie = _a.serie, codigo = _a.codigo, ots = _a.ots, garantia = _a.garantia, responsable = _a.responsable, institucion = _a.institucion, atributos = _a.atributos;
+        var id = _a.id, patron = _a.patron, serial = _a.serial, marca = _a.marca, modelo = _a.modelo, serie = _a.serie, codigo = _a.codigo, ots = _a.ots, responsable = _a.responsable, institucion = _a.institucion, atributos = _a.atributos;
         var _this = _super.call(this, ["serial", "marca", "serie", "codigo"]) || this;
         _this.serial = "";
         _this.marca = "";
@@ -33,12 +34,12 @@ var Equipo = /** @class */ (function (_super) {
         _this.serie = "";
         _this.codigo = "";
         _this.id = id ? id : "";
+        _this.patron = patron ? patron : new index_1.Patron({});
         _this.serial = serial ? serial : "";
         _this.marca = marca ? marca : "";
         _this.modelo = modelo ? modelo : "";
         _this.serie = serie ? serie : "";
         _this.codigo = codigo ? codigo : "";
-        _this.garantia = garantia ? garantia : new Buffer("");
         _this.responsable = responsable ? new Cliente_1.default(responsable) : new Cliente_1.default({});
         _this.institucion = institucion ? new Institucion_1.default(institucion) : new Institucion_1.default({});
         _this.ots = ots ? ots.map(function (element) {

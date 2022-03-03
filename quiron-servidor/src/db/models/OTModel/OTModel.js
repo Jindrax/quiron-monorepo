@@ -16,24 +16,30 @@ const Traces_1 = require("../Traces");
 const FormularioModel_1 = require("../FormularioModel/FormularioModel");
 const ServicioModel_1 = require("../ServicioModel/ServicioModel");
 const ClienteModel_1 = require("../ClienteModel");
-let OTModel = class OTModel extends typeorm_1.BaseEntity {
+const CommonEntity_1 = require("../CommonEntity");
+const InstitucionModel_1 = require("../InstitucionModel");
+let OTModel = class OTModel extends CommonEntity_1.CommonEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", String)
 ], OTModel.prototype, "id", void 0);
 __decorate([
+    (0, typeorm_1.ManyToOne)(type => ServicioModel_1.ServicioModel, servicio => servicio.ots),
+    __metadata("design:type", ServicioModel_1.ServicioModel)
+], OTModel.prototype, "servicio", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(type => EquipoModel_1.EquipoModel, equipo => equipo.ots),
     __metadata("design:type", EquipoModel_1.EquipoModel)
 ], OTModel.prototype, "equipo", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(type => ClienteModel_1.ClienteModel),
+    (0, typeorm_1.ManyToOne)(type => ClienteModel_1.ClienteModel, cliente => cliente.ots),
     __metadata("design:type", ClienteModel_1.ClienteModel)
 ], OTModel.prototype, "cliente", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(type => ServicioModel_1.ServicioModel),
-    __metadata("design:type", ServicioModel_1.ServicioModel)
-], OTModel.prototype, "servicio", void 0);
+    (0, typeorm_1.ManyToOne)(type => ClienteModel_1.ClienteModel, institucion => institucion.ots),
+    __metadata("design:type", InstitucionModel_1.InstitucionModel)
+], OTModel.prototype, "institucion", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(type => FormularioModel_1.FormularioModel, formulario => formulario.ot),
     __metadata("design:type", Array)

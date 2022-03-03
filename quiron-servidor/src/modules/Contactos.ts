@@ -8,6 +8,7 @@ export default class Contactos {
     static repo: CRUDEntity<Contacto, ContactoModel> = new CRUDEntity<Contacto, ContactoModel>(ContactoModel);
 
     static async crear({contacto}: { contacto: Contacto }) {
+        delete contacto.id;
         await Contactos.repo.createEntity(contacto);
     }
 
