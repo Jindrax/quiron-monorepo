@@ -28,7 +28,7 @@
           </mostrar-campo>
           <q-btn
             @click="addColumna"
-            class="boton-add full-width"
+            class="boton-add full-width advance-btn"
             label="Añadir columna"
           />
           <br/>
@@ -53,8 +53,7 @@
                     <q-btn
                       :label="'Eliminar ' + columna.etiqueta"
                       @click="removeColumna(columna_indice)"
-                      class="boton-eliminar full-width"
-                      color="red"
+                      class="boton-eliminar full-width revert-btn"
                     />
                   </q-expansion-item>
                 </q-item-section>

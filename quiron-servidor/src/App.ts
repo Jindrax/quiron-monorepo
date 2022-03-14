@@ -13,6 +13,8 @@ import InstitucionesBinder from "./binders/InstitucionesBinder";
 import EquiposBinder from "./binders/EquiposBinder";
 import PatronesBinder from "./binders/PatronesBinder";
 import ServiciosBinder from "./binders/ServiciosBinder";
+import OTsBinder from "./binders/OTsBinder";
+import FormulariosBinder from "./binders/FormulariosBinder";
 
 
 export default class App {
@@ -32,5 +34,7 @@ export default class App {
         this.modules.push(new EquiposBinder(express));
         this.modules.push(new PatronesBinder(express));
         this.modules.push(new ServiciosBinder(express));
+        this.modules.push(new OTsBinder(express));
+        this.modules.push(new FormulariosBinder(express));
     }
 }

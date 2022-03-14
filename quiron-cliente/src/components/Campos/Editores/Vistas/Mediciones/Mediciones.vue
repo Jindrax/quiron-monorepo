@@ -25,7 +25,7 @@
                 @remove="removeMedida"/>
         </tbody>
       </q-markup-table>
-      <q-btn label="Nueva medida" @click="addMedida"/>
+      <q-btn label="Nueva medida" @click="addMedida" class="advance-btn"/>
       <mostrar-campo etiqueta="Necesita Grafica">
         <q-toggle v-model="elementoSync.necesitaGrafica"/>
       </mostrar-campo>

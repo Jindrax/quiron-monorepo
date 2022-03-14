@@ -25,6 +25,8 @@ const InstitucionesBinder_1 = __importDefault(require("./binders/InstitucionesBi
 const EquiposBinder_1 = __importDefault(require("./binders/EquiposBinder"));
 const PatronesBinder_1 = __importDefault(require("./binders/PatronesBinder"));
 const ServiciosBinder_1 = __importDefault(require("./binders/ServiciosBinder"));
+const OTsBinder_1 = __importDefault(require("./binders/OTsBinder"));
+const FormulariosBinder_1 = __importDefault(require("./binders/FormulariosBinder"));
 class App {
     static start(express) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -41,6 +43,8 @@ class App {
             this.modules.push(new EquiposBinder_1.default(express));
             this.modules.push(new PatronesBinder_1.default(express));
             this.modules.push(new ServiciosBinder_1.default(express));
+            this.modules.push(new OTsBinder_1.default(express));
+            this.modules.push(new FormulariosBinder_1.default(express));
         });
     }
 }

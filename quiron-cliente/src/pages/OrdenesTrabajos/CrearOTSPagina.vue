@@ -11,6 +11,7 @@
     <div class="q-my-xs bg-grey-2">
       <q-btn class="bg-primary text-white full-width" label="Crear Orden de trabajo" @click="crear"/>
     </div>
+    <buscador-unitario v-model="ot" :buscador="buscadorOT" etiqueta="OT" @input="test"/>
   </q-page>
 </template>
 <script lang="ts">
@@ -23,6 +24,7 @@ import RecolectorAtributos from "components/Utils/RecolectorAtributos.vue";
 import Controller from "api/Controller";
 import Campo from "components/Campos/Recolectores/Campo.vue";
 import {BuscadorServicio} from "api/entidades/Buscador/Buscadores";
+import {BuscadorOT} from "api/entidades/Buscador/Buscadores/BuscadorOT";
 
 @Component({
   name: 'crear-ots-pagina',
@@ -38,7 +40,9 @@ export default class CrearOTSPagina extends Vue {
   buscadorEquipo = new BuscadorEquipo(["serial", "marca"]);
   buscadorCliente = new BuscadorCliente(["nombre", "identificacion"]);
   buscadorInstitucion = new BuscadorInstitucion(["identificacion", "direccion"]);
+  buscadorOT = new BuscadorOT(["id"]);
   nuevaOt = new OrdenTrabajo({});
+  ot = {};
 
   async onEquipoSelected(equipo: Equipo) {
     let info: any = await Controller.get(`equipo/${equipo.id}/infoOT`);
@@ -48,16 +52,19 @@ export default class CrearOTSPagina extends Vue {
   }
 
   async crear() {
-    // try {
-    //   this.nuevoEquipo.institucion = this.institucionElegida.value;
-    //   await Controller.post("equipos", {
-    //     equipo: this.nuevoEquipo
-    //   });
-    //   this.$q.notify("Equipo creado correctamente");
-    //   this.nuevoEquipo = new Equipo({});
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    try {
+      await Controller.post("ots", {
+        ot: this.nuevaOt
+      });
+      this.$q.notify("Orden de trabajo creada correctamente");
+      this.nuevaOt = new OrdenTrabajo({});
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async test(cualquiera: any){
+    console.log(cualquiera);
   }
 }
 </script>

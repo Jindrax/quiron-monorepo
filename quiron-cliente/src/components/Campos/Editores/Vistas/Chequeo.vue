@@ -1,23 +1,26 @@
 <template>
   <q-item>
     <q-item-section>
-      <mostrar-campo :etiqueta="'Nueva opcion'">
-        <q-input @keypress.enter.native="addOpcion" v-model="nueva_opcion"/>
+      <mostrar-campo etiqueta="Apertura">
+        <q-toggle v-model="elementoSync.apertura"/>
       </mostrar-campo>
-      <q-btn @click="addOpcion" class="q-my-sm" label="Añadir opcion"/>
+      <mostrar-campo :etiqueta="'Nueva opcion'">
+        <q-input v-model="nueva_opcion" @keypress.enter.native="addOpcion"/>
+      </mostrar-campo>
+      <q-btn class="q-my-sm advance-btn" label="Añadir opcion" @click="addOpcion"/>
       <q-list bordered separator>
         <q-item-label header>
           Opciones
         </q-item-label>
-        <q-item :key="elementoSync.path + '\\' + opcion" v-for="(opcion, indice_opcion) in elementoSync.opciones">
+        <q-item v-for="(opcion, indice_opcion) in elementoSync.opciones" :key="elementoSync.path + '\\' + opcion">
           <q-item-section>
             {{ opcion }}
           </q-item-section>
-          <q-item-section side v-if="indice_opcion!==0">
-            <q-btn @click="moveOpcion(indice_opcion)" color="blue" icon="arrow_upward"/>
+          <q-item-section v-if="indice_opcion!==0" side>
+            <q-btn class="advance-btn" icon="arrow_upward" @click="moveOpcion(indice_opcion)"/>
           </q-item-section>
           <q-item-section side>
-            <q-btn @click="removeOpcion(indice_opcion)" color="red" icon="cancel"/>
+            <q-btn class="revert-btn" icon="cancel" @click="removeOpcion(indice_opcion)"/>
           </q-item-section>
         </q-item>
       </q-list>
@@ -25,9 +28,9 @@
   </q-item>
 </template>
 <script lang="ts">
-import { Component, PropSync, Vue } from 'vue-property-decorator';
+import {Component, PropSync, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../../MostrarCampo.vue';
-import { CampoChequeo } from '@quiron/classes/dist/components/campos/edicion';
+import {CampoChequeo} from '@quiron/classes/dist/components/campos/edicion';
 
 @Component({
   name: 'chequeo',

@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OTModel = void 0;
 const typeorm_1 = require("typeorm");
 const EquipoModel_1 = require("../EquipoModel/EquipoModel");
-const Traces_1 = require("../Traces");
 const FormularioModel_1 = require("../FormularioModel/FormularioModel");
 const ServicioModel_1 = require("../ServicioModel/ServicioModel");
 const ClienteModel_1 = require("../ClienteModel");
@@ -37,17 +36,13 @@ __decorate([
     __metadata("design:type", ClienteModel_1.ClienteModel)
 ], OTModel.prototype, "cliente", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(type => ClienteModel_1.ClienteModel, institucion => institucion.ots),
+    (0, typeorm_1.ManyToOne)(type => InstitucionModel_1.InstitucionModel, institucion => institucion.ots),
     __metadata("design:type", InstitucionModel_1.InstitucionModel)
 ], OTModel.prototype, "institucion", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(type => FormularioModel_1.FormularioModel, formulario => formulario.ot),
     __metadata("design:type", Array)
 ], OTModel.prototype, "formularios", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(type => Traces_1.OTTraceModel, trace => trace.ot),
-    __metadata("design:type", Traces_1.OTTraceModel)
-], OTModel.prototype, "traces", void 0);
 OTModel = __decorate([
     (0, typeorm_1.Entity)()
 ], OTModel);

@@ -37,7 +37,7 @@
           />
         </mostrar-campo>
         <q-separator/>
-        <q-btn @click="addCondition" class="full-width" label="Añadir"/>
+        <q-btn @click="addCondition" class="full-width advance-btn" label="Añadir"/>
       </q-card-section>
       <q-card-section>
         <q-table

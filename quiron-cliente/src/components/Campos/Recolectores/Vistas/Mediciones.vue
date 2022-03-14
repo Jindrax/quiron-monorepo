@@ -20,17 +20,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(medicion, indiceMedicion) in elementoLocal.mediciones" :key="`Medicion${indiceMedicion+1}`">
+        <tr v-for="(medicion, indiceMedicion) in dataSync[path]" :key="`Medicion${indiceMedicion+1}`">
           <td>{{ `Medicion ${indiceMedicion + 1}` }}</td>
           <td v-for="(medida, indiceMedida) in medicion" :key="`Medida${indiceMedicion}${indiceMedida}`">
-            <q-input v-model.number="elementoLocal.mediciones[indiceMedicion][indiceMedida]" type="number"
+            <q-input v-model.number="dataSync[path][indiceMedicion][indiceMedida]"
                      :rules="asignarReglas(indiceMedida)"
+                     type="number"
                      @input="graficar"/>
           </td>
         </tr>
         <tr>
           <td :colspan="elemento.medidas.length + 1">
-            <q-btn label="Añadir medición" class="full-width" @click="addMedicion"/>
+            <q-btn class="full-width advance-btn" label="Añadir medición" @click="addMedicion"/>
           </td>
         </tr>
         <tr>
@@ -66,39 +67,8 @@ export default class Medicion extends Vue {
   @Prop() path: string;
   @Prop({default: false}) readonly printable;
   @PropSync('data') dataSync;
-  elementoLocal: MedicionLocal = {
-    mediciones: []
-  }
   grafica: any = null;
   ready: boolean = false;
-
-  mounted() {
-    const mediciones = [];
-    for (let i = 0; i < this.elemento.medidasMinimas; i++) {
-      const medicion = []
-      for (let j = 0; j < this.elemento.medidas.length; j++) {
-        medicion.push(0);
-      }
-      mediciones.push(medicion);
-    }
-    this.elementoLocal.mediciones = mediciones;
-  }
-
-  public addMedicion() {
-    const medicion = []
-    for (let j = 0; j < this.elemento.medidas.length; j++) {
-      medicion.push(0);
-    }
-    this.elementoLocal.mediciones.push(<number><unknown>medicion);
-  }
-
-  public promedio(medida: number) {
-    let acumulado = 0;
-    for (let i = 0; i < this.elementoLocal.mediciones.length; i++) {
-      acumulado += this.elementoLocal.mediciones[i][medida];
-    }
-    return acumulado / this.elementoLocal.mediciones.length
-  }
 
   get promedios() {
     return this.elemento.medidas.map((value, index) => this.promedio(index));
@@ -114,6 +84,34 @@ export default class Medicion extends Vue {
     return this.elemento.medidas.map((medida => {
       return medida.rango.inferior;
     }));
+  }
+
+  mounted() {
+    const mediciones = [];
+    for (let i = 0; i < this.elemento.medidasMinimas; i++) {
+      const medicion = []
+      for (let j = 0; j < this.elemento.medidas.length; j++) {
+        medicion.push(0);
+      }
+      mediciones.push(medicion);
+    }
+    this.dataSync[this.path] = mediciones;
+  }
+
+  public addMedicion() {
+    const medicion = []
+    for (let j = 0; j < this.elemento.medidas.length; j++) {
+      medicion.push(0);
+    }
+    this.dataSync[this.path].push(<number><unknown>medicion);
+  }
+
+  public promedio(medida: number) {
+    let acumulado = 0;
+    for (let i = 0; i < this.dataSync[this.path].length; i++) {
+      acumulado += this.dataSync[this.path][i][medida];
+    }
+    return acumulado / this.dataSync[this.path].length
   }
 
   public graficar() {

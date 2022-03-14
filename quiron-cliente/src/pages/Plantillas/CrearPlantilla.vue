@@ -1,51 +1,39 @@
 <template>
-  <q-page>
-    <q-list bordered padding separator>
-      <q-item>
-        <q-item-section>
-          <div class="row">
-            <div class="col">
-              <q-btn
-                :label="'Buscar plantilla a editar'"
-                @click="buscarPlantilla"
-                class="full-width q-px-xs"
-                outline
-              />
-            </div>
-            <div class="col">
-              <q-btn
-                :label="'Buscar plantilla a copiar'"
-                @click="clonarPlantilla"
-                class="full-width q-px-xs"
-                outline
-              />
-            </div>
-          </div>
-        </q-item-section>
-      </q-item>
-      <q-item>
-        <q-item-section>
-          <mostrar-campo :etiqueta="'Identificador'">
-            <q-input
-              debounce="1000"
-              placeholder="Identificador"
-              v-model="plantilla.identificador"
-            ></q-input>
-          </mostrar-campo>
-          <mostrar-campo :etiqueta="'Serial'">
-            {{ plantilla.serial }}
-          </mostrar-campo>
-          <mostrar-campo :etiqueta="'Version'">
-            <q-input
-              debounce="1000"
-              placeholder="Version"
-              type="number"
-              v-model="plantilla.version"
-            ></q-input>
-          </mostrar-campo>
-        </q-item-section>
-      </q-item>
-      <q-card class="q-ma-sm" style="{border-color: #1D1D1D}">
+  <q-page class="column q-gutter-y-sm">
+    <div class="col-auto row q-gutter-sm">
+      <q-btn
+        :label="'Buscar plantilla a editar'"
+        class="col advance-btn"
+        @click="buscarPlantilla"
+      />
+      <q-btn
+        :label="'Buscar plantilla a copiar'"
+        class="col warn-btn"
+        @click="clonarPlantilla"
+      />
+    </div>
+    <div class="col-auto column">
+      <mostrar-campo :etiqueta="'Identificador'">
+        <q-input
+          v-model="plantilla.identificador"
+          debounce="1000"
+          placeholder="Identificador"
+        ></q-input>
+      </mostrar-campo>
+      <mostrar-campo :etiqueta="'Serial'">
+        {{ plantilla.serial }}
+      </mostrar-campo>
+      <mostrar-campo :etiqueta="'Version'">
+        <q-input
+          v-model="plantilla.version"
+          debounce="1000"
+          placeholder="Version"
+          type="number"
+        ></q-input>
+      </mostrar-campo>
+    </div>
+    <div class="col-auto">
+      <q-card>
         <q-card-section>
           <p>Plantillas relacionadas</p>
           <q-list bordered separator>
@@ -58,12 +46,13 @@
         <q-card-actions>
           <q-btn
             :label="'Añadir plantilla relacionada'"
+            class="full-width advance-btn"
             @click="sumarPlantillaRelacionada"
-            class="full-width"
-            outline
           />
         </q-card-actions>
       </q-card>
+    </div>
+    <q-list bordered class="col-auto" padding separator>
       <q-expansion-item
         expand-separator
         header-class="collapsible"
@@ -71,9 +60,9 @@
         switch-toggle-side
       >
         <seccion
+          :key="plantilla.serial + 'raiz'"
           :elemento="plantilla.modelo"
           :indice="0"
-          :key="plantilla.serial + 'raiz'"
           :path="''"
         />
       </q-expansion-item>
@@ -85,10 +74,10 @@
       >
         <q-expansion-item
           v-for="plantillaJ in contexto"
-          expand-separator
-          :label="plantillaJ.identificador"
-          switch-toggle-side
           :key="obtenerKey(plantillaJ)"
+          :label="plantillaJ.identificador"
+          expand-separator
+          switch-toggle-side
         >
           <q-card bordered>
             <q-card-section>
@@ -99,39 +88,24 @@
           </q-card>
         </q-expansion-item>
       </q-expansion-item>
-      <!--q-expansion-item
-        expand-separator
-        header-class="collapsible"
-        label="Diseñador"
-        switch-toggle-side
-      >
-        <disposicion
-          :key="obtenerKey(plantilla)"
-          :plantilla="plantilla"
-        />
-      </q-expansion-item-->
-      <q-item>
-        <q-item-section>
-          <div class="row">
-            <q-btn :class="unsavedChanges? ['col', 'full-width', 'unsaved_changes'] : ['col', 'full-width']"
-                   @click="cache" label="Cache"/>
-            <q-btn @click="discard" class="col full-width" label="Descartar"/>
-            <q-btn
-              @click="crearPlantilla"
-              class="col full-width"
-              label="Crear Plantilla"
-              v-if="accion === 'crear'"
-            />
-            <q-btn
-              @click="actualizarPlantilla"
-              class="col full-width"
-              label="Actualizar Plantilla"
-              v-if="accion === 'actualizar'"
-            />
-          </div>
-        </q-item-section>
-      </q-item>
     </q-list>
+    <div class="col-auto row q-gutter-sm">
+      <q-btn :class="unsavedChanges? ['col', 'warn-btn'] : ['col']"
+             label="Cache" @click="cache"/>
+      <q-btn class="col revert-btn" label="Descartar" @click="discard"/>
+      <q-btn
+        v-if="accion === 'crear'"
+        class="col advance-btn"
+        label="Crear Plantilla"
+        @click="crearPlantilla"
+      />
+      <q-btn
+        v-if="accion === 'actualizar'"
+        class="col advance-btn"
+        label="Actualizar Plantilla"
+        @click="actualizarPlantilla"
+      />
+    </div>
     <q-inner-loading :showing="cargando">
       <q-spinner-facebook color="primary" size="50px"/>
       Cargando cache/plantilla
@@ -169,11 +143,6 @@ export default class CrearPlantilla extends Vue {
   public controladorPlantilla = new ControladorCache<Plantilla>('plantilla', Plantilla);
   private editorStore = getModule(ModuloEditorPlantilla);
 
-
-  public async crearCache() {
-    await this.controladorPlantilla.saveToServer(this.plantilla);
-  }
-
   public get accion(): string {
     if (this.plantilla.serial != "") {
       return 'actualizar';
@@ -183,6 +152,10 @@ export default class CrearPlantilla extends Vue {
 
   public get contexto() {
     return this.editorStore.contexto;
+  }
+
+  public async crearCache() {
+    await this.controladorPlantilla.saveToServer(this.plantilla);
   }
 
   @Watch('plantilla', {deep: true})
@@ -475,6 +448,10 @@ export default class CrearPlantilla extends Vue {
   public obtenerKey(plantilla: Plantilla) {
     return 'preview' + Date.now() + plantilla.serial;
   }
+
+  public focusIn(e) {
+    console.log("Focus", e);
+  }
 }
 </script>
 
@@ -485,10 +462,5 @@ export default class CrearPlantilla extends Vue {
 
 .collapsible {
   background-color: darkgray;
-}
-
-.unsaved_changes {
-  background: #C10015;
-  color: white;
 }
 </style>

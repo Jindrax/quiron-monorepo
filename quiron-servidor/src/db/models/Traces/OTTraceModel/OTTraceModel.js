@@ -11,17 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OTTraceModel = void 0;
 const typeorm_1 = require("typeorm");
-const OTModel_1 = require("../../OTModel");
 let OTTraceModel = class OTTraceModel extends typeorm_1.BaseEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", String)
 ], OTTraceModel.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(type => OTModel_1.OTModel, ot => ot.traces),
-    __metadata("design:type", OTModel_1.OTModel)
-], OTTraceModel.prototype, "ot", void 0);
 OTTraceModel = __decorate([
     (0, typeorm_1.Entity)()
 ], OTTraceModel);

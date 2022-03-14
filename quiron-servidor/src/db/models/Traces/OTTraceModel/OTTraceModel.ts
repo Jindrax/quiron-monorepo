@@ -5,6 +5,6 @@ import {OTModel} from "../../OTModel";
 export class OTTraceModel extends BaseEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
-    @ManyToOne(type => OTModel, ot => ot.traces)
-    ot: OTModel;
+    // @ManyToOne(type => OTModel, ot => ot.traces)
+    // ot: OTModel;
 }

@@ -1,5 +1,6 @@
 import {BaseEntity, getRepository, SelectQueryBuilder} from "typeorm";
 import {CommonEntityInterface} from "./CommonEntityInterface";
+import {CommonEntity} from "./CommonEntity";
 
 export class CRUDEntity<T, U extends BaseEntity & CommonEntityInterface<T>> {
     modelClass: new () => U;
@@ -10,8 +11,9 @@ export class CRUDEntity<T, U extends BaseEntity & CommonEntityInterface<T>> {
 
     async createEntity(entity: T) {
         const dbEntity = new this.modelClass();
+        // @ts-ignore
+        delete entity.id;
         dbEntity.fromCommonEntity(entity);
-        console.log(dbEntity);
         await dbEntity.save();
     }
 

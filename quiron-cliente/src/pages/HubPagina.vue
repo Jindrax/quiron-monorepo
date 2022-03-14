@@ -1,9 +1,10 @@
 <template>
   <q-page>
-    <q-tabs class="bg-grey">
-      <q-route-tab v-for="action in actions" :label="action.label" :to="action.route" replace :key="action.route" class="bg-white"/>
+    <q-tabs>
+      <q-route-tab v-for="action in actions" :label="action.label" :to="action.route" replace :key="action.route" active-class="advance-btn"/>
     </q-tabs>
     <q-layout>
+      <q-separator/>
       <q-page-container>
         <router-view/>
       </q-page-container>

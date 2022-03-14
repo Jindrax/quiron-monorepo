@@ -1,16 +1,7 @@
 <template>
   <q-page>
     <q-list bordered padding separator>
-      <q-item>
-        <q-item-section>
-          <q-btn
-            :label="'Buscar plantilla a editar'"
-            @click="buscarPlantilla"
-            class="full-width q-px-xs"
-            outline
-          />
-        </q-item-section>
-      </q-item>
+      <buscador-unitario v-model="formulario.plantilla" :buscador="buscadorPlantilla"/>
       <q-expansion-item
         expand-separator
         header-class="collapsible"
@@ -18,23 +9,23 @@
         switch-toggle-side
       >
         <q-expansion-item
-          v-for="plantillaJ in contexto"
+          v-for="plantillaRelacionada in formulario.plantilla.relacionadas"
+          :key="obtenerKey(plantillaRelacionada)"
+          :label="plantillaRelacionada.identificador"
           expand-separator
-          :label="plantillaJ.identificador"
           switch-toggle-side
-          :key="obtenerKey(plantillaJ)"
         >
           <q-card bordered>
             <q-card-section>
-              <q-card v-if="plantillaJ.modelo !== {}">
+              <q-card v-if="plantillaRelacionada.modelo !== {}">
                 <q-card-section class="q-px-none">
                   <campo
+                    v-for="elemento in plantillaRelacionada.modelo.elementos"
+                    :key="'pc-' + elemento.etiqueta"
                     :data="compendio"
                     :elemento="elemento"
-                    :key="'pc-' + elemento.etiqueta"
-                    :path="plantillaJ.identificador"
+                    :path="plantillaRelacionada.identificador"
                     :printable="false"
-                    v-for="(elemento, indice) in plantillaJ.modelo.elementos"
                   />
                 </q-card-section>
               </q-card>
@@ -42,24 +33,24 @@
           </q-card>
         </q-expansion-item>
       </q-expansion-item>
-      <q-card v-if="plantilla.modelo !== {}">
+      <q-card v-if="formulario.plantilla.modelo !== {}">
         <q-card-section class="q-px-none">
           <campo
+            v-for="elemento in formulario.plantilla.modelo.elementos"
+            :key="'pc-' + elemento.etiqueta"
             :data="compendio"
             :elemento="elemento"
-            :key="'pc-' + elemento.etiqueta"
-            :path="plantilla.identificador"
+            :path="formulario.plantilla.identificador"
             :printable="false"
-            v-for="(elemento, indice) in plantilla.modelo.elementos"
           />
         </q-card-section>
       </q-card>
       <q-item>
         <q-item-section>
           <q-btn
-            @click="test"
-            class="col full-width"
+            class="col full-width advance-btn"
             label="Guardar"
+            @click="test"
           />
         </q-item-section>
       </q-item>
@@ -70,67 +61,47 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import MostrarCampo from 'components/Campos/MostrarCampo.vue';
-import {OpcionesDialogo} from 'components/Utils/Interfaces';
-import BuscadorGenerico from '../../components/Utils/BuscadorGenerico.vue';
 import Plantilla from '@quiron/classes/dist/entities/Plantilla';
 import {getModule} from "vuex-module-decorators";
 import ModuloLlenadoPlantilla from "../../store/modules/ModuloLlenadoPlantilla";
 import Campo from "components/Campos/Recolectores/Campo.vue";
+import {Formulario, Patron} from "@quiron/classes/dist/entities";
+import BuscadorUnitario from "components/Utils/BuscadorUnitario.vue";
+import {BuscadorPlantilla} from "api/entidades/Buscador";
+import Controller from "api/Controller";
 
 @Component({
   components: {
+    BuscadorUnitario,
     Campo,
     MostrarCampo
   }
 })
 export default class LlenarPlantilla extends Vue {
-  public plantilla: Plantilla = new Plantilla({});
-  public contexto: Plantilla[] = [];
+  formulario = new Formulario({});
+  buscadorPlantilla = new BuscadorPlantilla(["identificador", "serial"]);
   private store = getModule(ModuloLlenadoPlantilla);
 
   public get compendio() {
     return this.store.compendio;
   }
 
-  public test() {
+  public async test() {
+    this.formulario.datos = JSON.parse(JSON.stringify(this.compendio));
+    console.log(this.formulario.datos);
     console.log(this.compendio);
+    try {
+      await Controller.post<Formulario>("formularios", {
+        formulario: this.formulario
+      }, null, Patron);
+      this.$q.notify("Patron creado correctamente");
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   reiniciarDatos() {
-    this.plantilla = new Plantilla({});
-  }
-
-  buscarPlantilla() {
-    let opciones_buscador: OpcionesDialogo = {
-      campos_busqueda: [
-        {etiqueta: 'Identificador', valor: 'identificador'},
-        {etiqueta: 'Serial', valor: 'serial'}
-      ],
-      campos_presentacion: [
-        {etiqueta: 'Identificador', valor: 'identificador'},
-        {etiqueta: 'Serial', valor: 'serial'},
-        {etiqueta: 'Version', valor: 'version'}
-      ],
-      opciones_busqueda: {}
-    };
-    this.$q
-      .dialog({
-        component: BuscadorGenerico,
-        parent: this,
-        endpoint: 'plantilla',
-        clase: Plantilla,
-        opciones: opciones_buscador,
-        persistent: true
-      })
-      .onOk((resultado: Plantilla) => {
-        console.log(resultado);
-        this.store.nuevoCompendio();
-        this.contexto = resultado.relacionadas;
-        this.plantilla = resultado;
-      })
-      .onCancel(cancel => {
-        console.log(cancel);
-      });
+    this.formulario = new Formulario({});
   }
 
   public async mounted() {

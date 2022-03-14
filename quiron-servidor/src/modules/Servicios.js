@@ -9,35 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const typeorm_1 = require("typeorm");
 const ServicioModel_1 = require("../db/models/ServicioModel/ServicioModel");
+const CRUDEntity_1 = require("../db/models/CRUDEntity");
 class Servicios {
     static crear({ servicio }) {
         return __awaiter(this, void 0, void 0, function* () {
-            delete servicio.id;
-            const servicioDB = new ServicioModel_1.ServicioModel();
-            servicioDB.fromCommonEntity(servicio);
-            yield servicioDB.save();
+            yield Servicios.repo.createEntity(servicio);
         });
     }
-    static buscar({ filtro }) {
+    static buscar({ filtro, relaciones }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                filtro = JSON.parse(filtro);
-                const repo = (0, typeorm_1.getRepository)(ServicioModel_1.ServicioModel);
-                if (Object.keys(filtro).length > 0) {
-                    const key = Object.keys(filtro)[0];
-                    let query = repo.createQueryBuilder("servicios");
-                    switch (key) {
-                        case "identificador":
-                            query = query.where("servicios.identificacion ILIKE :identificador", { identificacion: `%${filtro[key]}%` });
-                            break;
-                    }
-                    return yield query.getMany();
-                }
-                else {
-                    return yield repo.find();
-                }
+                return yield Servicios.repo.retrieveEntity(JSON.parse(filtro), relaciones);
             }
             catch (e) {
                 throw e;
@@ -46,3 +29,4 @@ class Servicios {
     }
 }
 exports.default = Servicios;
+Servicios.repo = new CRUDEntity_1.CRUDEntity(ServicioModel_1.ServicioModel);

@@ -7,7 +7,7 @@
       <q-select :options="selectorOptions" v-model="selector"/>
     </q-item-section>
     <q-item-section side>
-      <q-btn @click="move" label="Mover"/>
+      <q-btn @click="move" label="Mover" class="warn-btn"/>
     </q-item-section>
   </q-item>
 </template>

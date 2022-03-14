@@ -18,10 +18,10 @@ export class OTModel extends CommonEntity<OrdenTrabajo> {
     equipo: EquipoModel;
     @ManyToOne(type => ClienteModel, cliente => cliente.ots)
     cliente: ClienteModel;
-    @ManyToOne(type => ClienteModel, institucion => institucion.ots)
+    @ManyToOne(type => InstitucionModel, institucion => institucion.ots)
     institucion: InstitucionModel;
     @OneToMany(type => FormularioModel, formulario => formulario.ot)
     formularios: FormularioModel[];
-    @OneToMany(type => OTTraceModel, trace => trace.ot)
-    traces: OTTraceModel;
+    // @OneToMany(type => OTTraceModel, trace => trace.ot)
+    // traces: OTTraceModel[];
 }

@@ -23,6 +23,7 @@ var CampoChequeo = /** @class */ (function (_super) {
     function CampoChequeo(etiqueta, dependiente, opciones) {
         var _this = _super.call(this, index_1.TiposElementos.chequeo, etiqueta, dependiente) || this;
         _this.opciones = opciones ? opciones : [];
+        _this.apertura = false;
         return _this;
     }
     return CampoChequeo;

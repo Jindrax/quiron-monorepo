@@ -8,15 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FormularioModel = void 0;
 const typeorm_1 = require("typeorm");
 const PlantillaModel_1 = require("../PlantillaModel");
 const FormularioTraceModel_1 = require("../Traces/FormularioTraceModel");
 const OTModel_1 = require("../OTModel");
-let FormularioModel = class FormularioModel extends typeorm_1.BaseEntity {
+const CommonEntity_1 = require("../CommonEntity");
+const IndexValue_1 = __importDefault(require("../../decorators/IndexValue"));
+let FormularioModel = class FormularioModel extends CommonEntity_1.CommonEntity {
 };
 __decorate([
+    (0, IndexValue_1.default)(),
     (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", String)
 ], FormularioModel.prototype, "id", void 0);
@@ -24,6 +30,14 @@ __decorate([
     (0, typeorm_1.ManyToOne)(type => PlantillaModel_1.PlantillaModel),
     __metadata("design:type", PlantillaModel_1.PlantillaModel)
 ], FormularioModel.prototype, "plantilla", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], FormularioModel.prototype, "serial", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], FormularioModel.prototype, "identificadorPlantilla", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "jsonb" }),
     __metadata("design:type", Object)

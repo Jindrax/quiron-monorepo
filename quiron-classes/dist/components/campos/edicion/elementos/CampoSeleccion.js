@@ -24,6 +24,7 @@ var CampoSeleccion = /** @class */ (function (_super) {
         var _this = _super.call(this, index_1.TiposElementos.seleccion, etiqueta, dependiente) || this;
         _this.opciones = opciones ? opciones : [];
         _this.radio = false;
+        _this.apertura = false;
         return _this;
     }
     return CampoSeleccion;

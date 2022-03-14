@@ -9,13 +9,13 @@
             {{ diccionario[elementoSync.elemento] + ' : ' + elementoSync.etiqueta }}
           </q-item-section>
           <q-item-section side>
-            <div class="row">
-              <q-btn v-if="indice > 0" icon="arrow_upward" class="text-black bg-white q-mx-xs" size="sm" round
+            <div class="row q-gutter-sm">
+              <q-btn v-if="indice > 0" icon="arrow_upward" class="col-auto advance-btn" size="sm" round
                      @click.stop="moveUp"/>
-              <q-btn v-if="indice < maxindice - 1" icon="arrow_downward" class="text-black bg-white q-mx-xs" size="sm"
+              <q-btn v-if="indice < maxindice - 1" icon="arrow_downward" class="col-auto advance-btn" size="sm"
                      round @click.stop="moveDown"/>
-              <q-btn icon="content_copy" class="text-black bg-white q-mx-xs" size="sm" round @click.stop="clone"/>
-              <q-btn icon="delete_forever" color="red" size="sm" round @click.stop="deleteCampo(indice)"/>
+              <q-btn icon="content_copy" class="col-auto warn-btn" size="sm" round @click.stop="clone"/>
+              <q-btn icon="delete_forever" class="col-auto revert-btn" size="sm" round @click.stop="deleteCampo(indice)"/>
             </div>
           </q-item-section>
         </template>

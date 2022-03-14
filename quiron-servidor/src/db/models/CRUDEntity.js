@@ -18,8 +18,9 @@ class CRUDEntity {
     createEntity(entity) {
         return __awaiter(this, void 0, void 0, function* () {
             const dbEntity = new this.modelClass();
+            // @ts-ignore
+            delete entity.id;
             dbEntity.fromCommonEntity(entity);
-            console.log(dbEntity);
             yield dbEntity.save();
         });
     }

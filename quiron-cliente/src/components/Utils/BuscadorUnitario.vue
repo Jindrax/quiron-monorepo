@@ -6,7 +6,7 @@
       </mostrar-campo>
       <q-item v-if="habilitado">
         <q-item-section>
-          <q-btn label="Añadir" @click="buscar" class="full-width bg-white"/>
+          <q-btn label="Añadir" @click="buscar" class="full-width advance-btn"/>
         </q-item-section>
       </q-item>
     </q-list>

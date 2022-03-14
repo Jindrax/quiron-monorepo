@@ -3,6 +3,7 @@ import { Dependiente } from "../Dependiente";
 export declare class CampoSeleccion extends Campo {
     opciones: string[];
     radio: boolean;
+    apertura: boolean;
     constructor(etiqueta?: string, dependiente?: Dependiente, opciones?: string[]);
 }
 //# sourceMappingURL=CampoSeleccion.d.ts.map

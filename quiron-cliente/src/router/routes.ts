@@ -10,6 +10,10 @@ const routes: RouteConfig[] = [
       ...hubs.getHubsForVueRouter()
     ]
   },
+  {
+    path: '/imprimir',
+    component: () => import('layouts/PrintLayout.vue')
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

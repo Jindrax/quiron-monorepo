@@ -9,9 +9,9 @@
       inline
       type="checkbox"
     />
-    <q-input v-model="nuevaOpcion" label="Añadir opcion" @keypress.enter="addNuevaOpcion">
+    <q-input v-if="elemento.apertura" v-model="nuevaOpcion" label="Añadir opcion" @keypress.enter="addNuevaOpcion">
       <template v-slot:append>
-        <q-btn icon="add" @click="addNuevaOpcion"/>
+        <q-btn icon="add" @click="addNuevaOpcion" class="advance-btn"/>
       </template>
     </q-input>
   </mostrar-campo>

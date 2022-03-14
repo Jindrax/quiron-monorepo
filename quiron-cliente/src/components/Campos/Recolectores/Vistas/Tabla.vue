@@ -1,128 +1,81 @@
 <template>
-  <div>
-    <div
+  <q-card bordered>
+    <q-card-section
       class="row text-h5 justify-center bg-grey-1 w3-border"
       style="width: 100%"
     >
       {{ elemento.presentacion }}
-    </div>
-    <div class="row">
-      <table class="w3-table-all" style="width: 100%">
+    </q-card-section>
+    <q-card-section>
+      <q-markup-table class="full-width">
+        <thead>
         <tr>
           <th
-            :key="indice_columna"
             v-for="(columna, indice_columna) in elemento.columnas"
+            :key="indice_columna"
           >
             {{ columna.etiqueta }}
           </th>
         </tr>
-        <tr :key="indice_fila" v-for="(fila, indice_fila) in dataLocal.filas">
+        </thead>
+        <tbody>
+        <tr v-for="(fila, indiceFila) in dataSync[path]" :key="indiceFila">
           <td
-            :key="indice_columna"
-            v-for="(columna, indice_columna) in elemento.columnas"
+            v-for="(columna, indiceColumna) in elemento.columnas"
+            :key="indiceColumna"
           >
             <div v-if="columna.elemento === 'entrada-texto'">
               <q-input
+                v-model="dataSync[path][indiceFila][columna.etiqueta]"
                 :placeholder="columna.etiqueta"
                 type="text"
-                v-model="dataLocal.filas[indice_fila][indice_columna]"
               />
             </div>
             <div v-if="columna.elemento === 'entrada-numerica'">
               <q-input
+                v-model="dataSync[path][indiceFila][columna.etiqueta]"
                 :placeholder="columna.etiqueta"
                 type="number"
-                v-model="dataLocal.filas[indice_fila][indice_columna]"
               />
             </div>
             <div v-if="columna.elemento === 'chequeo'">
               <q-checkbox
+                v-model="dataSync[path][indiceFila][columna.etiqueta]"
                 :placeholder="columna.etiqueta"
-                v-model="dataLocal.filas[indice_fila][indice_columna]"
               />
             </div>
             <div v-if="columna.elemento === 'seleccion'">
               <q-select
+                v-model="dataSync[path][indiceFila][columna.etiqueta]"
                 :options="obtenerOpciones(columna)"
                 :placeholder="columna.etiqueta"
                 emit-value
-                v-model="dataLocal.filas[indice_fila][indice_columna]"
               />
               <q-input
-                v-if="dataLocal.filas[indice_fila][indice_columna] === 'Otro'"
-                v-model="extended_data[indice_fila]"
+                v-if="dataSync[path][indiceFila][columna.etiqueta] === 'Otro'"
+                v-model="extended_data[indiceFila]"
               />
             </div>
           </td>
         </tr>
-      </table>
+        </tbody>
+      </q-markup-table>
       <q-btn
         v-if="nuevaFilaDisponible"
-        @click="nuevaFila"
+        class="advance-btn full-width"
         label="Añadir fila"
         size="small"
-        style="width: 100%"
+        @click="nuevaFila"
       />
-    </div>
-    <br>
-    <div v-if="false">
-      <div
-        class="row text-h5 justify-center bg-grey-1 w3-border"
-        style="width: 100%"
-      >
-        Presentacion de la tabla
-      </div>
-      <div
-        class="row text-h5 justify-center bg-grey-1 w3-border"
-        style="width: 100%"
-      >
-        {{ elemento.presentacion }}
-      </div>
-      <div class="row">
-        <table class="w3-table-all" style="width: 100%">
-          <tr>
-            <th
-              :key="indice_columna"
-              v-for="(columna, indice_columna) in elemento.columnas"
-            >
-              {{ columna.etiqueta }}
-            </th>
-          </tr>
-          <tr :key="indice_fila" v-for="(fila, indice_fila) in data.filas">
-            <td
-              :key="indice_columna"
-              v-for="(columna, indice_columna) in elemento.columnas"
-            >
-              <div v-if="columna.elemento === 'entrada_texto'">
-                <p>
-                  {{ data.filas[indice_fila][indice_columna] }}
-                </p>
-              </div>
-              <div v-if="columna.elemento === 'entrada_numerica'">
-                <p>
-                  {{ data.filas[indice_fila][indice_columna] }}
-                </p>
-              </div>
-              <div v-if="columna.elemento === 'seleccion'">
-                <p v-if="data.filas[indice_fila][indice_columna] === 'Otro'">
-                  {{ extended_data[indice_fila] }}
-                </p>
-                <p v-else>
-                  {{ data.filas[indice_fila][indice_columna] }}
-                </p>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script lang="ts">
-import {Component, Prop, PropSync, Ref, Vue, Watch} from 'vue-property-decorator';
+import {Component, Prop, PropSync, Ref, Vue} from 'vue-property-decorator';
 import Campo from '../Campo.vue';
 import {CampoTabla} from '@quiron/classes/dist/components/campos/edicion';
+import {TiposElementos} from "@quiron/classes/dist/components/campos";
 
 @Component({
   components: {
@@ -134,29 +87,11 @@ export default class Tabla extends Vue {
   @Prop() path: string;
   @Prop({default: false}) readonly printable;
   @PropSync('data') dataSync;
-  public dataLocal: any = {};
   public extended_data: any = [];
   @Ref('apertura') aperturaRef: Campo;
 
-  @Watch('dataLocal')
-  onDataChanged() {
-    this.dataSync[this.path] = this.obtenerData();
-  }
-
-  obtenerData() {
-    return JSON.parse(
-      JSON.stringify({
-        elemento: this.elemento.elemento,
-        etiqueta: this.elemento.etiqueta,
-        columnas: this.dataLocal.cabecera,
-        filas: this.dataLocal.filas,
-        presentacion: this.elemento.presentacion
-      })
-    );
-  }
-
   get nuevaFilaDisponible(): boolean {
-    return this.elemento.maxFilas > 0 ? this.dataLocal.filas.length < this.elemento.maxFilas : true;
+    return this.elemento.maxFilas > 0 ? this.dataSync[this.path].length < this.elemento.maxFilas : true;
   }
 
   obtenerOpciones(elemento) {
@@ -166,26 +101,50 @@ export default class Tabla extends Vue {
   }
 
   nuevaFila() {
-    this.dataLocal.filas.push(new Array(this.dataLocal.cabecera.length));
+    let fila: any = {};
+    this.elemento.columnas.forEach(columna => {
+      let valorDefecto = undefined;
+      switch (columna.elemento) {
+        case TiposElementos["entrada-texto"]:
+          valorDefecto = "";
+          break;
+        case TiposElementos["entrada-numerica"]:
+          valorDefecto = 0;
+          break;
+        case TiposElementos.seleccion:
+          valorDefecto = "";
+          break;
+        case TiposElementos.chequeo:
+          valorDefecto = false;
+          break;
+        default:
+          valorDefecto = {};
+      }
+      fila[columna.etiqueta] = valorDefecto;
+    });
+    this.dataSync[this.path].push(fila);
     this.extended_data.push('');
   }
 
   mounted() {
-    for (let i = 1; i < this.elemento.minFilas; i++) {
-      if (this.nuevaFilaDisponible) this.nuevaFila();
+    if (this.elemento.minFilas && this.elemento.minFilas !== 0) {
+      while (this.dataSync[this.path].length < this.elemento.minFilas) {
+        console.log("Filas: ", this.dataSync[this.path].length);
+        this.nuevaFila();
+      }
+    } else {
+      this.nuevaFila();
     }
   }
 
   created() {
-    let cabecera = this.elemento.columnas.map(columna => {
-      return columna.etiqueta;
-    })
-    this.dataLocal = {
-      cabecera: cabecera,
-      filas: []
-    };
-    this.dataLocal.filas.push(new Array(cabecera.length));
     this.extended_data.push('');
   }
 }
 </script>
+
+<style lang="scss">
+.campo-table {
+  border: 1px black;
+}
+</style>

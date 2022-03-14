@@ -10,7 +10,7 @@
                  :label="opcion"
                  :val="opcion"/>
         <q-input v-if="apertura" v-model="dataSync[path]"/>
-        <q-toggle v-model="apertura" label="Otro"/>
+        <q-toggle v-if="elemento.apertura" v-model="apertura" label="Otro"/>
       </div>
       <div v-else>
         <q-select
@@ -21,7 +21,7 @@
           emit-value
         />
         <q-input v-if="apertura" v-model="dataSync[path]"/>
-        <q-toggle v-model="apertura" label="Otro"/>
+        <q-toggle v-if="elemento.apertura" v-model="apertura" label="Otro"/>
       </div>
     </mostrar-campo>
     <template v-else>
@@ -30,7 +30,7 @@
                  :label="opcion"
                  :val="opcion"/>
         <q-input v-if="apertura" v-model="dataSync[path]"/>
-        <q-toggle v-model="apertura" label="Otro"/>
+        <q-toggle v-if="elemento.apertura" v-model="apertura" label="Otro"/>
       </div>
       <div v-else>
         <q-select
@@ -41,7 +41,7 @@
           emit-value
         />
         <q-input v-if="apertura" v-model="dataSync[path]"/>
-        <q-toggle v-model="apertura" label="Otro"/>
+        <q-toggle v-if="elemento.apertura" v-model="apertura" label="Otro"/>
       </div>
     </template>
   </div>

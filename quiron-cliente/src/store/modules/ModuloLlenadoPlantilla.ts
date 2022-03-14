@@ -2,6 +2,7 @@ import Vue from 'vue';
 import {Module, Mutation, VuexModule} from 'vuex-module-decorators';
 import {TiposElementos} from '@quiron/classes/dist/components/campos';
 import store from '../index';
+import {Formulario} from "@quiron/classes/dist/entities";
 
 @Module({
   name: "llenado-plantilla",
@@ -11,6 +12,7 @@ import store from '../index';
 })
 export default class ModuloLlenadoPlantilla extends VuexModule {
   public compendio: Record<string, any> = {};
+  public impresion: Formulario = new Formulario({});
 
   @Mutation
   public nuevoCompendio() {
@@ -29,6 +31,7 @@ export default class ModuloLlenadoPlantilla extends VuexModule {
           Vue.set(this.compendio, path, '');
           break;
         case TiposElementos.chequeo:
+        case TiposElementos.tabla:
           Vue.set(this.compendio, path, []);
           break;
         default:
@@ -41,6 +44,11 @@ export default class ModuloLlenadoPlantilla extends VuexModule {
   @Mutation
   public removerElemento(path: string) {
     Vue.delete(this.compendio, path);
+  }
+
+  @Mutation
+  public asignarImpresion(form: Formulario) {
+    this.impresion = form;
   }
 
 }

@@ -12,7 +12,7 @@
           <mostrar-campo etiqueta="Etiqueta Validador">
             <q-input v-model="etiquetaValidador" placeholder="Etiqueta"/>
           </mostrar-campo>
-          <q-btn label="Añadir" class="full-width" @click="nuevoValidador"/>
+          <q-btn label="Añadir" class="full-width advance-btn" @click="nuevoValidador"/>
         </q-card-section>
         <q-card-section>
           <q-expansion-item v-for="validador in elementoSync.validadores" :key="elementoSync.etiqueta + '-ch-val-' + validador.etiqueta"
@@ -37,7 +37,7 @@
                 </mostrar-campo>
               </q-card-section>
               <q-card-section>
-                <q-btn class="full-width" icon="save" @click="guardarCondicional(validador)"/>
+                <q-btn class="full-width advance-btn" icon="save" @click="guardarCondicional(validador)"/>
               </q-card-section>
             </q-card>
           </q-expansion-item>
@@ -63,7 +63,7 @@
               <q-item-section>
                 <div class="row">
                   <q-input class="col" v-model="nuevoItem" placeholder="Nuevo item"/>
-                  <q-btn class="col-2" icon="add" @click="addItem"/>
+                  <q-btn class="col-2 advance-btn" icon="add" @click="addItem"/>
                 </div>
               </q-item-section>
             </q-item>

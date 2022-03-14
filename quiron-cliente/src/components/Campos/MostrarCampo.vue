@@ -1,5 +1,5 @@
 <template>
-  <q-item class="bg-grey-2 q-my-xs">
+  <q-item class="bg-grey-2 marco">
     <q-item-section>
       <div>
         <div
@@ -69,5 +69,8 @@ Vue.component('mostrar-campo', MostrarCampo);
 <style scoped>
 .grande {
   word-break: break-all;
+}
+.marco{
+  border: 1px solid black;
 }
 </style>

@@ -18,7 +18,7 @@
           </q-item>
           <q-item>
             <q-item-section>
-              <q-btn @click="buscar" class="full-width" label="Buscar"/>
+              <q-btn @click="buscar" class="full-width advance-btn" label="Buscar"/>
             </q-item-section>
           </q-item>
         </q-list>
@@ -84,9 +84,9 @@
         </q-list>
       </q-card-section>
       <q-card-actions align="right">
-        <q-btn @click="onOKClick" color="primary" label="OK"/>
-        <q-btn @click="onCancelClick" color="primary" label="Cancelar"/>
-        <q-btn @click="onCrearClick" color="primary" label="Crear Nuevo" v-if="opciones.creacion"/>
+        <q-btn @click="onCancelClick" class="revert-btn" label="Cancelar"/>
+        <q-btn @click="onOKClick" class="advance-btn" label="OK"/>
+        <q-btn @click="onCrearClick" class="advance-btn" label="Crear Nuevo" v-if="opciones.creacion"/>
       </q-card-actions>
     </q-card>
   </q-dialog>

@@ -1,36 +1,30 @@
 <template>
-  <mostrar-campo
-    :etiqueta="'Selector de elementos'"
-  >
-    <div class="row">
+  <div class="column">
+    <mostrar-campo class="col-auto" etiqueta="Elemento">
       <q-select
+        v-model="seleccion"
         :options="opcionesSelector"
-        @keypress.enter.prevent="nuevoElemento"
         class="full-width"
         emit-value
         hint="Elegir elemento"
         map-options
         placeholder="Seleccione elemento"
-        v-model="seleccion"
+        @keypress.enter.prevent="nuevoElemento"
       />
-    </div>
-    <mostrar-campo :etiqueta="'Etiqueta'">
-      <q-input placeholder="Etiqueta" type="text" v-model="etiqueta"/>
     </mostrar-campo>
-    <br/>
-    <div class="row">
-      <q-btn @click="nuevoElemento" class="col-12 bg-white" label="Añadir"/>
-    </div>
-  </mostrar-campo>
+    <mostrar-campo :etiqueta="'Etiqueta'" class="col-auto">
+      <q-input v-model="etiqueta" placeholder="Etiqueta" type="text"/>
+    </mostrar-campo>
+    <q-btn class="col-auto advance-btn" label="Añadir" @click="nuevoElemento"/>
+  </div>
 </template>
 
 <script lang="ts">
 import Component from 'vue-class-component';
 import {Prop, Vue} from 'vue-property-decorator';
 import MostrarCampo from '../MostrarCampo.vue';
-import {Campo} from "@quiron/classes/dist/components/campos/edicion"
+import {Campo, FabricaCampos} from "@quiron/classes/dist/components/campos/edicion"
 import {DiccionarioTiposElementos, TiposElementos} from '@quiron/classes/dist/components/campos';
-import {FabricaCampos} from "@quiron/classes/dist/components/campos/edicion"
 
 @Component({
   name: 'selector',
@@ -40,19 +34,19 @@ import {FabricaCampos} from "@quiron/classes/dist/components/campos/edicion"
 })
 export default class Selector extends Vue {
   @Prop() elemento: TiposElementos;
-  @Prop({default: ()=>[]}) reducido: TiposElementos[];
+  @Prop({default: () => []}) reducido: TiposElementos[];
   etiqueta: string = '';
   seleccion: TiposElementos = TiposElementos['entrada-texto'];
 
   get opcionesSelector() {
-    if(this.reducido.length > 0){
+    if (this.reducido.length > 0) {
       return this.reducido.map(tipo => {
         return {
           label: DiccionarioTiposElementos[tipo],
           value: tipo
         };
       })
-    }else{
+    } else {
       switch (this.elemento) {
         case TiposElementos['tabla-compuesta']:
           return [

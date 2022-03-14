@@ -17,7 +17,7 @@
           </q-toolbar-title>
 
           <q-btn
-            color="secondary"
+            class="revert-btn"
             label="Cerrar sesion"
             @click="signOut"
           />
@@ -37,7 +37,7 @@
           >
             Comandos
           </q-item-label>
-          <q-item v-for="hub in hubsCatalogo" :key="`hub_key_${hub.id}`" :to="hub.route" replace>
+          <q-item v-for="hub in hubsCatalogo" :key="`hub_key_${hub.id}`" :to="hub.route" replace active-class="advance-btn">
             <q-item-section avatar>
               <q-icon :name="hub.icon"/>
             </q-item-section>
