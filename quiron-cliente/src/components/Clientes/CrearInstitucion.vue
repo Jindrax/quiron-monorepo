@@ -3,7 +3,7 @@
     <mostrar-campo etiqueta="Identificacion">
       <q-input v-model="nuevaInstitucion.identificacion"/>
     </mostrar-campo>
-    <q-btn label="Get Coords" @click="getCoords" class="full-width"/>
+    <q-btn label="Get Coords" @click="getCoords" class="full-width advance-btn"/>
     <mostrar-campo etiqueta="Latitud">
       <q-input v-model.number="nuevaInstitucion.latitud" type="number"/>
     </mostrar-campo>
@@ -20,7 +20,7 @@
       <q-select v-model="nuevaInstitucion.ciudad" :options="listaMunicipios"/>
     </mostrar-campo>
     <br>
-    <q-btn label="Crear Institucion" class="full-width" @click="crear"/>
+    <q-btn label="Crear Institucion" class="full-width advance-btn" @click="crear"/>
   </div>
 </template>
 <script lang="ts">

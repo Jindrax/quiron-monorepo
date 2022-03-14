@@ -4,7 +4,7 @@
                        etiqueta="Cliente"/>
     <buscador-unitario v-model="institucion" :buscador="buscadorInstitucion"
                        etiqueta="Institucion"/>
-    <q-btn class="full-width" label="Asociar" @click="asociar"/>
+    <q-btn class="full-width advance-btn" label="Asociar" @click="asociar"/>
   </div>
 </template>
 <script lang="ts">

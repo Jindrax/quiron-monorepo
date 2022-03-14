@@ -11,7 +11,6 @@
     <div class="q-my-xs bg-grey-2">
       <q-btn class="bg-primary text-white full-width" label="Crear Orden de trabajo" @click="crear"/>
     </div>
-    <buscador-unitario v-model="ot" :buscador="buscadorOT" etiqueta="OT" @input="test"/>
   </q-page>
 </template>
 <script lang="ts">

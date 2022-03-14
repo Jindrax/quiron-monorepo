@@ -181,6 +181,7 @@ export default class CrearOTSPagina extends Vue {
         formulario: this.formulario
       }, null, Formulario);
       this.$q.notify("Formulario guardado correctamente");
+      this.step = 3;
     } catch (e) {
       console.log(e);
     }

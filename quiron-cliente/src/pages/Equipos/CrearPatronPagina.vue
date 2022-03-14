@@ -46,6 +46,7 @@ export default class CrearPatronPagina extends Vue {
         patron: this.nuevoPatron
       }, null, Patron);
       this.$q.notify("Patron creado correctamente");
+      this.nuevoPatron = new Patron({});
     } catch (e) {
       console.log(e);
     }

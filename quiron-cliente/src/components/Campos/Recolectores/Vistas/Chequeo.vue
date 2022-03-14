@@ -37,7 +37,7 @@ export default class Chequeo extends Vue {
 
   created() {
     if(!Array.isArray(this.dataSync[this.path])){
-      this.dataSync[this.path] = [];
+      this.$set(this.dataSync, this.path, []);
     }
   }
 

@@ -28,19 +28,19 @@
               {{ `${nuevoCliente.contacto.nombres} ${nuevoCliente.contacto.apellidos}` }}
             </q-item-section>
             <q-item-section side>
-              <q-btn color="red" icon="cancel" @click="eliminarContactoPrincipal"/>
+              <q-btn class="revert-btn" icon="cancel" @click="eliminarContactoPrincipal"/>
             </q-item-section>
           </q-item>
           <q-btn
             v-else
             :label="'Buscar contacto'"
-            class="full-width"
+            class="full-width advance-btn"
             @click="buscarContactoPrincipal"
           />
         </div>
       </mostrar-campo>
       <q-separator/>
-      <q-btn class="full-width" label="Crear Cliente" @click="crearCliente"/>
+      <q-btn class="full-width advance-btn" label="Crear Cliente" @click="crearCliente"/>
     </div>
   </q-page>
 </template>
@@ -105,7 +105,13 @@ export default class CrearCliente extends Vue {
   }
 
   public async crearCliente() {
-    await Controller.post("clientes", {cliente: this.nuevoCliente});
+    try{
+      await Controller.post("clientes", {cliente: this.nuevoCliente});
+      this.$q.notify("Se ha creado el cliente correctamente");
+      this.nuevoCliente = new Cliente({});
+    }catch (e) {
+      console.log(e);
+    }
   }
 
   test() {

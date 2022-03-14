@@ -22,7 +22,7 @@
     <mostrar-campo etiqueta="Institucion">
       <q-select v-model="institucionElegida" :options="institucionesCliente"/>
     </mostrar-campo>
-    <campo :elemento="nuevoEquipo.patron.atributos" path="/" :data="nuevoEquipo.atributos"/>
+    <campo :data="nuevoEquipo.atributos" :elemento="nuevoEquipo.patron.atributos" path=""/>
     <div class="q-my-xs bg-grey-2">
       <q-btn class="bg-primary text-white full-width" label="Nuevo Equipo" @click="crear"/>
     </div>
@@ -76,6 +76,22 @@ export default class CrearEquipoPagina extends Vue {
   onPatronSelected(patron: Patron) {
     this.nuevoEquipo.marca = patron.marca;
     this.nuevoEquipo.modelo = patron.modelo;
+    // patron.atributos.elementos.forEach(att => {
+    //   switch (att.elemento) {
+    //     case TiposElementos["entrada-texto"]:
+    //       this.$set(this.nuevoEquipo.atributos, "/" + att.etiqueta, "");
+    //       break;
+    //     case TiposElementos["entrada-numerica"]:
+    //       this.$set(this.nuevoEquipo.atributos, "/" + att.etiqueta, "");
+    //       break;
+    //     case TiposElementos.seleccion:
+    //       this.$set(this.nuevoEquipo.atributos, "/" + att.etiqueta, "");
+    //       break;
+    //     case TiposElementos.chequeo:
+    //       this.$set(this.nuevoEquipo.atributos, "/" + att.etiqueta, []);
+    //       break;
+    //   }
+    // });
   }
 
   async onClienteSelected(cliente: Cliente) {

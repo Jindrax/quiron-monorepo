@@ -9,7 +9,7 @@
       </mostrar-campo>
       <acumulador ref="acumuladorTelefono" v-model="nuevoContacto.telefonos" acumulable="Telefonos"/>
       <acumulador ref="acumuladorEmail" v-model="nuevoContacto.emails" acumulable="E-mails" :rules="emailRules"/>
-      <q-btn class="full-width" label="Crear Contacto" @click="crear"/>
+      <q-btn class="full-width advance-btn" label="Crear Contacto" @click="crear"/>
     </q-card-section>
   </q-card>
 </template>
