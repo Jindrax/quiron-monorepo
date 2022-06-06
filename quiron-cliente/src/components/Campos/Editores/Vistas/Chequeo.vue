@@ -1,31 +1,29 @@
 <template>
-  <q-item>
-    <q-item-section>
-      <mostrar-campo etiqueta="Apertura">
-        <q-toggle v-model="elementoSync.apertura"/>
-      </mostrar-campo>
-      <mostrar-campo :etiqueta="'Nueva opcion'">
-        <q-input v-model="nueva_opcion" @keypress.enter.native="addOpcion"/>
-      </mostrar-campo>
-      <q-btn class="q-my-sm advance-btn" label="Añadir opcion" @click="addOpcion"/>
-      <q-list bordered separator>
-        <q-item-label header>
-          Opciones
-        </q-item-label>
-        <q-item v-for="(opcion, indice_opcion) in elementoSync.opciones" :key="elementoSync.path + '\\' + opcion">
-          <q-item-section>
-            {{ opcion }}
-          </q-item-section>
-          <q-item-section v-if="indice_opcion!==0" side>
-            <q-btn class="advance-btn" icon="arrow_upward" @click="moveOpcion(indice_opcion)"/>
-          </q-item-section>
-          <q-item-section side>
-            <q-btn class="revert-btn" icon="cancel" @click="removeOpcion(indice_opcion)"/>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-item-section>
-  </q-item>
+  <div class="column q-gutter-y-sm">
+    <mostrar-campo etiqueta="Apertura" class="col">
+      <q-toggle v-model="elementoSync.apertura"/>
+    </mostrar-campo>
+    <mostrar-campo :etiqueta="'Nueva opcion'" class="col">
+      <q-input v-model="nueva_opcion" @keypress.enter.native="addOpcion"/>
+    </mostrar-campo>
+    <q-btn class="col advance-btn" label="Añadir opcion" @click="addOpcion"/>
+    <q-list bordered separator class="col">
+      <q-item-label header>
+        Opciones
+      </q-item-label>
+      <q-item v-for="(opcion, indice_opcion) in elementoSync.opciones" :key="elementoSync.path + '\\' + opcion">
+        <q-item-section>
+          {{ opcion }}
+        </q-item-section>
+        <q-item-section v-if="indice_opcion!==0" side>
+          <q-btn class="advance-btn" icon="arrow_upward" @click="moveOpcion(indice_opcion)"/>
+        </q-item-section>
+        <q-item-section side>
+          <q-btn class="revert-btn" icon="cancel" @click="removeOpcion(indice_opcion)"/>
+        </q-item-section>
+      </q-item>
+    </q-list>
+  </div>
 </template>
 <script lang="ts">
 import {Component, PropSync, Vue} from 'vue-property-decorator';

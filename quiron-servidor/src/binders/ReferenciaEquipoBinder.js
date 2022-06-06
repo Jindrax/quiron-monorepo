@@ -23,20 +23,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Binder_1 = __importStar(require("./Binder"));
-const Patrones_1 = __importDefault(require("../modules/Patrones"));
-class InstitucionesBinder extends Binder_1.default {
+const ReferenciaEquipos_1 = __importDefault(require("../modules/ReferenciaEquipos"));
+class ReferenciaEquiposBinder extends Binder_1.default {
     constructor(server) {
         super(server);
-        this.registerEndPoint(Binder_1.RequestKind.POST, "/patrones", { processor: Patrones_1.default.crear }, {
-            resource: "Patron",
+        this.registerEndPoint(Binder_1.RequestKind.POST, "/referenciaEquipos", { processor: ReferenciaEquipos_1.default.crear }, {
+            resource: "ReferenciaEquipo",
             action: "Crear",
-            description: "Crear patron"
+            description: "Crear referencia equipo"
         });
-        this.registerEndPoint(Binder_1.RequestKind.GET, "/patrones", { processor: Patrones_1.default.buscar }, {
-            resource: "Patron",
+        this.registerEndPoint(Binder_1.RequestKind.GET, "/referenciaEquipos", { processor: ReferenciaEquipos_1.default.buscar }, {
+            resource: "ReferenciaEquipo",
             action: "Consultar",
-            description: "Consultar los patrones"
+            description: "Consultar las referencias de equipos"
         });
     }
 }
-exports.default = InstitucionesBinder;
+exports.default = ReferenciaEquiposBinder;

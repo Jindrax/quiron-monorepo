@@ -1,34 +1,18 @@
 <template>
-  <div>
-    <q-item class="q-ma-none q-pa-none">
-      <q-item-section class="q-pa-none">
-        <mostrar-campo :etiqueta="'Etiqueta'">
-          {{ elementoSync.etiqueta }}
-        </mostrar-campo>
-      </q-item-section>
-    </q-item>
-    <q-item class="q-ma-none q-pa-none">
-      <q-item-section class="q-pa-none">
-        <mostrar-campo etiqueta="Rango">
-          <q-toggle v-model="elementoSync.rango"/>
-        </mostrar-campo>
-      </q-item-section>
-    </q-item>
-    <div v-if="elementoSync.rango">
-      <q-item class="q-ma-none q-pa-none">
-        <q-item-section class="q-pa-none">
-          <mostrar-campo etiqueta="Rango Inferior">
-            <q-input v-model.number="elementoSync.rangoInferior"/>
-          </mostrar-campo>
-        </q-item-section>
-      </q-item>
-      <q-item class="q-ma-none q-pa-none">
-        <q-item-section class="q-pa-none">
-          <mostrar-campo etiqueta="Rango Superior">
-            <q-input v-model.number="elementoSync.rangoSuperior"/>
-          </mostrar-campo>
-        </q-item-section>
-      </q-item>
+  <div class="column q-gutter-y-sm">
+    <mostrar-campo :etiqueta="'Etiqueta'" class="col">
+      {{ elementoSync.etiqueta }}
+    </mostrar-campo>
+    <mostrar-campo etiqueta="Rango" class="col">
+      <q-toggle v-model="elementoSync.rango"/>
+    </mostrar-campo>
+    <div v-if="elementoSync.rango" class="col column">
+      <mostrar-campo etiqueta="Rango Inferior" class="col">
+        <q-input v-model.number="elementoSync.rangoInferior"/>
+      </mostrar-campo>
+      <mostrar-campo etiqueta="Rango Superior" class="col">
+        <q-input v-model.number="elementoSync.rangoSuperior"/>
+      </mostrar-campo>
     </div>
   </div>
 </template>

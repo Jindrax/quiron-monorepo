@@ -1,11 +1,11 @@
 import {CommonEntity} from "../CommonEntity";
-import {Patron} from "@quiron/classes/dist/entities";
+import {ReferenciaEquipo} from "@quiron/classes/dist/entities";
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {CampoSeccion} from "@quiron/classes/dist/components/campos/edicion";
 import {EquipoModel} from "../EquipoModel/EquipoModel";
 
 @Entity()
-export class PatronModel extends CommonEntity<Patron> {
+export class ReferenciaEquipoModel extends CommonEntity<ReferenciaEquipo> {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
@@ -21,6 +21,6 @@ export class PatronModel extends CommonEntity<Patron> {
     @Column({type: "jsonb"})
     atributos: CampoSeccion;
 
-    @OneToMany(()=>EquipoModel, equipo=>equipo.patron)
+    @OneToMany(() => EquipoModel, equipo => equipo.referenciaEquipo)
     equipos: EquipoModel[];
 }

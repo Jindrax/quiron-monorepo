@@ -11,7 +11,7 @@ import {TypedORM} from "./db/TypedORM";
 import ContactosBinder from "./binders/ContactosBinder";
 import InstitucionesBinder from "./binders/InstitucionesBinder";
 import EquiposBinder from "./binders/EquiposBinder";
-import PatronesBinder from "./binders/PatronesBinder";
+import PatronesBinder from "./binders/ReferenciaEquipoBinder";
 import ServiciosBinder from "./binders/ServiciosBinder";
 import OTsBinder from "./binders/OTsBinder";
 import FormulariosBinder from "./binders/FormulariosBinder";

@@ -12,7 +12,7 @@ import {FormularioTraceModel} from "./Traces/FormularioTraceModel";
 import {OTTraceModel, PlantillaTraceModel} from "./Traces";
 import {InstitucionModel, InstitucionClienteContactoModel} from "./InstitucionModel";
 import {EquipoAtributoModel} from "./EquipoModel/EquipoAtributoModel";
-import {PatronModel} from "./PatronModel";
+import {ReferenciaEquipoModel} from "./ReferenciaEquipoModel";
 
 const entities = [
     UsuarioModel,
@@ -31,6 +31,6 @@ const entities = [
     OTTraceModel,
     EquipoAtributoModel,
     InstitucionClienteContactoModel,
-    PatronModel
+    ReferenciaEquipoModel
 ];
 export default entities;

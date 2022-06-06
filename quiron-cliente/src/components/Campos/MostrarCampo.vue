@@ -1,20 +1,17 @@
 <template>
-  <q-item class="bg-grey-2 marco">
-    <q-item-section>
-      <div>
-        <div
-          v-for="(campo, indice) in campos"
-          :key="indice"
-          class="row items-center"
-        >
-          <div :class="EtiquetaClase">{{ campo }}</div>
-          <div :class="ContenidoClase">
-            <slot :name="obtenerNombre(indice)"></slot>
-          </div>
-        </div>
+  <div class="column bg-grey-2">
+    <div
+      v-for="(campo, indice) in campos"
+      :key="indice"
+      class="col row items-center q-ma-sm"
+    >
+      <span style="vertical-align: center" :class="EtiquetaClase">{{ campo }}</span>
+      <div :class="ContenidoClase">
+        <slot :name="obtenerNombre(indice)"></slot>
       </div>
-    </q-item-section>
-  </q-item>
+    </div>
+    <q-separator class="q-my-sm" v-if="!last"/>
+  </div>
 </template>
 
 <script lang="ts">
@@ -27,6 +24,7 @@ import {Platform} from 'quasar';
 export default class MostrarCampo extends Vue {
   @Prop() readonly etiqueta!: string | string[];
   @Prop({default: false}) readonly printable!: boolean;
+  @Prop({default: false}) last:boolean;
 
   public get campos() {
     if (!Array.isArray(this.etiqueta)) {
@@ -70,7 +68,8 @@ Vue.component('mostrar-campo', MostrarCampo);
 .grande {
   word-break: break-all;
 }
-.marco{
+
+.marco {
   border: 1px solid black;
 }
 </style>

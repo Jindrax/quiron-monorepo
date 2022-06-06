@@ -1,11 +1,7 @@
 <template>
-  <q-item class="q-ma-none q-pa-none">
-    <q-item-section class="q-pa-none">
-      <mostrar-campo :etiqueta="'Etiqueta'">
-        {{elementoSync.etiqueta}}
-      </mostrar-campo>
-    </q-item-section>
-  </q-item>
+  <mostrar-campo :etiqueta="'Etiqueta'">
+    {{elementoSync.etiqueta}}
+  </mostrar-campo>
 </template>
 <script lang="ts">
 import { Component, PropSync, Vue } from 'vue-property-decorator';

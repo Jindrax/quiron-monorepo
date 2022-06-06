@@ -18,4 +18,4 @@ export default class ReferenciaEquipo extends IndexableEntity {
     equipos: Equipo[];
     constructor({ id, identificador, marca, modelo, atributos, equipos }: ReferenciaEquipoConstructor);
 }
-//# sourceMappingURL=Patron.d.ts.map
+//# sourceMappingURL=ReferenciaEquipo.d.ts.map

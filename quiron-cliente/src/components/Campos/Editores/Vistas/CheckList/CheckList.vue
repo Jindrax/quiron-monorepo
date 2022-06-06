@@ -1,77 +1,62 @@
 <template>
-  <q-card>
-    <q-card-section>
-      <q-card>
-        <q-card-section class="bg-blue-3">
-          Validadores
-        </q-card-section>
-        <q-card-section>
-          <mostrar-campo etiqueta="Tipo Validador">
-            <q-select v-model="validadorValue" :options="opciones"/>
+  <div class="column q-gutter-y-sm">
+    <div class="col column q-gutter-y-sm q-ma-sm">
+      <span class="col">Validadores</span>
+      <q-expansion-item v-for="(validador, indice) in elementoSync.validadores" :key="elementoSync.etiqueta + '-ch-val-' + validador.etiqueta"
+                        :label="validador.etiqueta" header-class="advance-btn" group="validador" class="bg-blue-1 col">
+        <div class="column q-gutter-y-sm q-pa-sm q-my-sm">
+          <component
+            class="col"
+            :is="validador.elemento"
+            v-bind="{elemento: validador}"
+          />
+          <mostrar-campo etiqueta="Depende de" class="col">
+            <q-select v-model="validadorCondicional" :options="validadoresOpciones" class="col"/>
           </mostrar-campo>
-          <mostrar-campo etiqueta="Etiqueta Validador">
-            <q-input v-model="etiquetaValidador" placeholder="Etiqueta"/>
+          <mostrar-campo v-if="validadorCondicional.label!==''" etiqueta="Valor" class="col">
+            <q-input
+              v-if="validadorCondicional.value.elemento === 'entrada-texto' || validadorCondicional.value.elemento === 'entrada-numerica'"
+              v-model="valorCondicional" :placeholder="validadorCondicional.label"/>
+            <q-select v-else v-model="valorCondicional" :options="validadorCondicional.value.opciones" class="col"
+                      emit-value/>
           </mostrar-campo>
-          <q-btn label="Añadir" class="full-width advance-btn" @click="nuevoValidador"/>
-        </q-card-section>
-        <q-card-section>
-          <q-expansion-item v-for="validador in elementoSync.validadores" :key="elementoSync.etiqueta + '-ch-val-' + validador.etiqueta"
-                            :label="validador.etiqueta"
-                            style="border-style: solid; border-width: thin">
-            <component
-              :is="validador.elemento"
-              v-bind="{elemento: validador}"
-            />
-            <q-separator/>
-            <q-card>
-              <q-card-section>
-                <mostrar-campo etiqueta="Depende de">
-                  <q-select v-model="validadorCondicional" :options="validadoresOpciones" class="col"/>
-                </mostrar-campo>
-                <mostrar-campo v-if="validadorCondicional.label!==''" etiqueta="Valor">
-                  <q-input
-                    v-if="validadorCondicional.value.elemento === 'entrada-texto' || validadorCondicional.value.elemento === 'entrada-numerica'"
-                    v-model="valorCondicional" :placeholder="validadorCondicional.label"/>
-                  <q-select v-else v-model="valorCondicional" :options="validadorCondicional.value.opciones" class="col"
-                            emit-value/>
-                </mostrar-campo>
-              </q-card-section>
-              <q-card-section>
-                <q-btn class="full-width advance-btn" icon="save" @click="guardarCondicional(validador)"/>
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-        </q-card-section>
-      </q-card>
-    </q-card-section>
-    <q-card-section>
-      <q-card>
-        <q-card-section class="bg-blue-3">
+          <q-btn class="col full-width advance-btn" icon="save" @click="guardarCondicional(validador)"/>
+          <q-btn class="col full-width revert-btn" icon="delete" @click="eliminarValidador(indice)"/>
+        </div>
+      </q-expansion-item>
+      <mostrar-campo etiqueta="Tipo Validador" class="col">
+        <q-select v-model="validadorValue" :options="opciones"/>
+      </mostrar-campo>
+      <mostrar-campo etiqueta="Etiqueta Validador" class="col" :last="true">
+        <q-input v-model="etiquetaValidador" placeholder="Etiqueta" v-on:keypress.enter="nuevoValidador"/>
+      </mostrar-campo>
+      <q-btn label="Añadir" class="full-width advance-btn" @click="nuevoValidador"/>
+    </div>
+    <q-separator/>
+    <div class="col column q-gutter-y-sm q-ma-sm">
+      <q-list class="col" separator>
+        <q-item-label header>
           Items
-        </q-card-section>
-        <q-card-section>
-          <q-list>
-            <q-item-label header>
-              Items
-            </q-item-label>
-            <q-item v-for="(item, index) in elementoSync.items" :key="`item-${index}-${item.substring(0, 10)}`">
-              <q-item-section>
-                {{item}}
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <div class="row">
-                  <q-input class="col" v-model="nuevoItem" placeholder="Nuevo item"/>
-                  <q-btn class="col-2 advance-btn" icon="add" @click="addItem"/>
-                </div>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-card-section>
-      </q-card>
-    </q-card-section>
-  </q-card>
+        </q-item-label>
+        <q-item v-for="(item, index) in elementoSync.items" :key="`item-${index}-${item.substring(0, 10)}`">
+          <q-item-section>
+            {{item}}
+          </q-item-section>
+          <q-item-section side>
+            <q-btn class="revert-btn" icon="delete" @click="removeItem(index)"/>
+          </q-item-section>
+        </q-item>
+        <q-item>
+          <q-item-section>
+            <q-input v-model="nuevoItem" placeholder="Nuevo item" v-on:keypress.enter="addItem"/>
+          </q-item-section>
+          <q-item-section side>
+            <q-btn class="advance-btn" icon="add" @click="addItem"/>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import {Component, PropSync, Vue} from 'vue-property-decorator';
@@ -135,6 +120,12 @@ export default class CheckList extends Vue {
     this.$set(this.elementoSync.validadores,
       this.elementoSync.validadores.length,
       FabricaCampos.fabricarCampoConEtiqueta(this.validadorValue.value, this.etiquetaValidador));
+    this.etiquetaValidador = "";
+  }
+
+  eliminarValidador(indice: number) {
+    this.$delete(this.elementoSync.validadores,
+      indice);
   }
 
   guardarCondicional(validador: Campo) {
@@ -149,6 +140,10 @@ export default class CheckList extends Vue {
   addItem(){
     this.elementoSync.items.push(this.nuevoItem);
     this.nuevoItem = "";
+  }
+
+  removeItem(indice: number){
+    this.$delete(this.elementoSync.items, indice);
   }
 }
 </script>

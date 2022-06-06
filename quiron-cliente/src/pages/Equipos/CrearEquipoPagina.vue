@@ -1,7 +1,7 @@
 <template>
   <q-page>
-    <buscador-unitario v-model="nuevoEquipo.patron" :buscador="buscadorPatron"
-                       etiqueta="Patron" @input="onPatronSelected"/>
+    <buscador-unitario v-model="nuevoEquipo.referenciaEquipo" :buscador="buscadorReferenciaEquipo"
+                       etiqueta="Referencia Equipo" @input="onReferenciaEquipoSelected"/>
     <mostrar-campo etiqueta="Marca">
       <q-input v-model="nuevoEquipo.marca"/>
     </mostrar-campo>
@@ -11,18 +11,15 @@
     <mostrar-campo etiqueta="Serial">
       <q-input v-model="nuevoEquipo.serial"/>
     </mostrar-campo>
-    <mostrar-campo etiqueta="Serie">
-      <q-input v-model="nuevoEquipo.serie"/>
-    </mostrar-campo>
-    <mostrar-campo etiqueta="Codigo">
-      <q-input v-model="nuevoEquipo.codigo"/>
+    <mostrar-campo etiqueta="Activo Fijo">
+      <q-input v-model="nuevoEquipo.activoFijo"/>
     </mostrar-campo>
     <buscador-unitario v-model="nuevoEquipo.responsable" :buscador="buscadorCliente"
                        etiqueta="Responsable" @input="onClienteSelected"/>
     <mostrar-campo etiqueta="Institucion">
       <q-select v-model="institucionElegida" :options="institucionesCliente"/>
     </mostrar-campo>
-    <campo :data="nuevoEquipo.atributos" :elemento="nuevoEquipo.patron.atributos" path=""/>
+    <campo :data="nuevoEquipo.atributos" :elemento="nuevoEquipo.referenciaEquipo.atributos" path=""/>
     <div class="q-my-xs bg-grey-2">
       <q-btn class="bg-primary text-white full-width" label="Nuevo Equipo" @click="crear"/>
     </div>
@@ -32,11 +29,11 @@
 import {Component, Vue} from 'vue-property-decorator';
 import BuscadorConTabla from "components/Utils/BuscadorConTabla.vue";
 import BuscadorUnitario from "components/Utils/BuscadorUnitario.vue";
-import {Cliente, Equipo, Institucion, Patron} from "@quiron/classes/dist/entities";
+import {Cliente, Equipo, Institucion, ReferenciaEquipo} from "@quiron/classes/dist/entities";
 import {BuscadorCliente, BuscadorInstitucion} from "api/entidades/Buscador";
 import RecolectorAtributos from "components/Utils/RecolectorAtributos.vue";
 import Controller from "api/Controller";
-import {BuscadorPatron} from "api/entidades/Buscador/Buscadores/BuscadorPatron";
+import {BuscadorReferenciaEquipo} from "api/entidades/Buscador/Buscadores/BuscadorReferenciaEquipo";
 import Campo from "components/Campos/Recolectores/Campo.vue";
 
 interface opcionInstitucion {
@@ -54,7 +51,7 @@ interface opcionInstitucion {
   }
 })
 export default class CrearEquipoPagina extends Vue {
-  buscadorPatron = new BuscadorPatron(["identificador", "marca"]);
+  buscadorReferenciaEquipo = new BuscadorReferenciaEquipo(["identificador", "marca"]);
   buscadorCliente = new BuscadorCliente(["nombre", "identificacion"], ["instituciones"]);
   buscadorInstitucion = new BuscadorInstitucion(["identificacion", "direccion", "ciudad"]);
   nuevoEquipo = new Equipo({});
@@ -73,9 +70,9 @@ export default class CrearEquipoPagina extends Vue {
     })
   }
 
-  onPatronSelected(patron: Patron) {
-    this.nuevoEquipo.marca = patron.marca;
-    this.nuevoEquipo.modelo = patron.modelo;
+  onReferenciaEquipoSelected(referenciaEquipo: ReferenciaEquipo) {
+    this.nuevoEquipo.marca = referenciaEquipo.marca;
+    this.nuevoEquipo.modelo = referenciaEquipo.modelo;
     // patron.atributos.elementos.forEach(att => {
     //   switch (att.elemento) {
     //     case TiposElementos["entrada-texto"]:

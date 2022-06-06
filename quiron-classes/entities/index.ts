@@ -7,5 +7,5 @@ export {default as Plantilla} from "./Plantilla";
 export {default as Contacto} from "./Contacto";
 export {default as Institucion} from "./Institucion";
 export {default as Cliente} from "./Cliente";
-export {default as Patron} from  "./Patron";
+export {default as ReferenciaEquipo} from "./ReferenciaEquipo";
 export * from "./atributos";

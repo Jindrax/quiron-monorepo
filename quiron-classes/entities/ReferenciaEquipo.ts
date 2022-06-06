@@ -2,7 +2,7 @@ import IndexableEntity from "./auxiliar/IndexableEntity";
 import {CampoSeccion} from "../components/campos/edicion";
 import {Equipo} from "./index";
 
-export interface PatronConstructor {
+export interface ReferenciaEquipoConstructor {
     id?: string;
     identificador?: string;
     marca?: string;
@@ -11,7 +11,7 @@ export interface PatronConstructor {
     equipos?: Equipo[];
 }
 
-export default class Patron extends IndexableEntity {
+export default class ReferenciaEquipo extends IndexableEntity {
     id?: string;
     identificador?: string;
     marca: string = "";
@@ -26,7 +26,7 @@ export default class Patron extends IndexableEntity {
                     modelo,
                     atributos,
                     equipos
-                }: PatronConstructor) {
+                }: ReferenciaEquipoConstructor) {
         super(["marca", "modelo"]);
         this.id = id ? id : "";
         this.identificador = identificador ? identificador : "";

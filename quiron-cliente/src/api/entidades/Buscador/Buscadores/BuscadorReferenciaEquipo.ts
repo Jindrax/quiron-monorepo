@@ -1,11 +1,11 @@
 import {Buscador} from "api/entidades/Buscador";
-import {Patron} from "@quiron/classes/dist/entities";
+import {ReferenciaEquipo} from "@quiron/classes/dist/entities";
 
-export class BuscadorPatron extends Buscador<Patron> {
+export class BuscadorReferenciaEquipo extends Buscador<ReferenciaEquipo> {
 
   constructor(esquema: string[]) {
     super(esquema, {
-      endpoint: "patrones",
+      endpoint: "referenciaEquipos",
       opciones: {
         campos_busqueda: [
           {etiqueta: 'Identificador', valor: 'identificador'},
@@ -18,6 +18,6 @@ export class BuscadorPatron extends Buscador<Patron> {
         ],
         opciones_busqueda: {}
       }
-    }, Patron);
+    }, ReferenciaEquipo);
   }
 }

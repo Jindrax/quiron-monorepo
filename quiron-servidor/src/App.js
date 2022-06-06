@@ -23,7 +23,7 @@ const TypedORM_1 = require("./db/TypedORM");
 const ContactosBinder_1 = __importDefault(require("./binders/ContactosBinder"));
 const InstitucionesBinder_1 = __importDefault(require("./binders/InstitucionesBinder"));
 const EquiposBinder_1 = __importDefault(require("./binders/EquiposBinder"));
-const PatronesBinder_1 = __importDefault(require("./binders/PatronesBinder"));
+const ReferenciaEquipoBinder_1 = __importDefault(require("./binders/ReferenciaEquipoBinder"));
 const ServiciosBinder_1 = __importDefault(require("./binders/ServiciosBinder"));
 const OTsBinder_1 = __importDefault(require("./binders/OTsBinder"));
 const FormulariosBinder_1 = __importDefault(require("./binders/FormulariosBinder"));
@@ -41,7 +41,7 @@ class App {
             this.modules.push(new ContactosBinder_1.default(express));
             this.modules.push(new InstitucionesBinder_1.default(express));
             this.modules.push(new EquiposBinder_1.default(express));
-            this.modules.push(new PatronesBinder_1.default(express));
+            this.modules.push(new ReferenciaEquipoBinder_1.default(express));
             this.modules.push(new ServiciosBinder_1.default(express));
             this.modules.push(new OTsBinder_1.default(express));
             this.modules.push(new FormulariosBinder_1.default(express));

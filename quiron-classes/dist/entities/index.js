@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Patron = exports.Cliente = exports.Institucion = exports.Contacto = exports.Plantilla = exports.Formulario = exports.Rol = exports.OrdenTrabajo = exports.Usuario = exports.Equipo = void 0;
+exports.ReferenciaEquipo = exports.Cliente = exports.Institucion = exports.Contacto = exports.Plantilla = exports.Formulario = exports.Rol = exports.OrdenTrabajo = exports.Usuario = exports.Equipo = void 0;
 var Equipo_1 = require("./Equipo");
 Object.defineProperty(exports, "Equipo", { enumerable: true, get: function () { return __importDefault(Equipo_1).default; } });
 var Usuario_1 = require("./Usuario");
@@ -32,7 +32,7 @@ var Institucion_1 = require("./Institucion");
 Object.defineProperty(exports, "Institucion", { enumerable: true, get: function () { return __importDefault(Institucion_1).default; } });
 var Cliente_1 = require("./Cliente");
 Object.defineProperty(exports, "Cliente", { enumerable: true, get: function () { return __importDefault(Cliente_1).default; } });
-var Patron_1 = require("./Patron");
-Object.defineProperty(exports, "Patron", { enumerable: true, get: function () { return __importDefault(Patron_1).default; } });
+var ReferenciaEquipo_1 = require("./ReferenciaEquipo");
+Object.defineProperty(exports, "ReferenciaEquipo", { enumerable: true, get: function () { return __importDefault(ReferenciaEquipo_1).default; } });
 __exportStar(require("./atributos"), exports);
 //# sourceMappingURL=index.js.map

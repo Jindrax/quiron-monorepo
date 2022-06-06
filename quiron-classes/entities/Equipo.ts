@@ -2,16 +2,15 @@ import OrdenTrabajo from "./OrdenTrabajo";
 import Cliente from "./Cliente";
 import Institucion from "./Institucion";
 import IndexableEntity from "./auxiliar/IndexableEntity";
-import {Patron} from "./index";
+import {ReferenciaEquipo} from "./index";
 
 export interface EquipoConstructor {
     id?: string;
-    patron?: Patron;
+    referenciaEquipo?: ReferenciaEquipo;
     serial?: string;
     marca?: string;
     modelo?: string;
-    serie?: string;
-    codigo?: string;
+    activoFijo?: string;
     responsable?: Cliente;
     institucion?: Institucion;
     ots?: OrdenTrabajo[];
@@ -20,12 +19,11 @@ export interface EquipoConstructor {
 
 export default class Equipo extends IndexableEntity {
     id?: string;
-    patron: Patron;
+    referenciaEquipo: ReferenciaEquipo;
     serial: string = "";
     marca: string = "";
     modelo: string = "";
-    serie: string = "";
-    codigo: string = "";
+    activoFijo: string = "";
     responsable: Cliente;
     institucion: Institucion;
     ots: OrdenTrabajo[];
@@ -33,25 +31,23 @@ export default class Equipo extends IndexableEntity {
 
     constructor({
                     id,
-                    patron,
+                    referenciaEquipo,
                     serial,
                     marca,
                     modelo,
-                    serie,
-                    codigo,
+                    activoFijo,
                     ots,
                     responsable,
                     institucion,
                     atributos
                 }: EquipoConstructor) {
-        super(["serial", "marca", "serie", "codigo"]);
+        super(["serial", "marca"]);
         this.id = id ? id : "";
-        this.patron = patron ? patron : new Patron({});
+        this.referenciaEquipo = referenciaEquipo ? referenciaEquipo : new ReferenciaEquipo({});
         this.serial = serial ? serial : "";
         this.marca = marca ? marca : "";
         this.modelo = modelo ? modelo : "";
-        this.serie = serie ? serie : "";
-        this.codigo = codigo ? codigo : "";
+        this.activoFijo = activoFijo ? activoFijo : "";
         this.responsable = responsable ? new Cliente(responsable) : new Cliente({});
         this.institucion = institucion ? new Institucion(institucion) : new Institucion({});
         this.ots = ots ? ots.map((element: any) => {

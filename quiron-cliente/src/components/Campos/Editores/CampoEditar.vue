@@ -1,52 +1,49 @@
 <template>
-  <q-item class="q-ma-none q-px-xs">
-    <q-item-section>
-      <q-expansion-item v-model="active" class="q-card--bordered"
-                        :header-class="active? elementoSync.elemento === 'seccion'? 'bg-green-10 text-white' : 'bg-primary text-white' : ''"
-                        switch-toggle-side>
-        <template v-slot:header>
-          <q-item-section draggable="true">
-            {{ diccionario[elementoSync.elemento] + ' : ' + elementoSync.etiqueta }}
-          </q-item-section>
-          <q-item-section side>
-            <div class="row q-gutter-sm">
-              <q-btn v-if="indice > 0" icon="arrow_upward" class="col-auto advance-btn" size="sm" round
-                     @click.stop="moveUp"/>
-              <q-btn v-if="indice < maxindice - 1" icon="arrow_downward" class="col-auto advance-btn" size="sm"
-                     round @click.stop="moveDown"/>
-              <q-btn icon="content_copy" class="col-auto warn-btn" size="sm" round @click.stop="clone"/>
-              <q-btn icon="delete_forever" class="col-auto revert-btn" size="sm" round @click.stop="deleteCampo(indice)"/>
-            </div>
-          </q-item-section>
-        </template>
-        <div :class="{'bg-grey-2': active && elementoSync.elemento !== 'seccion',
-        'bg-green-2': active && elementoSync.elemento === 'seccion'}">
-          <referencia :elreferencia="elementoSync.referencia"
-                      v-if="isReferenciable && !patron"/>
-          <q-separator/>
-          <dependiente
-            v-if="!patron"
-            :dep="elementoSync.dependiente"
-          />
-          <q-separator/>
-          <mostrar-campo :etiqueta="'Presentación'">
-            <q-input
-              debounce="1000"
-              placeholder="Presentacion"
-              type="text"
-              v-model="elementoSync.presentacion"
-            />
-          </mostrar-campo>
-          <q-separator/>
-          <component
-            :is="elementoSync.elemento"
-            :key="'ce-' + elementoSync.path"
-            v-bind="{elemento: elementoSync, path: localPath}"
-          />
+  <q-expansion-item v-model="active" class="column q-card--bordered"
+                    :header-class="active? elementoSync.elemento === 'seccion'? 'bg-green-10 text-white' : 'bg-primary text-white' : ''"
+                    switch-toggle-side>
+    <template v-slot:header>
+      <q-item-section draggable="true">
+        {{ diccionario[elementoSync.elemento] + ' : ' + elementoSync.etiqueta }}
+      </q-item-section>
+      <q-item-section side>
+        <div class="row q-gutter-sm">
+          <q-btn v-if="indice > 0" icon="arrow_upward" class="col-auto advance-btn" size="sm" round
+                 @click.stop="moveUp"/>
+          <q-btn v-if="indice < maxindice - 1" icon="arrow_downward" class="col-auto advance-btn" size="sm"
+                 round @click.stop="moveDown"/>
+          <q-btn icon="content_copy" class="col-auto warn-btn" size="sm" round @click.stop="clone"/>
+          <q-btn icon="delete_forever" class="col-auto revert-btn" size="sm" round @click.stop="deleteCampo(indice)"/>
         </div>
-      </q-expansion-item>
-    </q-item-section>
-  </q-item>
+      </q-item-section>
+    </template>
+    <div :class="{'bg-grey-2': active && elementoSync.elemento !== 'seccion',
+        'bg-green-2': active && elementoSync.elemento === 'seccion', 'col': true, 'column': true}">
+      <referencia class="col" :elreferencia="elementoSync.referencia"
+                  v-if="isReferenciable && !patron"/>
+      <q-separator/>
+      <dependiente
+        v-if="!patron"
+        :dep="elementoSync.dependiente"
+        class="col"
+      />
+      <q-separator/>
+      <mostrar-campo class="col" :etiqueta="'Presentación'">
+        <q-input
+          debounce="1000"
+          placeholder="Presentacion"
+          type="text"
+          v-model="elementoSync.presentacion"
+        />
+      </mostrar-campo>
+      <component
+        class="col"
+        :is="elementoSync.elemento"
+        :key="'ce-' + elementoSync.path"
+        v-bind="{elemento: elementoSync, path: localPath}"
+      />
+    </div>
+  </q-expansion-item>
 </template>
 
 <script lang="ts">

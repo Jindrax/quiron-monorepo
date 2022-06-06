@@ -10,27 +10,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const PatronModel_1 = require("../db/models/PatronModel");
-class Patrones {
-    static crear({ patron }) {
+const ReferenciaEquipoModel_1 = require("../db/models/ReferenciaEquipoModel");
+class ReferenciaEquipos {
+    static crear({ referenciaEquipo }) {
         return __awaiter(this, void 0, void 0, function* () {
-            delete patron.id;
-            const patronDB = new PatronModel_1.PatronModel();
-            patronDB.fromCommonEntity(patron);
-            yield patronDB.save();
+            delete referenciaEquipo.id;
+            const referenciaEquipoDB = new ReferenciaEquipoModel_1.ReferenciaEquipoModel();
+            referenciaEquipoDB.fromCommonEntity(referenciaEquipo);
+            yield referenciaEquipoDB.save();
         });
     }
     static buscar({ filtro }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 filtro = JSON.parse(filtro);
-                const repo = (0, typeorm_1.getRepository)(PatronModel_1.PatronModel);
+                const repo = (0, typeorm_1.getRepository)(ReferenciaEquipoModel_1.ReferenciaEquipoModel);
                 if (Object.keys(filtro).length > 0) {
                     const key = Object.keys(filtro)[0];
-                    let query = repo.createQueryBuilder("patrones");
+                    let query = repo.createQueryBuilder("referenciaEquipos");
                     switch (key) {
                         case "identificador":
-                            query = query.where("patrones.identificacion ILIKE :identificador", { identificacion: `%${filtro[key]}%` });
+                            query = query.where("referenciaEquipos.identificacion ILIKE :identificador", { identificacion: `%${filtro[key]}%` });
                             break;
                     }
                     return yield query.getMany();
@@ -45,4 +45,4 @@ class Patrones {
         });
     }
 }
-exports.default = Patrones;
+exports.default = ReferenciaEquipos;

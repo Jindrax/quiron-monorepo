@@ -4,7 +4,7 @@ import {OTModel} from "../OTModel";
 import {InstitucionModel} from "../InstitucionModel";
 import {Equipo} from "@quiron/classes/dist/entities";
 import SearchValue from "../../decorators/SearchValue";
-import {PatronModel} from "../PatronModel";
+import {ReferenciaEquipoModel} from "../ReferenciaEquipoModel";
 import {CommonEntity} from "../CommonEntity";
 
 @Entity()
@@ -21,12 +21,7 @@ export class EquipoModel extends CommonEntity<Equipo> {
     modelo: string;
     @SearchValue()
     @Column()
-    serie: string;
-    @SearchValue()
-    @Column()
-    codigo: string;
-    // @Column({type: "bytea", nullable: false})
-    // garantia: Buffer;
+    activoFijo: string;
     @ManyToOne(type => ClienteModel, cliente => cliente.equipos)
     responsable: ClienteModel;
     @ManyToOne(type => InstitucionModel, institucion => institucion.equipos)
@@ -35,6 +30,6 @@ export class EquipoModel extends CommonEntity<Equipo> {
     ots: OTModel[];
     @Column({type: "jsonb"})
     atributos: Record<string, any>;
-    @ManyToOne(() => PatronModel, patron => patron.equipos)
-    patron: PatronModel;
+    @ManyToOne(() => ReferenciaEquipoModel, referenciaEquipo => referenciaEquipo.equipos)
+    referenciaEquipo: ReferenciaEquipoModel;
 }

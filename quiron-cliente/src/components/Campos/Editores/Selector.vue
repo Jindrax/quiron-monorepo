@@ -1,6 +1,6 @@
 <template>
   <div class="column">
-    <mostrar-campo class="col-auto" etiqueta="Elemento">
+    <mostrar-campo class="col" etiqueta="Elemento">
       <q-select
         v-model="seleccion"
         :options="opcionesSelector"
@@ -12,10 +12,10 @@
         @keypress.enter.prevent="nuevoElemento"
       />
     </mostrar-campo>
-    <mostrar-campo :etiqueta="'Etiqueta'" class="col-auto">
-      <q-input v-model="etiqueta" placeholder="Etiqueta" type="text"/>
+    <mostrar-campo :etiqueta="'Etiqueta'" class="col" :last="true">
+      <q-input v-model="etiqueta" placeholder="Etiqueta" type="text" v-on:keypress.enter="nuevoElemento"/>
     </mostrar-campo>
-    <q-btn class="col-auto advance-btn" label="Añadir" @click="nuevoElemento"/>
+    <q-btn class="col advance-btn" label="Añadir" @click="nuevoElemento"/>
   </div>
 </template>
 

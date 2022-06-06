@@ -18,7 +18,7 @@ const ClienteModel_1 = require("../ClienteModel");
 const OTModel_1 = require("../OTModel");
 const InstitucionModel_1 = require("../InstitucionModel");
 const SearchValue_1 = __importDefault(require("../../decorators/SearchValue"));
-const PatronModel_1 = require("../PatronModel");
+const ReferenciaEquipoModel_1 = require("../ReferenciaEquipoModel");
 const CommonEntity_1 = require("../CommonEntity");
 let EquipoModel = class EquipoModel extends CommonEntity_1.CommonEntity {
 };
@@ -44,12 +44,7 @@ __decorate([
     (0, SearchValue_1.default)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], EquipoModel.prototype, "serie", void 0);
-__decorate([
-    (0, SearchValue_1.default)(),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], EquipoModel.prototype, "codigo", void 0);
+], EquipoModel.prototype, "activoFijo", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(type => ClienteModel_1.ClienteModel, cliente => cliente.equipos),
     __metadata("design:type", ClienteModel_1.ClienteModel)
@@ -67,9 +62,9 @@ __decorate([
     __metadata("design:type", Object)
 ], EquipoModel.prototype, "atributos", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => PatronModel_1.PatronModel, patron => patron.equipos),
-    __metadata("design:type", PatronModel_1.PatronModel)
-], EquipoModel.prototype, "patron", void 0);
+    (0, typeorm_1.ManyToOne)(() => ReferenciaEquipoModel_1.ReferenciaEquipoModel, referenciaEquipo => referenciaEquipo.equipos),
+    __metadata("design:type", ReferenciaEquipoModel_1.ReferenciaEquipoModel)
+], EquipoModel.prototype, "referenciaEquipo", void 0);
 EquipoModel = __decorate([
     (0, typeorm_1.Entity)()
 ], EquipoModel);

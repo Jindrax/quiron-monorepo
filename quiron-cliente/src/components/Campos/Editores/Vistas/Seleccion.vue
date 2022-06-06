@@ -1,48 +1,32 @@
 <template>
-  <q-item class="q-ma-none q-pa-none">
-    <q-item-section>
-      <q-list>
-        <q-item>
-          <q-item-section>
-            <mostrar-campo etiqueta="Apertura">
-              <q-toggle v-model="elementoSync.apertura"/>
-            </mostrar-campo>
-          </q-item-section>
-        </q-item>
-        <q-item>
-          <q-item-section>
-            <mostrar-campo etiqueta="Presentar como radio">
-              <q-toggle v-model="elementoSync.radio"/>
-            </mostrar-campo>
-          </q-item-section>
-        </q-item>
-        <q-item>
-          <q-item-section>
-            <mostrar-campo :etiqueta="'Nueva opcion'">
-              <q-input @keypress.enter.native="addOpcion" v-model="nueva_opcion"/>
-            </mostrar-campo>
-            <q-btn @click="addOpcion" class="q-my-sm advance-btn" label="Añadir opcion"/>
-            <q-list bordered separator>
-              <q-item-label header>
-                Opciones
-              </q-item-label>
-              <q-item :key="elementoSync.path + '\\' + opcion" v-for="(opcion, indice_opcion) in elementoSync.opciones">
-                <q-item-section>
-                  {{ opcion }}
-                </q-item-section>
-                <q-item-section side v-if="indice_opcion!==0">
-                  <q-btn @click="moveOpcion(indice_opcion)" class="advance-btn" icon="arrow_upward"/>
-                </q-item-section>
-                <q-item-section side>
-                  <q-btn @click="removeOpcion(indice_opcion)" class="revert-btn" icon="ion-close-circle-outline"/>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-item-section>
-  </q-item>
+  <div class="column q-gutter-y-lg">
+    <mostrar-campo etiqueta="Apertura" class="col">
+      <q-toggle v-model="elementoSync.apertura"/>
+    </mostrar-campo>
+    <mostrar-campo etiqueta="Presentar como radio" class="col">
+      <q-toggle v-model="elementoSync.radio"/>
+    </mostrar-campo>
+    <mostrar-campo :etiqueta="'Nueva opcion'" class="col">
+      <q-input @keypress.enter.native="addOpcion" v-model="nueva_opcion"/>
+    </mostrar-campo>
+    <q-btn @click="addOpcion" class="col advance-btn" label="Añadir opcion"/>
+    <q-list bordered separator class="col">
+      <q-item-label header>
+        Opciones
+      </q-item-label>
+      <q-item :key="elementoSync.path + '\\' + opcion" v-for="(opcion, indice_opcion) in elementoSync.opciones">
+        <q-item-section>
+          {{ opcion }}
+        </q-item-section>
+        <q-item-section side v-if="indice_opcion!==0">
+          <q-btn @click="moveOpcion(indice_opcion)" class="advance-btn" icon="arrow_upward"/>
+        </q-item-section>
+        <q-item-section side>
+          <q-btn @click="removeOpcion(indice_opcion)" class="revert-btn" icon="ion-close-circle-outline"/>
+        </q-item-section>
+      </q-item>
+    </q-list>
+  </div>
 </template>
 <script lang="ts">
 import { Component, PropSync, Vue } from 'vue-property-decorator';

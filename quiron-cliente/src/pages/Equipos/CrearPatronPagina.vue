@@ -1,15 +1,15 @@
 <template>
   <q-page>
     <mostrar-campo etiqueta="Identificador">
-      <q-input v-model="nuevoPatron.identificador"/>
+      <q-input v-model="nuevaReferenciaEquipo.identificador"/>
     </mostrar-campo>
     <mostrar-campo etiqueta="Marca">
-      <q-input v-model="nuevoPatron.marca"/>
+      <q-input v-model="nuevaReferenciaEquipo.marca"/>
     </mostrar-campo>
     <mostrar-campo etiqueta="Modelo">
-      <q-input v-model="nuevoPatron.modelo"/>
+      <q-input v-model="nuevaReferenciaEquipo.modelo"/>
     </mostrar-campo>
-    <seccion :elemento="nuevoPatron.atributos" :indice="0" :path="''" :reducido="camposReducidos" :patron="true"/>
+    <seccion :elemento="nuevaReferenciaEquipo.atributos" :indice="0" :path="''" :reducido="camposReducidos" :patron="true"/>
     <div class="q-my-xs bg-grey-2">
       <q-btn class="bg-primary text-white full-width" label="Nuevo Patron" @click="crear"/>
     </div>
@@ -18,7 +18,7 @@
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import RecolectorAtributos from "components/Utils/RecolectorAtributos.vue";
-import {Patron} from "@quiron/classes/dist/entities";
+import {ReferenciaEquipo} from "@quiron/classes/dist/entities";
 import Seccion from "components/Campos/Editores/Vistas/Seccion.vue";
 import {TiposElementos} from "@quiron/classes/dist/components/campos";
 import Controller from "api/Controller";
@@ -32,7 +32,7 @@ import Controller from "api/Controller";
 })
 export default class CrearPatronPagina extends Vue {
 
-  nuevoPatron: Patron = new Patron({});
+  nuevaReferenciaEquipo: ReferenciaEquipo = new ReferenciaEquipo({});
   camposReducidos: TiposElementos[] = [
     TiposElementos["entrada-texto"],
     TiposElementos["entrada-numerica"],
@@ -42,11 +42,11 @@ export default class CrearPatronPagina extends Vue {
 
   async crear() {
     try {
-      await Controller.post<Patron>("patrones", {
-        patron: this.nuevoPatron
-      }, null, Patron);
+      await Controller.post<ReferenciaEquipo>("patrones", {
+        patron: this.nuevaReferenciaEquipo
+      }, null, ReferenciaEquipo);
       this.$q.notify("Patron creado correctamente");
-      this.nuevoPatron = new Patron({});
+      this.nuevaReferenciaEquipo = new ReferenciaEquipo({});
     } catch (e) {
       console.log(e);
     }
