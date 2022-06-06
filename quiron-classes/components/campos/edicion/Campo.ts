@@ -1,7 +1,7 @@
 import {TiposElementos} from '../index';
 import {Dependiente} from "./Dependiente";
 import {Type} from "class-transformer";
-import {Referencia} from "./Referencia";
+import {Referencia, TipoReferencia} from "./Referencia";
 
 export class Campo {
     elemento: TiposElementos;
@@ -18,7 +18,7 @@ export class Campo {
         this.elemento = elemento ? elemento : TiposElementos.seccion;
         this.etiqueta = etiqueta ? etiqueta : '';
         this.dependiente = dependiente ? dependiente : new Dependiente();
-        this.referencia = referencia ? referencia: new Referencia();
+        this.referencia = referencia ? referencia: new Referencia(false, TipoReferencia.PLANTILLA, "raiz", elemento);
         this.value = value? value : "";
     }
 }

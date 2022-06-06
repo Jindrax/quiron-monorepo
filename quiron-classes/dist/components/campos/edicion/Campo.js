@@ -20,11 +20,11 @@ var Campo = /** @class */ (function () {
         this.elemento = elemento ? elemento : index_1.TiposElementos.seccion;
         this.etiqueta = etiqueta ? etiqueta : '';
         this.dependiente = dependiente ? dependiente : new Dependiente_1.Dependiente();
-        this.referencia = referencia ? referencia : new Referencia_1.Referencia();
+        this.referencia = referencia ? referencia : new Referencia_1.Referencia(false, Referencia_1.TipoReferencia.PLANTILLA, "raiz", elemento);
         this.value = value ? value : "";
     }
     __decorate([
-        class_transformer_1.Type(function () { return Dependiente_1.Dependiente; }),
+        (0, class_transformer_1.Type)(function () { return Dependiente_1.Dependiente; }),
         __metadata("design:type", Dependiente_1.Dependiente)
     ], Campo.prototype, "dependiente", void 0);
     return Campo;

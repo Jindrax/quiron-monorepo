@@ -65,7 +65,7 @@ import Plantilla from '@quiron/classes/dist/entities/Plantilla';
 import {getModule} from "vuex-module-decorators";
 import ModuloLlenadoPlantilla from "../../store/modules/ModuloLlenadoPlantilla";
 import Campo from "components/Campos/Recolectores/Campo.vue";
-import {Formulario, Patron} from "@quiron/classes/dist/entities";
+import {Formulario, ReferenciaEquipo} from "@quiron/classes/dist/entities";
 import BuscadorUnitario from "components/Utils/BuscadorUnitario.vue";
 import {BuscadorPlantilla} from "api/entidades/Buscador";
 import Controller from "api/Controller";
@@ -93,7 +93,7 @@ export default class LlenarPlantilla extends Vue {
     try {
       await Controller.post<Formulario>("formularios", {
         formulario: this.formulario
-      }, null, Patron);
+      }, null, Formulario);
       this.$q.notify("Patron creado correctamente");
     } catch (e) {
       console.log(e);

@@ -24,13 +24,13 @@ import {TiposElementos} from "@quiron/classes/dist/components/campos";
 import Controller from "api/Controller";
 
 @Component({
-  name: 'crear-patron-pagina',
+  name: 'crear-referencia-equipo-pagina',
   components: {
     Seccion,
     RecolectorAtributos
   }
 })
-export default class CrearPatronPagina extends Vue {
+export default class CrearReferenciaEquipoPagina extends Vue {
 
   nuevaReferenciaEquipo: ReferenciaEquipo = new ReferenciaEquipo({});
   camposReducidos: TiposElementos[] = [
@@ -42,10 +42,10 @@ export default class CrearPatronPagina extends Vue {
 
   async crear() {
     try {
-      await Controller.post<ReferenciaEquipo>("patrones", {
-        patron: this.nuevaReferenciaEquipo
+      await Controller.post<ReferenciaEquipo>("referenciaEquipos", {
+        referenciaEquipo: this.nuevaReferenciaEquipo
       }, null, ReferenciaEquipo);
-      this.$q.notify("Patron creado correctamente");
+      this.$q.notify("Referencia Equipo creada correctamente");
       this.nuevaReferenciaEquipo = new ReferenciaEquipo({});
     } catch (e) {
       console.log(e);

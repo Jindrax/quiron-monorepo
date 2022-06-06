@@ -29,7 +29,7 @@ var Dependiente = /** @class */ (function () {
         this.grupo = grupo ? grupo : '';
     }
     __decorate([
-        class_transformer_1.Type(function () { return CondicionDependiente; }),
+        (0, class_transformer_1.Type)(function () { return CondicionDependiente; }),
         __metadata("design:type", Array)
     ], Dependiente.prototype, "conditions", void 0);
     return Dependiente;
